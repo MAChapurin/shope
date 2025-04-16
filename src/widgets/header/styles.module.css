@@ -1,0 +1,19 @@
+.header {
+	margin-bottom: 17px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-top: 48px;
+}
+
+.isMobile {
+	display: flex;
+	align-items: center;
+	gap: 29px;
+}
+
+@media (min-width: 1024px) {
+	.isMobile {
+		display: none;
+	}
+}

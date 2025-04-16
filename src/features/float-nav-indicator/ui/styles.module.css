@@ -1,0 +1,62 @@
+.root {
+	background: #d8d8d8;
+	height: 1px;
+}
+
+.indicator {
+	width: 0;
+	margin-inline: auto 0;
+	height: 1px;
+	opacity: 0;
+	transition:
+		width 0.3s,
+		opacity 0.3s,
+		margin-right 0.3s;
+}
+
+.isAbout {
+	width: 68px;
+	margin-right: 318px;
+	opacity: 1;
+	background: var(--color-dark);
+}
+
+.isCart {
+	width: 29px;
+	margin-right: 108px;
+	opacity: 1;
+	background: var(--color-dark);
+}
+
+.isCatalog {
+	width: 68px;
+	margin-right: 433px;
+	opacity: 1;
+	background: var(--color-dark);
+}
+.isFavorites {
+	width: 29px;
+	margin-right: 53px;
+	opacity: 1;
+	background: var(--color-dark);
+}
+
+.isMain {
+	margin-right: calc(100% - 129px);
+	width: 129px;
+	opacity: 1;
+	background: var(--color-dark);
+}
+
+.isProfile {
+	width: 29px;
+	margin-right: 0;
+	opacity: 1;
+	background: var(--color-dark);
+}
+
+@media (max-width: 1024px) {
+	.indicator {
+		display: none;
+	}
+}

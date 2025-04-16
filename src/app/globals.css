@@ -1,0 +1,43 @@
+html,
+body {
+	max-width: 100vw;
+	overflow-x: hidden;
+	font-family: var(--font-main);
+}
+
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+li {
+	list-style-type: none;
+}
+
+button {
+	background: transparent;
+	border: none;
+	cursor: pointer;
+}
+
+:root {
+	--color-light: #ffffff;
+	--color-dark: #000000;
+	--color-primary: #a18a68;
+	--color-secondary: #707070;
+	--color-secondary-light: #efefef;
+	--color-error: #d82700;
+	--max-width-app: 1248px;
+}
+
+@media (max-width: 1024px) {
+	[datatype='desktop'] {
+		display: none;
+	}
+}

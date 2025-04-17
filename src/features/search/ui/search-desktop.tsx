@@ -4,26 +4,20 @@ import { Icon } from '@/shared/ui'
 
 import cn from 'clsx'
 
-import { useSearch } from './model/useSearch'
+import { useSearch } from '../model/useSearch'
 import styles from './styles.module.css'
 
-export const Search = () => {
-	const { id, isVisible, onOpen, onClose, ref } = useSearch()
+export const SearchDesktop = () => {
+	const { id, isVisible, onOpen, onSubmit, onClose, ref } = useSearch()
 	return (
-		<div className={styles.root}>
+		<div className={cn(styles.root, styles.desktop)}>
 			<search
 				role='search'
 				className={cn(styles.search, {
 					[styles.searchHidden]: !isVisible
 				})}
 			>
-				<form
-					className={styles.form}
-					onSubmit={e => {
-						e.preventDefault()
-						onClose()
-					}}
-				>
+				<form className={styles.form} onSubmit={onSubmit}>
 					<label className={styles.label} htmlFor={id}>
 						<Icon name='search' className={styles.placeholderSearchIcon} />
 						<input

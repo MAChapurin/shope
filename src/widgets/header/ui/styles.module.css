@@ -7,13 +7,29 @@
 }
 
 .isMobile {
+	display: none;
+}
+
+.top {
 	display: flex;
 	align-items: center;
+	justify-content: end;
 	gap: 29px;
 }
 
+.space {
+	flex-grow: 1;
+}
+
 @media (min-width: 1024px) {
-	.isMobile {
+}
+
+@media (max-width: 1024px) {
+	.isDesktop {
 		display: none;
+	}
+
+	.isMobile {
+		display: block;
 	}
 }

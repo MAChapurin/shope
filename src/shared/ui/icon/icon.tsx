@@ -1,10 +1,17 @@
 import { FC } from 'react'
 import { IconProps } from './icon.types'
-import { CartIcon, LikeIcon, ProfileIcon, SearchIcon } from './icons'
+import {
+	CartIcon,
+	LikeIcon,
+	LogoutIcon,
+	ProfileIcon,
+	SearchIcon
+} from './icons'
 
 const config = {
 	cart: CartIcon,
 	like: LikeIcon,
+	logout: LogoutIcon,
 	profile: ProfileIcon,
 	search: SearchIcon
 }

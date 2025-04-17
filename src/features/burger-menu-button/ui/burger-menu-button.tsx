@@ -1,20 +1,15 @@
 'use client'
 import cn from 'clsx'
 import styles from './styles.module.css'
-import { useState } from 'react'
+import { useBurgerModel } from '../model/useBurgerModel'
 
 export const BurgerMenuButton = () => {
-	const [open, setOpen] = useState(false)
+	const { isOpen, onClick } = useBurgerModel()
 	return (
-		<button
-			onClick={() => {
-				setOpen(prev => !prev)
-			}}
-			className={styles.menuToggle}
-		>
+		<button onClick={onClick} className={styles.menuToggle}>
 			<div
 				className={cn(styles.hamburger, {
-					[styles.close]: open
+					[styles.close]: isOpen
 				})}
 			>
 				<span className={styles.top}></span>
@@ -23,7 +18,7 @@ export const BurgerMenuButton = () => {
 			</div>
 			<div
 				className={cn(styles.cross, {
-					[styles.close]: !open
+					[styles.close]: !isOpen
 				})}
 			>
 				<span></span>

@@ -13,6 +13,11 @@
 		width 0.3s;
 }
 
+.mobile.search {
+	width: 100%;
+	margin: 0;
+}
+
 .searchHidden {
 	margin-left: 0;
 	width: 0;
@@ -75,8 +80,21 @@
 	width: 0;
 }
 
+.mobile {
+	display: none;
+}
+
 @media (hover: hover) {
 	.button:hover {
 		color: var(--color-secondary);
+	}
+}
+
+@media (max-width: 1024px) {
+	.mobile {
+		display: block;
+	}
+	.desktop {
+		display: none;
 	}
 }

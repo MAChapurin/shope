@@ -28,6 +28,11 @@
 	height: 2px;
 }
 
+.hamburger .bottom {
+	width: 15px;
+	margin-left: 5px;
+}
+
 .top {
 	transition: width 0.25s;
 }
@@ -76,52 +81,3 @@
 .cross.close span {
 	width: 0;
 }
-
-/* .cross span {
-	&:nth-child(1) {
-		height: 0%;
-		width: 4px;
-		position: absolute;
-		top: 10%;
-		left: 0px;
-		transition-delay: 0s;
-	}
-	&:nth-child(2) {
-		width: 0%;
-		height: 4px;
-		position: absolute;
-		left: 10%;
-		top: 0px;
-		transition-delay: 0.25s;
-	}
-} */
-
-/* .menuToggle.open .hamburger span {
-	width: 0%;
-	&:nth-child(1) {
-		transition-delay: 0s;
-	}
-	&:nth-child(2) {
-		transition-delay: 0.125s;
-	}
-	&:nth-child(3) {
-		transition-delay: 0.25s;
-	}
-}
-
-.menuToggle.open .cross span {
-	&:nth-child(1) {
-		height: 80%;
-		transition-delay: 0.625s;
-	}
-	&:nth-child(2) {
-		width: 80%;
-		transition-delay: 0.375s;
-	}
-}
-
-@media (hover: hover) {
-	.menuToggle:hover {
-		background: rgba(255, 255, 255, 0.8);
-	}
-} */

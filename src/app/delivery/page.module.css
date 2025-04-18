@@ -1,0 +1,28 @@
+.main {
+	margin: 0 auto;
+	padding-block: 24px;
+}
+
+.main h1 {
+	margin-bottom: 24px;
+}
+
+.main h2 {
+	margin-block: 16px;
+}
+
+.main h3 {
+	margin-block: 12px;
+}
+
+.main p {
+	padding-block: 4px;
+}
+
+.main ul {
+	list-style-type: circle;
+}
+
+.main a {
+	text-decoration: underline;
+}

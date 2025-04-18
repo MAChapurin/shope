@@ -10,6 +10,7 @@ import {
 	LogoutIcon,
 	ProfileIcon,
 	SearchIcon,
+	SuccessIcon,
 	TwitterIcon
 } from './icons'
 
@@ -23,6 +24,7 @@ const config = {
 	logout: LogoutIcon,
 	profile: ProfileIcon,
 	search: SearchIcon,
+	success: SuccessIcon,
 	twitter: TwitterIcon
 }
 

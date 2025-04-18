@@ -2,10 +2,12 @@
 
 import { Icon } from '@/shared/ui'
 import styles from './styles.module.css'
+import { useSubscribe } from '../model/useSubscribe'
 
 export const SubscriptionForm = () => {
+	const { onSubmit } = useSubscribe()
 	return (
-		<form action='#' className={styles.form}>
+		<form action='#' className={styles.form} onSubmit={onSubmit}>
 			<input
 				className={styles.input}
 				type='email'

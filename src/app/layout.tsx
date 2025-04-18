@@ -3,6 +3,7 @@ import { DM_Sans } from 'next/font/google'
 import './globals.css'
 import { Container } from '@/shared/ui'
 import { Footer, Header } from '@/widgets'
+import { Toast } from '@/features/toast/ui/toast'
 
 const dmSans = DM_Sans({
 	variable: '--font-main',
@@ -26,6 +27,7 @@ export default function RootLayout({
 					<Header />
 					{children}
 					<Footer />
+					<Toast />
 				</Container>
 			</body>
 		</html>

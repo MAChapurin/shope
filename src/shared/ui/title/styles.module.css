@@ -1,0 +1,38 @@
+.left {
+	text-align: left;
+}
+
+.center {
+	text-align: center;
+}
+
+.right {
+	text-align: right;
+}
+
+.sm {
+	font-size: 16px;
+	line-height: 27px;
+}
+
+.md {
+	font-size: 20px;
+	line-height: 26px;
+}
+
+.lg {
+	font-size: 26px;
+	line-height: 32px;
+}
+
+.xl {
+	font-weight: 500;
+	font-size: 33px;
+	line-height: 43px;
+}
+
+@media (max-width: 1024px) {
+	.xl {
+		font-size: 28px;
+	}
+}

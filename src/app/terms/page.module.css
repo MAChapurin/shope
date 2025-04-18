@@ -1,7 +1,6 @@
 .main {
 	margin: 0 auto;
 	padding-block: 24px;
-	max-width: 670px;
 }
 
 .main h1 {
@@ -18,4 +17,8 @@
 
 .main ul {
 	list-style-type: circle;
+}
+
+.main a {
+	text-decoration: underline;
 }

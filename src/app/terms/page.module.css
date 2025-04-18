@@ -1,0 +1,21 @@
+.main {
+	margin: 0 auto;
+	padding-block: 24px;
+	max-width: 670px;
+}
+
+.main h1 {
+	margin-bottom: 24px;
+}
+
+.main h2 {
+	margin-block: 16px;
+}
+
+.main p {
+	padding-block: 4px;
+}
+
+.main ul {
+	list-style-type: circle;
+}

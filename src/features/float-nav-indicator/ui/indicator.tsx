@@ -1,5 +1,6 @@
 'use client'
-import cn from 'clsx'
+
+import { cn } from '@/shared/lib'
 import { useIndicator } from '../model/useIndicator'
 import styles from './styles.module.css'
 

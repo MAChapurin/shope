@@ -1,8 +1,9 @@
 'use client'
 import { PATH_NAMES } from '@/shared/settings'
 import { Container, Icon } from '@/shared/ui'
+import { cn } from '@/shared/lib'
 import Link from 'next/link'
-import cn from 'clsx'
+
 import { useMobileNavigation } from '../model/useMobileNavigation'
 
 import styles from './styles.module.css'

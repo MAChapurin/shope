@@ -2,9 +2,9 @@
 
 import { Icon } from '@/shared/ui'
 
-import cn from 'clsx'
-
+import { cn } from '@/shared/lib'
 import { useSearch } from '../model/useSearch'
+
 import styles from './styles.module.css'
 
 export const SearchDesktop = () => {

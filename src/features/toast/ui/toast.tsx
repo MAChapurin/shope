@@ -1,7 +1,8 @@
 'use client'
 import { Icon } from '@/shared/ui'
+import { cn } from '@/shared/lib'
 import { useToast } from '../model/useToast'
-import cn from 'clsx'
+
 import styles from './styles.module.css'
 
 export const Toast = () => {

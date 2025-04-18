@@ -1,7 +1,9 @@
 'use client'
-import cn from 'clsx'
-import styles from './styles.module.css'
+
 import { useBurgerModel } from '../model/useBurgerModel'
+import { cn } from '@/shared/lib'
+
+import styles from './styles.module.css'
 
 export const BurgerMenuButton = () => {
 	const { isOpen, onClick } = useBurgerModel()

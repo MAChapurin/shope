@@ -3,7 +3,8 @@ import Link from 'next/link'
 import { Icon } from '@/shared/ui'
 
 import { useIndicator } from '../model/useIndicator'
-import cn from 'clsx'
+
+import { cn } from '@/shared/lib'
 import styles from './styles.module.css'
 
 export const CartLinkWithIndicator = () => {

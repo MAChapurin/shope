@@ -1,10 +1,10 @@
 import { CartLinkWithIndicator, Search } from '@/features'
 import { Logo } from '@/shared/ui'
 import { BurgerMenuButton } from '@/features/burger-menu-button/ui/burger-menu-button'
-import cn from 'clsx'
+import { cn } from '@/shared/lib'
+import { NavigationMobile } from '@/widgets/navigation'
 
 import styles from './styles.module.css'
-import { NavigationMobile } from '@/widgets/navigation'
 
 export const HeaderMobile = () => {
 	return (

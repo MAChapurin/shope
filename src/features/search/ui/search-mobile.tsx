@@ -1,7 +1,7 @@
 'use client'
 import { Icon } from '@/shared/ui'
 import { useSearch } from '../model/useSearch'
-import cn from 'clsx'
+import { cn } from '@/shared/lib'
 
 import styles from './styles.module.css'
 

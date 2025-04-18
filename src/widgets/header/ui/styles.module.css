@@ -1,9 +1,9 @@
 .header {
 	margin-bottom: 17px;
+	padding-top: 48px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding-top: 48px;
 }
 
 .isMobile {
@@ -31,5 +31,9 @@
 
 	.isMobile {
 		display: block;
+	}
+
+	.header {
+		padding-top: 15px;
 	}
 }

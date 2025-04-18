@@ -31,12 +31,17 @@ body:has([datatype='true']) {
 	overflow: hidden;
 }
 
+main {
+	min-height: calc(100dvh - 330px);
+}
+
 :root {
 	--color-light: #ffffff;
 	--color-dark: #000000;
 	--color-primary: #a18a68;
 	--color-secondary: #707070;
 	--color-secondary-light: #efefef;
+	--color-secondary-light-2: #d8d8d8;
 	--color-error: #d82700;
 	--max-width-app: 1248px;
 }

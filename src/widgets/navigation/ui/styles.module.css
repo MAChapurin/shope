@@ -43,7 +43,7 @@
 	}
 
 	.navMobile {
-		--top-offset: 124px;
+		--top-offset: 90px;
 		width: 100dvw;
 		height: calc(100dvh - var(--top-offset));
 		padding-block: 40px;
@@ -82,7 +82,7 @@
 	}
 
 	.mobileMenuOpen .dividerMobile {
-		background: #d8d8d8;
+		background: var(--color-secondary-light-2);
 	}
 
 	.linkMobile {

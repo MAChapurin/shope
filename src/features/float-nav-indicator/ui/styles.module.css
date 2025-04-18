@@ -1,5 +1,5 @@
 .root {
-	background: #d8d8d8;
+	background: var(--color-secondary-light-2);
 	height: 1px;
 }
 

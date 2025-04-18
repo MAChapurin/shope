@@ -21,7 +21,7 @@ export const NavigationMobile = () => {
 					<ul className={styles.listMobile}>
 						<li>
 							<Link
-								style={{ transitionDelay: '0s' }}
+								style={{ transitionDelay: '0.13s' }}
 								className={styles.linkMobile}
 								href={PATH_NAMES.MAIN}
 							>
@@ -30,7 +30,7 @@ export const NavigationMobile = () => {
 						</li>
 						<li>
 							<Link
-								style={{ transitionDelay: '0.1s' }}
+								style={{ transitionDelay: '0.17s' }}
 								className={styles.linkMobile}
 								href={PATH_NAMES.CATALOG}
 							>
@@ -51,7 +51,7 @@ export const NavigationMobile = () => {
 					<ul className={styles.listMobile}>
 						<li>
 							<Link
-								style={{ transitionDelay: '0.3s' }}
+								style={{ transitionDelay: '0.23s' }}
 								className={styles.linkMobile}
 								href={PATH_NAMES.PROFILE}
 							>
@@ -61,7 +61,7 @@ export const NavigationMobile = () => {
 						</li>
 						<li>
 							<Link
-								style={{ transitionDelay: '0.4s' }}
+								style={{ transitionDelay: '0.27s' }}
 								className={styles.linkMobile}
 								href={PATH_NAMES.FAVORITES}
 							>
@@ -70,7 +70,7 @@ export const NavigationMobile = () => {
 						</li>
 						<li>
 							<button
-								style={{ transitionDelay: '0.5s' }}
+								style={{ transitionDelay: '0.3s' }}
 								className={styles.linkMobile}
 							>
 								<Icon name='logout' />

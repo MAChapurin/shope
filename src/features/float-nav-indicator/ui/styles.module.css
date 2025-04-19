@@ -21,6 +21,10 @@
 	background: var(--color-dark);
 }
 
+body:has([data-search-open='true']) .isAbout {
+	margin-right: 544px;
+}
+
 .isCart {
 	width: 29px;
 	margin-right: 108px;
@@ -34,6 +38,11 @@
 	opacity: 1;
 	background: var(--color-dark);
 }
+
+body:has([data-search-open='true']) .isCatalog {
+	margin-right: 660px;
+}
+
 .isFavorites {
 	width: 29px;
 	margin-right: 53px;

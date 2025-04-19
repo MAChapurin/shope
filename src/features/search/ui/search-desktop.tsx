@@ -12,6 +12,7 @@ export const SearchDesktop = () => {
 	return (
 		<div className={cn(styles.root, styles.desktop)}>
 			<search
+				data-search-open={isVisible}
 				role='search'
 				className={cn(styles.search, {
 					[styles.searchHidden]: !isVisible

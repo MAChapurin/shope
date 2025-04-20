@@ -8,7 +8,9 @@ export const useSearch = () => {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [isVisible, setIsVisible] = useState(false)
+
   const id = useId()
+
   const ref = useRef<HTMLInputElement>(null)
 
   const createQueryString = useCallback(
@@ -47,6 +49,6 @@ export const useSearch = () => {
     onOpen,
     onClose,
     onSubmit,
-    ref
+    ref,
   }
 }

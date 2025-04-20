@@ -1,0 +1,17 @@
+.catalog {
+	padding-top: 96px;
+}
+
+.catalog__title {
+	margin-bottom: 39px;
+}
+
+.catalog__filters {
+	max-width: 261px;
+}
+
+@media (max-width: 1024px) {
+	.catalog {
+		padding-top: 0;
+	}
+}

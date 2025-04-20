@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { IconProps } from './icon.types'
 import {
+	ArrowDropdownIcon,
 	ArrowIcon,
 	CartIcon,
 	FacebookIcon,
@@ -17,6 +18,7 @@ import {
 const config = {
 	arrow: ArrowIcon,
 	cart: CartIcon,
+	dropdown: ArrowDropdownIcon,
 	facebook: FacebookIcon,
 	in: InIcon,
 	instagram: InstagramIcon,

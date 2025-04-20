@@ -1,3 +1,4 @@
+export * from './arrow-dropdown-icon'
 export * from './arrow-icon'
 export * from './cart-icon'
 export * from './facebook-icon'

@@ -1,0 +1,83 @@
+.menuToggle {
+	width: 20px;
+	height: 15px;
+	position: relative;
+	position: relative;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.menuToggle span {
+	display: block;
+	background: var(--color-dark);
+	border-radius: 2px;
+}
+
+.hamburger {
+	position: absolute;
+	inset: 0;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.hamburger span {
+	width: 20px;
+	height: 2px;
+}
+
+.hamburger .bottom {
+	width: 15px;
+	margin-left: 5px;
+}
+
+.top {
+	transition: width 0.25s;
+}
+
+.center {
+	transition: width 0.5s;
+}
+
+.bottom {
+	transition: width 0.75s;
+}
+
+.hamburger.close span {
+	width: 0;
+}
+
+.cross {
+	position: absolute;
+	inset: 0;
+	height: 100%;
+	width: 100%;
+	transform: translateY(5px);
+}
+
+.cross span {
+	width: 20px;
+	height: 2px;
+}
+
+.cross span:first-of-type {
+	width: 20px;
+	height: 2px;
+	transform: translateY(1px) rotate(45deg);
+	transition: width 0.25s;
+	transition-delay: 0.25s;
+}
+
+.cross span:last-of-type {
+	width: 20px;
+	height: 2px;
+	transform: translateY(-1px) rotate(-45deg);
+	transition: width 0.25s;
+	transition-delay: 0.5s;
+}
+
+.cross.close span {
+	width: 0;
+}

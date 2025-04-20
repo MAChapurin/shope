@@ -1,0 +1,21 @@
+.link {
+	position: relative;
+}
+
+.indicator {
+	padding: 2px;
+	position: absolute;
+	top: -5px;
+	right: -5px;
+	background: var(--color-light);
+	border: 1px solid var(--color-dark);
+	border-radius: 50%;
+	pointer-events: none;
+	font-size: 10px;
+	line-height: 54%;
+	transition: opacity 0.3s;
+}
+
+.hidden {
+	opacity: 0;
+}

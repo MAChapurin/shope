@@ -1,0 +1,24 @@
+.product__img {
+	width: 100%;
+	object-fit: cover;
+	border-radius: 8px;
+}
+
+.product__title {
+	overflow: hidden;
+	text-wrap: nowrap;
+	text-overflow: ellipsis;
+}
+
+.product__price {
+	font-weight: 500;
+	font-size: 20px;
+	line-height: 26px;
+	color: var(--color-primary);
+}
+
+@media (max-width: 1024px) {
+	.product__img {
+		height: 136px;
+	}
+}

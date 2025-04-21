@@ -1,0 +1,97 @@
+import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { SETTINGS_RANGE_PRICE_SLIDER } from '../settings/slider.setting'
+import { SEARCH_PARAMS } from '@/shared/settings'
+
+export const useSlider = () => {
+  const min = SETTINGS_RANGE_PRICE_SLIDER.MIN_PRICE
+  const max = SETTINGS_RANGE_PRICE_SLIDER.MAX_PRICE
+
+  const router = useRouter()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString())
+      params.set(name, value)
+
+      return params.toString()
+    },
+    [searchParams]
+  )
+
+  const searchParamMinValue = searchParams.get(SEARCH_PARAMS.PRICE_MIN)
+  const searchParamMaxValue = searchParams.get(SEARCH_PARAMS.PRICE_MAX)
+
+  const [minValue, setMinValue] = useState(min)
+  const [maxValue, setMaxValue] = useState(max)
+
+  const minValueRef = useRef<HTMLInputElement>(null)
+  const maxValueRef = useRef<HTMLInputElement>(null)
+  const rangeRef = useRef<HTMLDivElement>(null)
+
+  const getPercent = useCallback(
+    (value: number) => Math.round(((value - min) / (max - min)) * 100),
+    [min, max]
+  )
+
+  const onChangeLeft = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = Math.min(+event.target.value, maxValue - 1)
+    setMinValue(value)
+    event.target.value = value.toString()
+    router.push(pathname + '?' + createQueryString(SEARCH_PARAMS.PRICE_MIN, event.target.value))
+  }
+
+  const onChangeRight = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = Math.max(+event.target.value, minValue + 1)
+    setMaxValue(value)
+    event.target.value = value.toString()
+    router.push(pathname + '?' + createQueryString(SEARCH_PARAMS.PRICE_MAX, value.toString()))
+  }
+
+  useEffect(() => {
+    if (maxValueRef.current) {
+      const minPercent = getPercent(minValue)
+      const maxPercent = getPercent(+maxValueRef.current.value)
+
+      if (rangeRef.current) {
+        rangeRef.current.style.left = `${minPercent}%`
+        rangeRef.current.style.width = `${maxPercent - minPercent}%`
+      }
+    }
+  }, [minValue, getPercent])
+
+  useEffect(() => {
+    if (minValueRef.current) {
+      const minPercent = getPercent(+minValueRef.current.value)
+      const maxPercent = getPercent(maxValue)
+
+      if (rangeRef.current) {
+        rangeRef.current.style.width = `${maxPercent - minPercent}%`
+      }
+    }
+  }, [maxValue, getPercent])
+
+  useEffect(() => {
+    if (searchParamMinValue && minValueRef.current) {
+      setMinValue(+searchParamMinValue)
+      minValueRef.current.value = searchParamMinValue
+    }
+    if (searchParamMaxValue && maxValueRef.current) {
+      setMaxValue(+searchParamMaxValue)
+      maxValueRef.current.value = searchParamMaxValue
+    }
+  }, [])
+
+  return {
+    min,
+    max,
+    minValue,
+    minValueRef,
+    maxValue,
+    maxValueRef,
+    rangeRef,
+    onChangeLeft,
+    onChangeRight
+  }
+}

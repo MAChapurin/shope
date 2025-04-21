@@ -3,18 +3,24 @@
 import { Icon } from '@/shared/ui'
 import { cn } from '@/shared/lib'
 
-import styles from './styles.module.css'
 import { useDropdownFilterCategory } from '../model/useDropdownFilter'
+
+import styles from './styles.module.css'
 
 export const DropdownCategoryFilter = () => {
 	const { activeCategory, toogleDropdown, isOpen, ref, onClick } =
 		useDropdownFilterCategory()
 	return (
 		<div className={styles.dropdown} ref={ref}>
-			<button className={styles.dropdown__button} onClick={toogleDropdown}>
+			<button
+				aria-label={(isOpen ? 'Закрыть' : 'Открыть') + ' меню выбора категории'}
+				className={styles.dropdown__button}
+				onClick={toogleDropdown}
+			>
 				Категории <Icon name='dropdown' />
 			</button>
 			<ul
+				aria-label='Список вариантов сортировки по категориям'
 				onClick={onClick}
 				className={cn(styles.dropdown__list, {
 					[styles['dropdown__list--open']]: isOpen

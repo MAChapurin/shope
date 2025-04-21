@@ -43,6 +43,7 @@
 	}
 
 	.navMobile {
+		z-index: 10;
 		--top-offset: 90px;
 		width: 100dvw;
 		height: calc(100dvh - var(--top-offset));

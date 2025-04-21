@@ -1,5 +1,8 @@
-import { DropdownCategoryFilter } from '@/features/dropdown-category-filter'
-import { LiveSearch } from '@/features/search'
+import {
+	DropdownCategoryFilter,
+	LiveSearch,
+	PriceRangeSlider
+} from '@/features'
 
 import styles from './styles.module.css'
 
@@ -13,7 +16,7 @@ export const Filters = () => {
 				<DropdownCategoryFilter />
 			</li>
 			<li>
-				<input type='range' min={0} max={100} />
+				<PriceRangeSlider />
 			</li>
 		</ul>
 	)

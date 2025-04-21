@@ -1,0 +1,4 @@
+export enum SETTINGS_RANGE_PRICE_SLIDER {
+  MIN_PRICE = 0,
+  MAX_PRICE = 180
+}

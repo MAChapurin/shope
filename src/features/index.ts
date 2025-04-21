@@ -1,4 +1,7 @@
 export * from './cart-link-indicator'
+export * from './dropdown-category-filter'
 export * from './burger-menu-button'
 export * from './float-nav-indicator'
+export * from './price-range-slider'
 export * from './search/ui/search'
+export * from './search/ui/search-live'

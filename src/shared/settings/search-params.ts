@@ -4,4 +4,5 @@ export enum SEARCH_PARAMS {
   CATEGORY = 'category',
   PRICE_MIN = 'price-min',
   PRICE_MAX = 'price-max',
+  DISCOUNT = 'discount'
 }

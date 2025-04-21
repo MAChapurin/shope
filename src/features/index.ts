@@ -1,4 +1,5 @@
 export * from './cart-link-indicator'
+export * from './discount-switch'
 export * from './dropdown-category-filter'
 export * from './burger-menu-button'
 export * from './float-nav-indicator'

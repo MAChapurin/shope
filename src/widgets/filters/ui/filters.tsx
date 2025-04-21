@@ -1,4 +1,5 @@
 import {
+	DiscountSwitch,
 	DropdownCategoryFilter,
 	LiveSearch,
 	PriceRangeSlider
@@ -17,6 +18,9 @@ export const Filters = () => {
 			</li>
 			<li>
 				<PriceRangeSlider />
+			</li>
+			<li>
+				<DiscountSwitch />
 			</li>
 		</ul>
 	)

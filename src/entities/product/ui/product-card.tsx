@@ -8,25 +8,28 @@ import styles from './styles.module.css'
 import { Title } from '@/shared/ui'
 
 export const ProductCard: FC<ProductCardInterface> = ({
-	img,
-	title,
+	images,
+	name,
 	price,
-	id
+	discount
 }) => {
 	return (
-		<Link className={styles.product} href={PATH_NAMES.CATALOG + '/' + id}>
-			<Image
-				className={styles.product__img}
-				src={img}
-				alt={title}
-				title={title}
-				width={380}
-				height={380}
-			/>
+		<Link className={styles.product} href={PATH_NAMES.CATALOG + '/'}>
+			<div className={styles.product__container}>
+				<Image
+					className={styles.product__img}
+					src={images[0]}
+					alt={name}
+					title={name}
+					width={380}
+					height={380}
+				/>
+			</div>
 			<Title className={styles.product__title} As='h3'>
-				{title}
+				{name}
 			</Title>
 			<p className={styles.product__price}>$ {price.toFixed(2)}</p>
+			{discount && <p className={styles.product__discount}>- {discount}%</p>}
 		</Link>
 	)
 }

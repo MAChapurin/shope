@@ -1,5 +1,6 @@
 'use client'
 
+import { useQueryString } from "@/shared/hooks"
 import { SEARCH_PARAMS } from "@/shared/settings"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
@@ -9,15 +10,7 @@ export const useDiscount = () => {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString())
-      params.set(name, value)
-
-      return params.toString()
-    },
-    [searchParams]
-  )
+  const createQueryString = useQueryString()
 
   const isDiscount = searchParams.get(SEARCH_PARAMS.DISCOUNT)
 

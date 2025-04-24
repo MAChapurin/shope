@@ -2,20 +2,13 @@ import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 import { SEARCH_PARAMS } from '@/shared/settings'
+import { useQueryString } from '@/shared/hooks'
 
 export const useSlider = (min: number, max: number) => {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString())
-      params.set(name, value)
-
-      return params.toString()
-    },
-    [searchParams]
-  )
+  const createQueryString = useQueryString()
 
   const searchParamMinValue = searchParams.get(SEARCH_PARAMS.PRICE_MIN)
   const searchParamMaxValue = searchParams.get(SEARCH_PARAMS.PRICE_MAX)

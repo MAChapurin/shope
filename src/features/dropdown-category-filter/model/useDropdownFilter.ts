@@ -1,9 +1,9 @@
 'use client'
 
-import { useClickOutside } from '@/shared/hooks'
+import { useClickOutside, useQueryString } from '@/shared/hooks'
 import { PATH_NAMES, SEARCH_PARAMS } from '@/shared/settings'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { MouseEvent, useCallback, useRef, useState } from 'react'
+import { MouseEvent, useRef, useState } from 'react'
 
 
 export const useDropdownFilterCategory = () => {
@@ -19,15 +19,7 @@ export const useDropdownFilterCategory = () => {
 
   useClickOutside(ref, onClose)
 
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString())
-      params.set(name, value)
-
-      return params.toString()
-    },
-    [searchParams]
-  )
+  const createQueryString = useQueryString()
 
   const toogleDropdown = () => {
     setIsOpen(prev => !prev)

@@ -1,12 +1,9 @@
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { SETTINGS_RANGE_PRICE_SLIDER } from '../settings/slider.setting'
+
 import { SEARCH_PARAMS } from '@/shared/settings'
 
-export const useSlider = () => {
-  const min = SETTINGS_RANGE_PRICE_SLIDER.MIN_PRICE
-  const max = SETTINGS_RANGE_PRICE_SLIDER.MAX_PRICE
-
+export const useSlider = (min: number, max: number) => {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()

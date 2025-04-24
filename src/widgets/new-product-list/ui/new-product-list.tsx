@@ -1,16 +1,13 @@
 import { ProductCard } from '@/entities/product'
 
-import styles from './styles.module.css'
 import { Title } from '@/shared/ui'
-import { ProductCardInterface } from '@/entities/product/types/product.types'
+
+import styles from './styles.module.css'
+import { getProducts } from '../api'
 
 export const NewProductList = async () => {
-	const data = await fetch(
-		'https://purpleschool.ru/api-demo/products?limit=6&offset=0'
-	)
-	const { products }: { products: ProductCardInterface[] } = await data.json()
-	// console.log('from NewProductList', products)
-
+	const products = await getProducts()
+	console.log('from NewProductList', products)
 	return (
 		<section className={styles.new}>
 			<Title className={styles.new__title}>Последние поступления</Title>

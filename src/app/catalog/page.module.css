@@ -2,12 +2,25 @@
 	padding-top: 96px;
 }
 
+.catalog__container {
+	display: grid;
+	grid-template-columns: 261px 1fr;
+	column-gap: 35px;
+}
+
 .catalog__title {
 	margin-bottom: 39px;
 }
 
 .catalog__filters {
 	max-width: 261px;
+}
+
+.list {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+	/* grid-template-rows: 330px; */
+	gap: 24px;
 }
 
 @media (max-width: 1024px) {

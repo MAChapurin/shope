@@ -1,11 +1,15 @@
 'use client'
 
 import { useSlider } from '../model/useSlider'
-
+import { RangeSliderProps } from '../types'
 import { cn } from '@/shared/lib'
+
 import styles from './styles.module.css'
 
-export const PriceRangeSlider = () => {
+export const PriceRangeSlider = ({
+	priceMin = 0,
+	priceMax = 50
+}: RangeSliderProps) => {
 	const {
 		min,
 		max,
@@ -16,7 +20,7 @@ export const PriceRangeSlider = () => {
 		rangeRef,
 		onChangeLeft,
 		onChangeRight
-	} = useSlider()
+	} = useSlider(priceMin, priceMax)
 
 	return (
 		<div className={styles.container}>

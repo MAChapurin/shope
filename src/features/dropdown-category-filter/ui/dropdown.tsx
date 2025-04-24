@@ -7,7 +7,11 @@ import { useDropdownFilterCategory } from '../model/useDropdownFilter'
 
 import styles from './styles.module.css'
 
-export const DropdownCategoryFilter = () => {
+export const DropdownCategoryFilter = ({
+	categories
+}: {
+	categories: { id: number; name: string }[]
+}) => {
 	const { activeCategory, toogleDropdown, isOpen, ref, onClick } =
 		useDropdownFilterCategory()
 	return (
@@ -26,7 +30,30 @@ export const DropdownCategoryFilter = () => {
 					[styles['dropdown__list--open']]: isOpen
 				})}
 			>
-				<li>
+				{categories.map(category => {
+					return (
+						<li key={category.id}>
+							<button
+								className={styles.dropdown__button}
+								data-value={category.id}
+							>
+								{category.name}{' '}
+								<Icon
+									name='success'
+									className={cn(
+										styles.dropdown__icon,
+										styles['dropdown__icon--transparent'],
+										{
+											[styles['dropdown__icon--visible']]:
+												activeCategory === category.id.toString()
+										}
+									)}
+								/>
+							</button>
+						</li>
+					)
+				})}
+				{/* <li>
 					<button className={styles.dropdown__button} data-value='ring'>
 						Кольца{' '}
 						<Icon
@@ -88,7 +115,7 @@ export const DropdownCategoryFilter = () => {
 							)}
 						/>
 					</button>
-				</li>
+				</li> */}
 			</ul>
 		</div>
 	)

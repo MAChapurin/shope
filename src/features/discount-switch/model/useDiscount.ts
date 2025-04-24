@@ -26,14 +26,19 @@ export const useDiscount = () => {
 
   const toogleDiscount = () => {
     setIsChecked(prev => !prev)
-    router.push(pathname + '?' + createQueryString(SEARCH_PARAMS.DISCOUNT, String(isChecked)))
   }
 
+  const updateSearchParams = useCallback(() => {
+    router.push(pathname + '?' + createQueryString(SEARCH_PARAMS.DISCOUNT, String(isChecked)))
+  }, [createQueryString, isChecked, pathname, router])
+
   useEffect(() => {
-    if (isDiscount === 'true') {
-      setIsChecked(true)
-    }
-  }, [])
+    updateSearchParams()
+  }, [isChecked, updateSearchParams])
+
+  useEffect(() => {
+    if (isDiscount === 'true') setIsChecked(true)
+  }, [isDiscount])
 
   return {
     id,

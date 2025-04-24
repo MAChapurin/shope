@@ -1,6 +1,7 @@
 import { Hero } from '@/widgets/hero'
-import styles from './page.module.css'
 import { NewProductList } from '@/widgets/new-product-list'
+
+import styles from './page.module.css'
 
 export default function Home() {
 	return (

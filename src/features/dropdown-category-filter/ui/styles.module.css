@@ -16,7 +16,13 @@
 }
 
 .dropdown__icon {
-	transition: opacity 0.3s;
+	transition:
+		opacity 0.3s,
+		transform 0.3s;
+}
+
+.dropdown__icon--rotate180 {
+	transform: rotate(-180deg);
 }
 
 .dropdown__icon path {

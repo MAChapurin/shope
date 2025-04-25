@@ -2,7 +2,8 @@ import {
 	DiscountSwitch,
 	DropdownCategoryFilter,
 	LiveSearch,
-	PriceRangeSlider
+	PriceRangeSlider,
+	ResetFiltersButton
 } from '@/features'
 
 import styles from './styles.module.css'
@@ -24,6 +25,9 @@ export const Filters = async () => {
 			</li>
 			<li>
 				<DiscountSwitch />
+			</li>
+			<li>
+				<ResetFiltersButton />
 			</li>
 		</ul>
 	)

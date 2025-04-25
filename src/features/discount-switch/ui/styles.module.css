@@ -1,5 +1,5 @@
 .form {
-	padding-block: 39px;
+	padding-top: 39px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -26,6 +26,7 @@
 	border-radius: 8px;
 	overflow: hidden;
 	pointer-events: none;
+	transition: background 0.3s;
 }
 
 .form__input::after {
@@ -43,4 +44,8 @@
 
 .form__input:checked::after {
 	left: 16.3px;
+}
+
+.form__input:checked::before {
+	background: var(--color-primary);
 }

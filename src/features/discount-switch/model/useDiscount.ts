@@ -1,6 +1,6 @@
 'use client'
 
-import { useQueryString } from "@/shared/hooks"
+import { useQueryDelete, useQueryString } from "@/shared/hooks"
 import { SEARCH_PARAMS } from "@/shared/settings"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
@@ -11,26 +11,38 @@ export const useDiscount = () => {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const createQueryString = useQueryString()
+  const deleteQueryString = useQueryDelete()
 
   const isDiscount = searchParams.get(SEARCH_PARAMS.DISCOUNT)
 
   const id = useId()
   const [isChecked, setIsChecked] = useState(false)
 
-  const toogleDiscount = () => {
-    setIsChecked(prev => !prev)
-  }
+
 
   const updateSearchParams = useCallback(() => {
     router.push(pathname + '?' + createQueryString(SEARCH_PARAMS.DISCOUNT, String(isChecked)))
   }, [createQueryString, isChecked, pathname, router])
 
-  useEffect(() => {
+  const toogleDiscount = () => {
+    setIsChecked(prev => !prev)
     updateSearchParams()
-  }, [isChecked, updateSearchParams])
+  }
 
   useEffect(() => {
-    if (isDiscount === 'true') setIsChecked(true)
+    if (isChecked) {
+      updateSearchParams()
+    } else {
+      router.push(pathname + '?' + deleteQueryString(SEARCH_PARAMS.DISCOUNT))
+    }
+  }, [deleteQueryString, isChecked, pathname, router, updateSearchParams])
+
+  useEffect(() => {
+    if (isDiscount === 'true') {
+      setIsChecked(true)
+    } else {
+      setIsChecked(false)
+    }
   }, [isDiscount])
 
   return {

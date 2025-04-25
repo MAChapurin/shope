@@ -2,13 +2,15 @@ import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 import { SEARCH_PARAMS } from '@/shared/settings'
-import { useQueryString } from '@/shared/hooks'
+import { useQueryDelete, useQueryString } from '@/shared/hooks'
 
 export const useSlider = (min: number, max: number) => {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
+
   const createQueryString = useQueryString()
+  const deleteQueryString = useQueryDelete()
 
   const searchParamMinValue = searchParams.get(SEARCH_PARAMS.PRICE_MIN)
   const searchParamMaxValue = searchParams.get(SEARCH_PARAMS.PRICE_MAX)
@@ -72,6 +74,17 @@ export const useSlider = (min: number, max: number) => {
       maxValueRef.current.value = searchParamMaxValue
     }
   }, [])
+
+  useEffect(() => {
+    if (!searchParamMaxValue) {
+      router.push(pathname + '?' + deleteQueryString(SEARCH_PARAMS.PRICE_MAX))
+      setMaxValue(max)
+    }
+    if (!searchParamMinValue) {
+      router.push(pathname + '?' + deleteQueryString(SEARCH_PARAMS.PRICE_MIN))
+      setMinValue(min)
+    }
+  }, [deleteQueryString, max, min, pathname, router, searchParamMaxValue, searchParamMinValue])
 
   return {
     min,

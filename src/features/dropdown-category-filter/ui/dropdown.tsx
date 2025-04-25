@@ -21,7 +21,13 @@ export const DropdownCategoryFilter = ({
 				className={styles.dropdown__button}
 				onClick={toogleDropdown}
 			>
-				Категории <Icon name='dropdown' />
+				Категории{' '}
+				<Icon
+					name='dropdown'
+					className={cn(styles.dropdown__icon, {
+						[styles['dropdown__icon--rotate180']]: isOpen
+					})}
+				/>
 			</button>
 			<ul
 				aria-label='Список вариантов сортировки по категориям'
@@ -53,69 +59,6 @@ export const DropdownCategoryFilter = ({
 						</li>
 					)
 				})}
-				{/* <li>
-					<button className={styles.dropdown__button} data-value='ring'>
-						Кольца{' '}
-						<Icon
-							name='success'
-							className={cn(
-								styles.dropdown__icon,
-								styles['dropdown__icon--transparent'],
-								{
-									[styles['dropdown__icon--visible']]: activeCategory === 'ring'
-								}
-							)}
-						/>
-					</button>
-				</li>
-				<li>
-					<button className={styles.dropdown__button} data-value='watch'>
-						Часы{' '}
-						<Icon
-							name='success'
-							className={cn(
-								styles.dropdown__icon,
-								styles['dropdown__icon--transparent'],
-								{
-									[styles['dropdown__icon--visible']]:
-										activeCategory === 'watch'
-								}
-							)}
-						/>
-					</button>
-				</li>
-				<li>
-					<button className={styles.dropdown__button} data-value='earrings'>
-						Серьги{' '}
-						<Icon
-							name='success'
-							className={cn(
-								styles.dropdown__icon,
-								styles['dropdown__icon--transparent'],
-								{
-									[styles['dropdown__icon--visible']]:
-										activeCategory === 'earrings'
-								}
-							)}
-						/>
-					</button>
-				</li>
-				<li>
-					<button className={styles.dropdown__button} data-value='pendants'>
-						Подвески{' '}
-						<Icon
-							name='success'
-							className={cn(
-								styles.dropdown__icon,
-								styles['dropdown__icon--transparent'],
-								{
-									[styles['dropdown__icon--visible']]:
-										activeCategory === 'pendants'
-								}
-							)}
-						/>
-					</button>
-				</li> */}
 			</ul>
 		</div>
 	)

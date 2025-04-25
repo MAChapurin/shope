@@ -27,7 +27,7 @@ export default async function CatalogPage(props: {
 			(discounted === 'true' ? `&discounted=true` : '')
 	)
 	const res: ResponseType = await data.json()
-	console.log(res)
+
 	return (
 		<main className={styles.catalog}>
 			<Title className={styles.catalog__title} As='h1' size='xl'>

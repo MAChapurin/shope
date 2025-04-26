@@ -1,5 +1,5 @@
 .catalog {
-	padding-top: 96px;
+	padding-top: 30px;
 }
 
 .catalog__container {
@@ -19,7 +19,6 @@
 .list {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-	/* grid-template-rows: 330px; */
 	gap: 24px;
 }
 
@@ -41,5 +40,14 @@
 @media (max-width: 1024px) {
 	.catalog {
 		padding-top: 0;
+	}
+
+	.catalog__container {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.catalog__filters {
+		display: none;
 	}
 }

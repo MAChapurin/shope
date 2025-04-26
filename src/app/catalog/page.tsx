@@ -5,6 +5,7 @@ import { ProductCard } from '@/entities/product'
 import { Pagination, ResetFiltersButton } from '@/features'
 
 import styles from './page.module.css'
+import { MobileFilters } from '@/widgets/filters'
 
 type SearchParams = Promise<{ [key: string]: string | undefined }>
 type ResponseType = {
@@ -36,6 +37,9 @@ export default async function CatalogPage(props: {
 			<Title className={styles.catalog__title} As='h1' size='xl'>
 				Каталог товаров
 			</Title>
+			<MobileFilters>
+				<Filters />
+			</MobileFilters>
 			<div className={styles.catalog__container}>
 				<aside className={styles.catalog__filters}>
 					<Filters />

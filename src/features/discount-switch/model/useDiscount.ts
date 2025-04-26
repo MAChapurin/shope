@@ -21,7 +21,7 @@ export const useDiscount = () => {
 
 
   const updateSearchParams = useCallback(() => {
-    router.push(pathname + '?' + createQueryString(SEARCH_PARAMS.DISCOUNT, String(isChecked)))
+    router.push(pathname + '?' + createQueryString(SEARCH_PARAMS.DISCOUNT, String(isChecked), true))
   }, [createQueryString, isChecked, pathname, router])
 
   const toogleDiscount = () => {

@@ -32,7 +32,7 @@ export const useDropdownFilterCategory = () => {
       if (activeCategory === e.target?.dataset?.value) {
         router.push(PATH_NAMES.CATALOG + '?' + deleteQueryString(SEARCH_PARAMS.CATEGORY))
       } else {
-        router.push(PATH_NAMES.CATALOG + '?' + createQueryString(SEARCH_PARAMS.CATEGORY, e.target?.dataset?.value || ''))
+        router.push(PATH_NAMES.CATALOG + '?' + createQueryString(SEARCH_PARAMS.CATEGORY, e.target?.dataset?.value || '', true))
       }
     }
   }

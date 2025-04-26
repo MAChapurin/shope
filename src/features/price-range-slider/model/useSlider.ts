@@ -31,14 +31,14 @@ export const useSlider = (min: number, max: number) => {
     const value = Math.min(+event.target.value, maxValue - 1)
     setMinValue(value)
     event.target.value = value.toString()
-    router.push(pathname + '?' + createQueryString(SEARCH_PARAMS.PRICE_MIN, event.target.value))
+    router.push(pathname + '?' + createQueryString(SEARCH_PARAMS.PRICE_MIN, event.target.value, true))
   }
 
   const onChangeRight = (event: ChangeEvent<HTMLInputElement>) => {
     const value = Math.max(+event.target.value, minValue + 1)
     setMaxValue(value)
     event.target.value = value.toString()
-    router.push(pathname + '?' + createQueryString(SEARCH_PARAMS.PRICE_MAX, value.toString()))
+    router.push(pathname + '?' + createQueryString(SEARCH_PARAMS.PRICE_MAX, value.toString(), true))
   }
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 import { ProductCard } from '@/entities/product'
 
-import { Title } from '@/shared/ui'
+import { Icon, Title } from '@/shared/ui'
 
 import styles from './styles.module.css'
 import { getProducts } from '../api'
@@ -20,6 +20,19 @@ export const NewProductList = async () => {
 								images={el.images}
 								price={el.price}
 								discount={el.discount}
+								actions={
+									<>
+										<button>
+											<Icon name='cart' />
+										</button>
+										<button>
+											<Icon name='eye' />
+										</button>
+										<button>
+											<Icon name='like' />
+										</button>
+									</>
+								}
 							/>
 						</li>
 					)

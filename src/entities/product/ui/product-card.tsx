@@ -3,19 +3,21 @@ import { ProductCardInterface } from '../types/product.types'
 import Link from 'next/link'
 import Image from 'next/image'
 import { PATH_NAMES } from '@/shared/settings'
+import { Title } from '@/shared/ui'
 
 import styles from './styles.module.css'
-import { Title } from '@/shared/ui'
 
 export const ProductCard: FC<ProductCardInterface> = ({
 	images,
 	name,
 	price,
-	discount
+	discount,
+	actions
 }) => {
 	return (
 		<Link className={styles.product} href={PATH_NAMES.CATALOG + '/'}>
 			<div className={styles.product__container}>
+				{actions && <div className={styles.product__overlay}>{actions}</div>}
 				<Image
 					className={styles.product__img}
 					src={images[0]}

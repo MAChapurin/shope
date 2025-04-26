@@ -1,4 +1,4 @@
-import { Title } from '@/shared/ui'
+import { Icon, Title } from '@/shared/ui'
 import { ProductType } from '@/shared/types'
 import { Filters } from '@/widgets/filters/ui/filters'
 import { ProductCard } from '@/entities/product'
@@ -51,6 +51,19 @@ export default async function CatalogPage(props: {
 											images={el.images}
 											price={el.price}
 											discount={el.discount}
+											actions={
+												<>
+													<button>
+														<Icon name='cart' />
+													</button>
+													<button>
+														<Icon name='eye' />
+													</button>
+													<button>
+														<Icon name='like' />
+													</button>
+												</>
+											}
 										/>
 									</li>
 								)

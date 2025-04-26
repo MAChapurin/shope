@@ -1,6 +1,7 @@
 export * from './arrow-dropdown-icon'
 export * from './arrow-icon'
 export * from './cart-icon'
+export * from './eye-icon'
 export * from './facebook-icon'
 export * from './in-icon'
 export * from './instagram-icon'

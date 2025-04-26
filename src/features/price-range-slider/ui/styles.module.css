@@ -24,7 +24,7 @@
 }
 
 .slider__track {
-	background-color: #ced4da;
+	background-color: var(--color-secondary-light-2);
 	width: 100%;
 	z-index: 1;
 }

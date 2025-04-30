@@ -5,5 +5,6 @@ export interface ProductCardInterface {
   price: number,
   discount: number,
   images: string[],
-  actions?: ReactNode
+  actions?: ReactNode,
+  sku: number
 }

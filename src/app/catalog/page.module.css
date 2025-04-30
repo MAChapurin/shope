@@ -4,9 +4,6 @@
 
 .catalog__container {
 	position: relative;
-	/* display: grid; */
-	/* grid-template-columns: 261px 1fr; */
-	/* column-gap: 35px; */
 }
 
 .catalog__title {
@@ -19,10 +16,8 @@
 .catalog__filters {
 	width: 100%;
 	max-width: 261px;
-	/* position: sticky; */
 	position: fixed;
 	top: 210px;
-	/* background: red; */
 }
 
 .catalog__products {

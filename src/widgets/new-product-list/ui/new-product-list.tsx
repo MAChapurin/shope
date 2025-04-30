@@ -2,8 +2,10 @@ import { ProductCard } from '@/entities/product'
 
 import { Icon, Title } from '@/shared/ui'
 
-import styles from './styles.module.css'
 import { getProducts } from '../api'
+import { ButtonToDetail } from '@/features/button-to-detail'
+
+import styles from './styles.module.css'
 
 export const NewProductList = async () => {
 	const products = await getProducts()
@@ -20,14 +22,13 @@ export const NewProductList = async () => {
 								images={el.images}
 								price={el.price}
 								discount={el.discount}
+								sku={el.sku}
 								actions={
 									<>
 										<button>
 											<Icon name='cart' />
 										</button>
-										<button>
-											<Icon name='eye' />
-										</button>
+										<ButtonToDetail sku={el.sku} />
 										<button>
 											<Icon name='like' />
 										</button>

@@ -13,10 +13,11 @@ export const ProductCard: FC<ProductCardInterface> = ({
 	name,
 	price,
 	discount,
-	actions
+	actions,
+	sku
 }) => {
 	return (
-		<Link className={styles.product} href={PATH_NAMES.CATALOG + '/'}>
+		<Link className={styles.product} href={PATH_NAMES.CATALOG + '/' + sku}>
 			<div className={styles.product__container}>
 				{actions && <div className={styles.product__overlay}>{actions}</div>}
 				<Image

@@ -2,10 +2,10 @@ import { Icon, Title } from '@/shared/ui'
 import { ProductType } from '@/shared/types'
 import { Filters } from '@/widgets/filters/ui/filters'
 import { ProductCard } from '@/entities/product'
-import { Pagination, ResetFiltersButton } from '@/features'
+import { ButtonToDetail, Pagination, ResetFiltersButton } from '@/features'
+import { MobileFilters } from '@/widgets/filters'
 
 import styles from './page.module.css'
-import { MobileFilters } from '@/widgets/filters'
 
 type SearchParams = Promise<{ [key: string]: string | undefined }>
 type ResponseType = {
@@ -55,14 +55,13 @@ export default async function CatalogPage(props: {
 											images={el.images}
 											price={el.price}
 											discount={el.discount}
+											sku={el.sku}
 											actions={
 												<>
 													<button>
 														<Icon name='cart' />
 													</button>
-													<button>
-														<Icon name='eye' />
-													</button>
+													<ButtonToDetail sku={el.sku} />
 													<button>
 														<Icon name='like' />
 													</button>

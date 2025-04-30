@@ -2,7 +2,6 @@
 import { cn } from '@/shared/lib'
 import { Icon } from '@/shared/ui'
 import { useState } from 'react'
-import { Filters } from './filters'
 
 import styles from './styles.module.css'
 
@@ -11,29 +10,41 @@ export const MobileFilters = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<div className={styles.sidebar}>
 			<button
-				className={styles.sidebar__button}
+				aria-label={isOpen ? 'Показать фильтры' : 'Скрыть фильтры'}
+				className={cn(styles.sidebar__button, styles['sidebar__button--fixed'])}
 				onClick={() => {
 					setIsOpen(prev => !prev)
 				}}
 			>
 				<Icon name='filters' />
+				<span
+					aria-hidden={isOpen ? false : true}
+					className={cn({
+						[styles['sidebar--open']]: isOpen,
+						[styles['sidebar--hidden']]: !isOpen
+					})}
+				>
+					Закрыть
+				</span>{' '}
 				Фильтры
 			</button>
-			<aside
-				className={cn(styles.sidebar__aside, {
-					[styles['sidebar__aside--open']]: isOpen
-				})}
-			>
-				{children}
-				<button
-					onClick={() => {
-						setIsOpen(false)
-					}}
-					className={styles.sidebar__button}
+			<div className={styles.sidebar__container}>
+				<aside
+					className={cn(styles.sidebar__aside, {
+						[styles['sidebar__aside--open']]: isOpen
+					})}
 				>
-					<Icon name='arrow' className={styles.rotate180} /> Назад
-				</button>
-			</aside>
+					{children}
+					<button
+						onClick={() => {
+							setIsOpen(false)
+						}}
+						className={styles.sidebar__button}
+					>
+						<Icon name='arrow' className={styles.rotate180} /> Назад
+					</button>
+				</aside>
+			</div>
 		</div>
 	)
 }

@@ -45,7 +45,7 @@ export default async function CatalogPage(props: {
 					<Filters />
 				</aside>
 				{res.products?.length > 0 && (
-					<section>
+					<section className={styles.catalog__products}>
 						<ul className={styles.list}>
 							{res.products?.map((el, index) => {
 								return (

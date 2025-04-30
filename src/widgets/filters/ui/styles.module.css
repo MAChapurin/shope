@@ -14,7 +14,13 @@
 	display: flex;
 	align-items: center;
 	column-gap: 8px;
-	z-index: 5;
+	z-index: 11;
+	background: #ffffff90;
+	backdrop-filter: blur(10px);
+}
+
+.sidebar__button:last-of-type {
+	margin-top: 15px;
 }
 
 .sidebar__aside {
@@ -55,6 +61,25 @@ body:has(.sidebar__aside--open) {
 @media (max-width: 1024px) {
 	.sidebar {
 		display: block;
+		position: sticky;
+		top: 140px;
+		z-index: 10;
+	}
+
+	.sidebar__container {
 		position: relative;
+	}
+
+	.sidebar__button span {
+		transition: width 0.3s;
+		overflow: hidden;
+	}
+
+	.sidebar--hidden {
+		width: 0px;
+	}
+
+	.sidebar--open {
+		width: 53px;
 	}
 }

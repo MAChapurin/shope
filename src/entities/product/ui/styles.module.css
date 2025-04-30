@@ -35,12 +35,33 @@
 	text-overflow: ellipsis;
 }
 
+.product__priceWrapper {
+	display: flex;
+	align-items: center;
+	column-gap: 10px;
+}
+
 .product__price {
 	flex-shrink: 0;
 	font-weight: 500;
 	font-size: 20px;
 	line-height: 26px;
 	color: var(--color-primary);
+}
+
+.product__price--old {
+	position: relative;
+	color: var(--color-error);
+}
+
+.product__price--old::after {
+	content: '';
+	width: 100%;
+	height: 2px;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	background: var(--color-error);
 }
 
 .product__discount {

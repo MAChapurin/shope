@@ -6,6 +6,7 @@ import { PATH_NAMES } from '@/shared/settings'
 import { Title } from '@/shared/ui'
 
 import styles from './styles.module.css'
+import { cn } from '@/shared/lib'
 
 export const ProductCard: FC<ProductCardInterface> = ({
 	images,
@@ -30,7 +31,25 @@ export const ProductCard: FC<ProductCardInterface> = ({
 			<Title className={styles.product__title} As='h3'>
 				{name}
 			</Title>
-			<p className={styles.product__price}>$ {price.toFixed(2)}</p>
+			<div className={styles.product__priceWrapper}>
+				{discount ? (
+					<>
+						<p
+							className={cn(
+								styles.product__price,
+								styles['product__price--old']
+							)}
+						>
+							$ {price.toFixed(2)}
+						</p>
+						<p className={styles.product__price}>
+							$ {((price / 100) * (100 - discount)).toFixed(2)}
+						</p>
+					</>
+				) : (
+					<p className={styles.product__price}>$ {price.toFixed(2)}</p>
+				)}
+			</div>
 			{discount && <p className={styles.product__discount}>- {discount}%</p>}
 		</Link>
 	)

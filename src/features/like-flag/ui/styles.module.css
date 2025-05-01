@@ -1,0 +1,8 @@
+.flag {
+	opacity: 0;
+	transition: opacity 0.3s;
+}
+
+.flag--visible {
+	opacity: 1;
+}

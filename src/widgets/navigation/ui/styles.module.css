@@ -40,10 +40,11 @@
 
 	.containerMobile {
 		display: block;
+		position: relative;
+		z-index: 20;
 	}
 
 	.navMobile {
-		z-index: 10;
 		--top-offset: 90px;
 		width: 100dvw;
 		height: calc(100dvh - var(--top-offset));
@@ -52,6 +53,7 @@
 		position: absolute;
 		inset: 0;
 		top: var(--top-offset);
+		left: -16px;
 		background: transparent;
 		backdrop-filter: blur(0);
 		pointer-events: none;
@@ -72,6 +74,7 @@
 		display: flex;
 		flex-direction: column;
 		row-gap: 24px;
+		padding-left: 16px;
 	}
 
 	.dividerMobile {

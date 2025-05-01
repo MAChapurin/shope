@@ -1,9 +1,11 @@
+const checkNullString = (str: string) => {
+  return !['undefined', 'null'].some((el) => el === str)
+}
+
 export const cn = (
   ...classNames: (string | undefined | { [key: string]: boolean } | string[])[]
 ): string => {
-  const checkNullString = (str: string) => {
-    return !['undefined', 'null'].some((el) => el === str)
-  }
+
   const classList = [...classNames]
     .map((item) => {
       if (!item || typeof item !== 'object') {

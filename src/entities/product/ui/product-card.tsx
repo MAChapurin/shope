@@ -7,6 +7,7 @@ import { Title } from '@/shared/ui'
 
 import styles from './styles.module.css'
 import { cn } from '@/shared/lib'
+import { ProductOverlay } from './product-overlay'
 
 export const ProductCard: FC<ProductCardInterface> = ({
 	images,
@@ -14,12 +15,16 @@ export const ProductCard: FC<ProductCardInterface> = ({
 	price,
 	discount,
 	actions,
-	sku
+	topRightSlot
 }) => {
 	return (
-		<Link className={styles.product} href={PATH_NAMES.CATALOG + '/' + sku}>
+		<article className={styles.product}>
 			<div className={styles.product__container}>
-				{actions && <div className={styles.product__overlay}>{actions}</div>}
+				{actions && (
+					<ProductOverlay className={styles.product__overlay}>
+						{actions}
+					</ProductOverlay>
+				)}
 				<Image
 					className={styles.product__img}
 					src={images[0]}
@@ -52,6 +57,9 @@ export const ProductCard: FC<ProductCardInterface> = ({
 				)}
 			</div>
 			{discount && <p className={styles.product__discount}>- {discount}%</p>}
-		</Link>
+			{topRightSlot && (
+				<div className={styles.product__topRightSlot}>{topRightSlot}</div>
+			)}
+		</article>
 	)
 }

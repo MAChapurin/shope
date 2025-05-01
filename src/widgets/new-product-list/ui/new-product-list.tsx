@@ -9,7 +9,6 @@ import styles from './styles.module.css'
 
 export const NewProductList = async () => {
 	const products = await getProducts()
-	console.log('from NewProductList', products)
 	return (
 		<section className={styles.new}>
 			<Title className={styles.new__title}>Последние поступления</Title>

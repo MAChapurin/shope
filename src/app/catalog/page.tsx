@@ -2,7 +2,13 @@ import { Icon, Title } from '@/shared/ui'
 import { ProductType } from '@/shared/types'
 import { Filters } from '@/widgets/filters/ui/filters'
 import { ProductCard } from '@/entities/product'
-import { ButtonToDetail, Pagination, ResetFiltersButton } from '@/features'
+import {
+	ButtonToDetail,
+	LikeButton,
+	LikeFlag,
+	Pagination,
+	ResetFiltersButton
+} from '@/features'
 import { MobileFilters } from '@/widgets/filters'
 
 import { API_URLS, SEARCH_PARAMS } from '@/shared/settings'
@@ -58,15 +64,14 @@ export default async function CatalogPage(props: {
 											price={el.price}
 											discount={el.discount}
 											sku={el.sku}
+											topRightSlot={<LikeFlag sku={el.sku} />}
 											actions={
 												<>
 													<button>
 														<Icon name='cart' />
 													</button>
 													<ButtonToDetail sku={el.sku} />
-													<button>
-														<Icon name='like' />
-													</button>
+													<LikeButton sku={el.sku} />
 												</>
 											}
 										/>
@@ -94,6 +99,14 @@ export default async function CatalogPage(props: {
 						<ResetFiltersButton />
 					</div>
 				)}
+			</div>
+			<div>
+				<LikeButton sku={1} />
+				<LikeButton sku={2} />
+				<LikeButton sku={3} />
+				<LikeButton sku={4} />
+				<LikeButton sku={5} />
+				<LikeButton sku={6} />
 			</div>
 		</main>
 	)

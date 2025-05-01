@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { CartLinkWithIndicator, Search } from '@/features'
+import { CartLinkWithIndicator, LikeLinkIndicator, Search } from '@/features'
 import { Icon } from '@/shared/ui'
 import styles from './styles.module.css'
 
@@ -25,9 +25,7 @@ export const NavigationDesktop = () => {
 					<CartLinkWithIndicator />
 				</li>
 				<li>
-					<Link href={'/favorites'}>
-						<Icon name='like' />
-					</Link>
+					<LikeLinkIndicator />
 				</li>
 				<li>
 					<Link href={'/profile'}>

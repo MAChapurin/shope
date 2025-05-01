@@ -32,6 +32,8 @@
 }
 
 .catalog__alert {
+	max-width: calc(100% - 291px);
+	margin-left: auto;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

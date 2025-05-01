@@ -5,6 +5,7 @@ import { ProductCard } from '@/entities/product'
 import { ButtonToDetail, Pagination, ResetFiltersButton } from '@/features'
 import { MobileFilters } from '@/widgets/filters'
 
+import { API_URLS, SEARCH_PARAMS } from '@/shared/settings'
 import styles from './page.module.css'
 
 type SearchParams = Promise<{ [key: string]: string | undefined }>
@@ -23,12 +24,13 @@ export default async function CatalogPage(props: {
 		searchParams
 
 	const data = await fetch(
-		`https://purpleschool.ru/api-demo/products?limit=6&offset=${offset || 0}` +
-			(name ? `&name=${name}` : '') +
-			(categoryId ? `&categoryId=${categoryId}` : '') +
-			(priceMin ? `&priceMin=${priceMin}` : '') +
-			(priceMax ? `&priceMax=${priceMax}` : '') +
-			(discounted === 'true' ? `&discounted=true` : '')
+		API_URLS.PRODUCTS +
+			`?${SEARCH_PARAMS.LIMIT}=6&${SEARCH_PARAMS.OFFSET}=${offset || 0}` +
+			(name ? `&${SEARCH_PARAMS.SEARCH}=${name}` : '') +
+			(categoryId ? `&${SEARCH_PARAMS.CATEGORY}=${categoryId}` : '') +
+			(priceMin ? `&${SEARCH_PARAMS.PRICE_MIN}=${priceMin}` : '') +
+			(priceMax ? `&${SEARCH_PARAMS.PRICE_MAX}=${priceMax}` : '') +
+			(discounted === 'true' ? `&${SEARCH_PARAMS.DISCOUNT}=true` : '')
 	)
 	const res: ResponseType = await data.json()
 

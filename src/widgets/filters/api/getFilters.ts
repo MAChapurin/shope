@@ -1,6 +1,8 @@
+import { API_URLS } from "@/shared/settings"
+
 export async function getFilters<T>(): Promise<T> {
   const data = await fetch(
-    `https://purpleschool.ru/api-demo/products/get-filter`
+    API_URLS.FILTERS
   )
   const res = await data.json()
   return res

@@ -6,19 +6,17 @@ import { getFilters } from '@/widgets/filters/api/getFilters'
 import { FiltersType } from '@/widgets/filters/types'
 
 import styles from './page.module.css'
+import { API_URLS } from '@/shared/settings'
 
 type Params = { sku: string }
 
 export default async function ProductPage({ params }: { params: Params }) {
 	const { sku } = params
-	const data = await fetch(
-		'https://purpleschool.ru/api-demo/products/sku/' + sku
-	)
+	const data = await fetch(API_URLS.PRODUCT_SKU + sku)
 	const product: ProductType = await data.json()
 	const { categories } = await getFilters<FiltersType>()
 
 	console.log(product)
-
 	return (
 		<main className={styles.detail}>
 			<section className={styles.detail__product}>

@@ -1,0 +1,51 @@
+.form {
+	padding-top: 39px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.form__label {
+	font-size: 16px;
+	line-height: 27px;
+	cursor: pointer;
+}
+
+.form__input {
+	width: 33px;
+	height: 20px;
+	position: relative;
+	cursor: pointer;
+}
+
+.form__input::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: var(--color-secondary);
+	border-radius: 8px;
+	overflow: hidden;
+	pointer-events: none;
+	transition: background 0.3s;
+}
+
+.form__input::after {
+	content: '';
+	position: absolute;
+	top: 3.3px;
+	left: 3.3px;
+	width: 13.3px;
+	height: 13.3px;
+	border-radius: 50%;
+	background: var(--color-light);
+	z-index: 1;
+	transition: left 0.3s;
+}
+
+.form__input:checked::after {
+	left: 16.3px;
+}
+
+.form__input:checked::before {
+	background: var(--color-primary);
+}

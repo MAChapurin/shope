@@ -1,0 +1,10 @@
+.liked {
+}
+
+.btn__icon path {
+	transition: fill 0.3s;
+}
+
+.btn__icon--liked path {
+	fill: var(--color-primary);
+}

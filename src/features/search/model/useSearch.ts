@@ -1,52 +1,65 @@
 'use client'
 
-import { PATH_NAMES, SEARCH_PARAMS } from "@/shared/settings"
-import { useRouter, useSearchParams } from "next/navigation"
-import { FormEvent, useCallback, useEffect, useId, useRef, useState } from "react"
+import { PATH_NAMES, SEARCH_PARAMS } from '@/shared/settings'
+import { useRouter, useSearchParams } from 'next/navigation'
+import {
+	FormEvent,
+	useCallback,
+	useEffect,
+	useId,
+	useRef,
+	useState
+} from 'react'
 
 export const useSearch = () => {
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const [isVisible, setIsVisible] = useState(false)
-  const id = useId()
-  const ref = useRef<HTMLInputElement>(null)
+	const router = useRouter()
+	const searchParams = useSearchParams()
+	const [isVisible, setIsVisible] = useState(false)
 
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString())
-      params.set(name, value)
+	const id = useId()
 
-      return params.toString()
-    },
-    [searchParams]
-  )
+	const ref = useRef<HTMLInputElement>(null)
 
-  const onOpen = () => {
-    setIsVisible(true)
-  }
+	const createQueryString = useCallback(
+		(name: string, value: string) => {
+			const params = new URLSearchParams(searchParams.toString())
+			params.set(name, value)
 
-  const onClose = () => {
-    setIsVisible(false)
-  }
+			return params.toString()
+		},
+		[searchParams]
+	)
 
-  useEffect(() => {
-    if (isVisible) {
-      ref.current?.focus()
-    }
-  }, [isVisible])
+	const onOpen = () => {
+		setIsVisible(true)
+	}
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    router.push(PATH_NAMES.CATALOG + '?' + createQueryString(SEARCH_PARAMS.SEARCH, ref.current?.value || ''))
-    onClose()
-  }
+	const onClose = () => {
+		setIsVisible(false)
+	}
 
-  return {
-    id,
-    isVisible,
-    onOpen,
-    onClose,
-    onSubmit,
-    ref
-  }
+	useEffect(() => {
+		if (isVisible) {
+			ref.current?.focus()
+		}
+	}, [isVisible])
+
+	const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+		event.preventDefault()
+		router.push(
+			PATH_NAMES.CATALOG +
+				'?' +
+				createQueryString(SEARCH_PARAMS.SEARCH, ref.current?.value || '')
+		)
+		onClose()
+	}
+
+	return {
+		id,
+		isVisible,
+		onOpen,
+		onClose,
+		onSubmit,
+		ref
+	}
 }

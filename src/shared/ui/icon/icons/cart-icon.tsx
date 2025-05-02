@@ -3,6 +3,7 @@ import { FC, SVGProps } from 'react'
 export const CartIcon: FC<SVGProps<SVGSVGElement>> = props => {
 	return (
 		<svg
+			aria-hidden={true}
 			width='21'
 			height='21'
 			viewBox='0 0 21 21'

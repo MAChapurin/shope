@@ -1,6 +1,8 @@
 import Link from 'next/link'
-import { CartLinkWithIndicator, Search } from '@/features'
+import { CartLinkWithIndicator, LikeLinkIndicator, Search } from '@/features'
 import { Icon } from '@/shared/ui'
+import { Suspense } from 'react'
+import { PATH_NAMES } from '@/shared/settings'
 import styles from './styles.module.css'
 
 export const NavigationDesktop = () => {
@@ -8,29 +10,29 @@ export const NavigationDesktop = () => {
 		<nav className={styles.nav}>
 			<ul className={styles.list}>
 				<li className={styles.item}>
-					<Link className={styles.link} href={'/catalog'}>
+					<Link className={styles.link} href={PATH_NAMES.CATALOG}>
 						Магазин
 					</Link>
 				</li>
 				<li>
-					<Link className={styles.link} href={'/about'}>
+					<Link className={styles.link} href={PATH_NAMES.ABOUT}>
 						О нас
 					</Link>
 				</li>
 			</ul>
 			<div className={styles.divider} />
-			<Search />
+			<Suspense>
+				<Search />
+			</Suspense>
 			<ul className={styles.iconList}>
 				<li>
 					<CartLinkWithIndicator />
 				</li>
 				<li>
-					<Link href={'/favorites'}>
-						<Icon name='like' />
-					</Link>
+					<LikeLinkIndicator />
 				</li>
 				<li>
-					<Link href={'/profile'}>
+					<Link href={PATH_NAMES.PROFILE}>
 						<Icon name='profile' />
 					</Link>
 				</li>

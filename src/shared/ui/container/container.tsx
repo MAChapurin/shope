@@ -1,13 +1,9 @@
 import styles from './styles.module.css'
 
 export const Container = ({
-  children,
+	children
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode
 }>) => {
-  return (
-    <div className={styles.container}>
-      {children}
-    </div>
-  )
+	return <div className={styles.container}>{children}</div>
 }

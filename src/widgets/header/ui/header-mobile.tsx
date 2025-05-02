@@ -5,6 +5,7 @@ import { cn } from '@/shared/lib'
 import { NavigationMobile } from '@/widgets/navigation'
 
 import styles from './styles.module.css'
+import { Suspense } from 'react'
 
 export const HeaderMobile = () => {
 	return (
@@ -15,7 +16,9 @@ export const HeaderMobile = () => {
 				<CartLinkWithIndicator />
 				<BurgerMenuButton />
 			</div>
-			<Search />
+			<Suspense>
+				<Search />
+			</Suspense>
 			<NavigationMobile />
 		</header>
 	)

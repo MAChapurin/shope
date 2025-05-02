@@ -1,0 +1,19 @@
+.detail {
+	padding-top: 30px;
+}
+
+.detail__product {
+	display: grid;
+	grid-template-columns: 700px 1fr;
+	column-gap: 60px;
+}
+
+.product__cart {
+	display: flex;
+	align-items: center;
+}
+
+.product__counter {
+	display: flex;
+	align-items: center;
+}

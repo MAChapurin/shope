@@ -1,15 +1,20 @@
 import { FC } from 'react'
 import { IconProps } from './icon.types'
 import {
+	ArrowDropdownIcon,
 	ArrowIcon,
 	CartIcon,
+	EyeIcon,
 	FacebookIcon,
+	FilterIcon,
 	InIcon,
 	InstagramIcon,
+	LikeFilledIcon,
 	LikeIcon,
 	LogoutIcon,
 	ProfileIcon,
 	SearchIcon,
+	StarIcon,
 	SuccessIcon,
 	TwitterIcon
 } from './icons'
@@ -17,13 +22,18 @@ import {
 const config = {
 	arrow: ArrowIcon,
 	cart: CartIcon,
+	dropdown: ArrowDropdownIcon,
+	eye: EyeIcon,
 	facebook: FacebookIcon,
+	filters: FilterIcon,
 	in: InIcon,
 	instagram: InstagramIcon,
+	likeFilled: LikeFilledIcon,
 	like: LikeIcon,
 	logout: LogoutIcon,
 	profile: ProfileIcon,
 	search: SearchIcon,
+	star: StarIcon,
 	success: SuccessIcon,
 	twitter: TwitterIcon
 }

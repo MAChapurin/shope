@@ -1,4 +1,4 @@
 export interface PaginationProps {
-  totalProducts: number
-  limit: number
+	totalProducts: number
+	limit: number
 }

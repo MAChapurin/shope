@@ -14,7 +14,7 @@ export const FavoritesItem = ({ sku }: { sku: number }) => {
 		getProductBySku(sku).then(setProduct)
 	}, [])
 	if (!product) {
-		return <div className={styles.skeleton}></div>
+		return <div className={styles.skeleton}>loading...</div>
 	}
 
 	return (

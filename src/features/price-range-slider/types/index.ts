@@ -1,4 +1,4 @@
 export interface RangeSliderProps {
-  priceMax?: number
-  priceMin?: number
+	priceMax?: number
+	priceMin?: number
 }

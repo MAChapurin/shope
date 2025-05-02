@@ -1,13 +1,12 @@
 import { FC } from 'react'
 import { ProductCardInterface } from '../types/product.types'
-import Link from 'next/link'
 import Image from 'next/image'
-import { PATH_NAMES } from '@/shared/settings'
 import { Title } from '@/shared/ui'
 
-import styles from './styles.module.css'
 import { cn } from '@/shared/lib'
 import { ProductOverlay } from './product-overlay'
+
+import styles from './styles.module.css'
 
 export const ProductCard: FC<ProductCardInterface> = ({
 	images,

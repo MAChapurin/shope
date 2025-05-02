@@ -1,3 +1,3 @@
 export interface ButtonToDetailProps {
-  sku: number
+	sku: number
 }

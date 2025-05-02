@@ -1,16 +1,15 @@
 'use client'
 import { PATH_NAMES } from '@/shared/settings'
-import { Container, Icon } from '@/shared/ui'
+import { Icon } from '@/shared/ui'
 import { cn } from '@/shared/lib'
 import Link from 'next/link'
-
 import { useMobileNavigation } from '../model/useMobileNavigation'
-
-import styles from './styles.module.css'
 import { LikeLinkIndicator } from '@/features'
+import styles from './styles.module.css'
 
 export const NavigationMobile = () => {
 	const { isOpen } = useMobileNavigation()
+
 	return (
 		<div className={styles.containerMobile}>
 			<nav
@@ -19,7 +18,6 @@ export const NavigationMobile = () => {
 				})}
 				datatype={String(isOpen)}
 			>
-				{/* <Container> */}
 				<ul className={styles.listMobile}>
 					<li>
 						<Link
@@ -80,7 +78,6 @@ export const NavigationMobile = () => {
 						</button>
 					</li>
 				</ul>
-				{/* </Container> */}
 			</nav>
 		</div>
 	)

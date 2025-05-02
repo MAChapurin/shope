@@ -1,61 +1,79 @@
 'use client'
-import { useEffect, useSyncExternalStore } from 'react';
 
-const STORAGE_KEY = 'favorites_key';
+import { useEffect, useSyncExternalStore } from 'react'
+
+const STORAGE_KEY = 'favorites_key'
 
 type FavoritesType = number[]
 
-const favoritesFromLocalStorage = localStorage?.getItem(STORAGE_KEY);
-const initialState: FavoritesType = favoritesFromLocalStorage
-  ? JSON.parse(favoritesFromLocalStorage)
-  : [];
+const getInitialFavorites = (): FavoritesType => {
+	if (typeof window !== 'undefined') {
+		const favoritesFromLocalStorage = localStorage.getItem(STORAGE_KEY)
+		return favoritesFromLocalStorage
+			? JSON.parse(favoritesFromLocalStorage)
+			: []
+	}
+	return []
+}
 
-let favorites: FavoritesType = initialState;
-const subscribers: Set<() => void> = new Set();
+let favorites: FavoritesType = getInitialFavorites()
+const subscribers: Set<() => void> = new Set()
 
 const emitChange = () => {
-  subscribers.forEach((callback) => {
-    callback();
-  });
-};
+	subscribers.forEach(callback => {
+		callback()
+	})
+}
+
+let serverSnapshot: FavoritesType | null = null
 
 const favoritesStore = {
-  getSnapshot: (): FavoritesType => favorites,
+	getSnapshot: (): FavoritesType => favorites,
 
-  subscribe(callback: () => void) {
-    subscribers.add(callback);
-    return () => subscribers.delete(callback);
-  },
+	getServerSnapshot: (): FavoritesType => {
+		if (serverSnapshot === null) {
+			serverSnapshot = []
+		}
+		return serverSnapshot
+	},
 
-  onClickHandler(sku: number) {
-    if (favorites.includes(sku)) {
-      favorites = favorites.filter(el => el !== sku)
-    } else {
-      favorites = [...favorites, sku];
-    }
-    emitChange();
-  },
+	subscribe(callback: () => void) {
+		subscribers.add(callback)
+		return () => subscribers.delete(callback)
+	},
 
-  getIsLikedBySku(sku: number): boolean {
-    return favorites.some((el) => el === sku);
-  },
-};
+	onClickHandler(sku: number) {
+		if (favorites.includes(sku)) {
+			favorites = favorites.filter(el => el !== sku)
+		} else {
+			favorites = [...favorites, sku]
+		}
+		emitChange()
+	},
+
+	getIsLikedBySku(sku: number): boolean {
+		return favorites.includes(sku)
+	}
+}
 
 export const useFavorites = () => {
-  const favoritesList = useSyncExternalStore(
-    favoritesStore.subscribe,
-    favoritesStore.getSnapshot
-  );
+	const favoritesList = useSyncExternalStore(
+		favoritesStore.subscribe,
+		favoritesStore.getSnapshot,
+		favoritesStore.getServerSnapshot
+	)
 
-  const { onClickHandler, getIsLikedBySku } = favoritesStore;
+	const { onClickHandler, getIsLikedBySku } = favoritesStore
 
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(favoritesList));
-  }, [favoritesList]);
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			localStorage.setItem(STORAGE_KEY, JSON.stringify(favoritesList))
+		}
+	}, [favoritesList])
 
-  return {
-    getIsLikedBySku,
-    favorites: favoritesList,
-    onClickHandler,
-  };
-};
+	return {
+		getIsLikedBySku,
+		favorites: favoritesList,
+		onClickHandler
+	}
+}

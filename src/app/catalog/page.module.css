@@ -54,7 +54,6 @@
 	}
 
 	.catalog__title {
-		/* position: static; */
 		top: 88px;
 		z-index: 10;
 		background: #ffffff90;

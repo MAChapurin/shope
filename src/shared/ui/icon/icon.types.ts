@@ -12,6 +12,7 @@ export type IconType =
 	| 'likeFilled'
 	| 'like'
 	| 'logout'
+	| 'mail'
 	| 'profile'
 	| 'search'
 	| 'star'

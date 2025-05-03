@@ -40,8 +40,45 @@
 	flex-shrink: 0;
 	display: flex;
 	align-items: center;
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.product__counter button {
+	background: var(--color-secondary-light);
+	width: 33px;
+	height: 53px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.product__counter div {
+	background: var(--color-secondary-light);
+	width: 33px;
+	height: 53px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .product__button {
 	flex-grow: 1;
+}
+
+.product__actions {
+	margin-bottom: 37px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.product__row {
+	display: flex;
+	align-items: center;
+	column-gap: 16px;
+}
+
+.product__property-value {
+	color: var(--color-secondary);
 }

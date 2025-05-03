@@ -1,19 +1,14 @@
 import { ProductType } from '@/shared/types'
 import { API_URLS } from '@/shared/settings'
-import {
-	Icon,
-	Title,
-	Paragraph,
-	VisuallyHiddenTitle,
-	Button
-} from '@/shared/ui'
+import { Title, Paragraph, VisuallyHiddenTitle, Button } from '@/shared/ui'
 import { declareOfNumber } from '@/shared/utils'
-import { getFilters, FiltersType } from '@/widgets'
+import { LikeButton, Rating } from '@/features'
+import { getFilters, FiltersType, SocialsList } from '@/widgets'
+
 import Link from 'next/link'
 import { Suspense } from 'react'
 
 import styles from './page.module.css'
-import { Rating } from '@/features'
 
 type Params = Promise<{ sku: string }>
 
@@ -33,7 +28,7 @@ export default async function ProductPage({ params }: { params: Params }) {
 			<main className={styles.detail}>
 				<section className={styles.detail__product}>
 					<VisuallyHiddenTitle>
-						Купить {categoryName} {product.name}
+						{`Купить ${categoryName} ${product.name}`}
 					</VisuallyHiddenTitle>
 					<div>Galery</div>
 					<div className={styles.product}>
@@ -70,23 +65,24 @@ export default async function ProductPage({ params }: { params: Params }) {
 							</Button>
 						</div>
 						<div className={styles.product__actions}>
-							<Icon name='like' />
-							<Link href={'/'}>
-								<Icon name='in' />
-							</Link>
-							<Link href={'/'}>
-								<Icon name='facebook' />
-							</Link>
-							<Link href={'/'}>
-								<Icon name='instagram' />
-							</Link>
-							<Link href={'/'}>
-								<Icon name='twitter' />
-							</Link>
+							<LikeButton sku={+sku} />
+							<SocialsList className={styles.product__socials} />
+						</div>
+						<div className={styles.product__property} role='table'>
+							<Paragraph className={styles.product__row} role='rowgroup'>
+								<span role='cell'>SKU: </span>
+								<span role='cell' className={styles['product__property-value']}>
+									{product.sku}
+								</span>
+							</Paragraph>
+							<Paragraph className={styles.product__row} role='rowgroup'>
+								<span role='cell'>Категория: </span>
+								<span role='cell' className={styles['product__property-value']}>
+									{categoryName}
+								</span>
+							</Paragraph>
 						</div>
 					</div>
-					<p>SKU: {product.sku}</p>
-					<p>Категория: {categoryName}</p>
 				</section>
 				<section id={SECTION_ID}>
 					<h2>Отзывы</h2>

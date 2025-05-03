@@ -1,6 +1,6 @@
 import { Icon, Title } from '@/shared/ui'
 import { ProductType } from '@/shared/types'
-import { Filters } from '@/widgets/filters/ui/filters'
+import { API_URLS, SEARCH_PARAMS } from '@/shared/settings'
 import { ProductCard } from '@/entities/product'
 import {
 	ButtonToDetail,
@@ -9,11 +9,11 @@ import {
 	Pagination,
 	ResetFiltersButton
 } from '@/features'
-import { MobileFilters } from '@/widgets/filters'
+import { Filters, MobileFilters } from '@/widgets'
 
-import { API_URLS, SEARCH_PARAMS } from '@/shared/settings'
-import styles from './page.module.css'
 import { Suspense } from 'react'
+
+import styles from './page.module.css'
 
 type SearchParams = Promise<{ [key: string]: string | undefined }>
 type ResponseType = {
@@ -90,7 +90,7 @@ export default async function CatalogPage(props: {
 					)}
 
 					{res.products.length === 0 && (
-						<div className={styles.catalog__alert}>
+						<div className={styles.catalog__alert} role='alert'>
 							<p className={styles.catalog__text}>
 								По важему запросу ничего не найдено
 							</p>

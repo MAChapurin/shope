@@ -17,6 +17,7 @@
 	display: flex;
 	align-items: center;
 	column-gap: 29px;
+	color: var(--color-secondary);
 }
 
 .nav__link {

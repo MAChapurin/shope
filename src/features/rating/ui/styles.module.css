@@ -1,0 +1,17 @@
+.rating {
+	display: flex;
+	align-items: center;
+	column-gap: 10px;
+}
+
+.rating__star path {
+	stroke: transparent;
+	transition:
+		fill 0.3s,
+		stroke 0.3s;
+}
+
+.rating__star--transparent path {
+	stroke: var(--color-dark);
+	fill: transparent;
+}

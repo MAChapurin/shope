@@ -1,4 +1,5 @@
 export * from './favorites-list'
+export * from './filters'
 export * from './footer'
 export * from './header/ui/header'
 export * from './navigation'

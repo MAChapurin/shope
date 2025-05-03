@@ -1,15 +1,13 @@
 import { ProductType } from '@/shared/types'
-import { Icon, Title, VisuallyHiddenTitle } from '@/shared/ui'
-import { declareOfNumber } from '@/shared/utils'
-import Link from 'next/link'
-import { getFilters } from '@/widgets/filters/api/getFilters'
-import { FiltersType } from '@/widgets/filters/types'
-
 import { API_URLS } from '@/shared/settings'
+import { Icon, Title, Paragraph, VisuallyHiddenTitle } from '@/shared/ui'
+import { declareOfNumber } from '@/shared/utils'
+import { getFilters, FiltersType } from '@/widgets'
+import Link from 'next/link'
 import { Suspense } from 'react'
 
 import styles from './page.module.css'
-import { Paragraph } from '@/shared/ui/paragraph/paragraph'
+import { Rating } from '@/features'
 
 type Params = Promise<{ sku: string }>
 
@@ -38,11 +36,7 @@ export default async function ProductPage({ params }: { params: Params }) {
 							$ {product.price}
 						</Paragraph>
 						<div className={styles.product__rating}>
-							<Icon name='star' />
-							<Icon name='star' />
-							<Icon name='star' />
-							<Icon name='star' />
-							<Icon name='star' />
+							<Rating value={3} />
 							<span>
 								{declareOfNumber(
 									product.reviews.length,
@@ -51,7 +45,9 @@ export default async function ProductPage({ params }: { params: Params }) {
 								)}
 							</span>
 						</div>
-						<p className={styles.product__description}>{product.description}</p>
+						<Paragraph className={styles.product__description}>
+							{product.description}
+						</Paragraph>
 						<div className={styles.product__cart}>
 							<div className={styles.product__counter}>
 								<button>-</button>

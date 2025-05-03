@@ -6,18 +6,42 @@
 	margin-bottom: 23px;
 }
 
+.product__price {
+	margin-bottom: 60px;
+}
+
 .detail__product {
 	display: grid;
 	grid-template-columns: 700px 1fr;
 	column-gap: 60px;
 }
 
+.product__rating {
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+	column-gap: 23px;
+}
+
+.product__description {
+	margin-bottom: 75px;
+}
+
 .product__cart {
+	margin-bottom: 80px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	column-gap: 23px;
+}
+
+.product__counter {
+	width: max-content;
+	flex-shrink: 0;
 	display: flex;
 	align-items: center;
 }
 
-.product__counter {
-	display: flex;
-	align-items: center;
+.product__button {
+	flex-grow: 1;
 }

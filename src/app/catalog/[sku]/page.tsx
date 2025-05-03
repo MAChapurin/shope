@@ -1,6 +1,12 @@
 import { ProductType } from '@/shared/types'
 import { API_URLS } from '@/shared/settings'
-import { Icon, Title, Paragraph, VisuallyHiddenTitle } from '@/shared/ui'
+import {
+	Icon,
+	Title,
+	Paragraph,
+	VisuallyHiddenTitle,
+	Button
+} from '@/shared/ui'
 import { declareOfNumber } from '@/shared/utils'
 import { getFilters, FiltersType } from '@/widgets'
 import Link from 'next/link'
@@ -10,6 +16,8 @@ import styles from './page.module.css'
 import { Rating } from '@/features'
 
 type Params = Promise<{ sku: string }>
+
+const SECTION_ID = 'review-section'
 
 export default async function ProductPage({ params }: { params: Params }) {
 	const { sku } = await params
@@ -33,9 +41,9 @@ export default async function ProductPage({ params }: { params: Params }) {
 							{product.name}
 						</Title>
 						<Paragraph className={styles.product__price} color='primary'>
-							$ {product.price}
+							$ {product.price.toFixed(2)}
 						</Paragraph>
-						<div className={styles.product__rating}>
+						<Link href={`#${SECTION_ID}`} className={styles.product__rating}>
 							<Rating value={3} />
 							<span>
 								{declareOfNumber(
@@ -44,8 +52,11 @@ export default async function ProductPage({ params }: { params: Params }) {
 									true
 								)}
 							</span>
-						</div>
-						<Paragraph className={styles.product__description}>
+						</Link>
+						<Paragraph
+							className={styles.product__description}
+							color='secondary'
+						>
 							{product.description}
 						</Paragraph>
 						<div className={styles.product__cart}>
@@ -54,7 +65,9 @@ export default async function ProductPage({ params }: { params: Params }) {
 								<div>1</div>
 								<button>+</button>
 							</div>
-							<button>Добавить в корзину</button>
+							<Button className={styles.product__button} variant='outline'>
+								Добавить в корзину
+							</Button>
 						</div>
 						<div className={styles.product__actions}>
 							<Icon name='like' />
@@ -74,6 +87,9 @@ export default async function ProductPage({ params }: { params: Params }) {
 					</div>
 					<p>SKU: {product.sku}</p>
 					<p>Категория: {categoryName}</p>
+				</section>
+				<section id={SECTION_ID}>
+					<h2>Отзывы</h2>
 				</section>
 			</main>
 		</Suspense>

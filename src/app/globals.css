@@ -4,6 +4,7 @@ body {
 	min-width: 320px;
 	font-family: var(--font-main);
 	scrollbar-width: none;
+	scroll-behavior: smooth;
 }
 
 * {
@@ -44,4 +45,5 @@ main {
 	--color-secondary-light-2: #d8d8d8;
 	--color-error: #d82700;
 	--max-width-app: 1248px;
+	--transition-duration: 0.3s;
 }

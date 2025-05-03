@@ -2,6 +2,10 @@
 	padding-top: 30px;
 }
 
+.product__title {
+	margin-bottom: 23px;
+}
+
 .detail__product {
 	display: grid;
 	grid-template-columns: 700px 1fr;

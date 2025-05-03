@@ -1,4 +1,6 @@
 export * from './container/container'
 export * from './icon/icon'
 export * from './logo/logo'
-export * from './title/title'
+export * from './paragraph'
+export * from './title'
+export * from './visually-hidden-title/visually-hidden-title'

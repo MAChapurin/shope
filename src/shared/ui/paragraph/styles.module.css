@@ -1,0 +1,28 @@
+.paragraph {
+	font-size: 16px;
+	line-height: 26px;
+}
+
+.left {
+	text-align: left;
+}
+
+.center {
+	text-align: center;
+}
+
+.right {
+	text-align: right;
+}
+
+.default {
+	color: var(--color-dark);
+}
+
+.primary {
+	color: var(--color-primary);
+}
+
+.secondary {
+	color: var(--color-secondary);
+}

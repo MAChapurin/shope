@@ -1,19 +1,24 @@
 import Link from 'next/link'
 import styles from './page.module.css'
 import { PATH_NAMES } from '@/shared/settings'
+import { Paragraph, Title } from '@/shared/ui'
 
 export default function DeliveryAndReturnsPage() {
 	return (
-		<main className={styles.main}>
-			<h1>Доставка и возврат</h1>
+		<main className={styles.main} role='main'>
+			<Title size='xl' As='h1'>
+				Доставка и возврат
+			</Title>
 
 			<section>
-				<h2>Доставка</h2>
-				<p>
+				<Title>Доставка</Title>
+				<Paragraph>
 					Мы предлагаем быструю и надежную доставку по всей стране. Все заказы
 					обрабатываются в течение 1-2 рабочих дней.
-				</p>
-				<h3>Способы доставки:</h3>
+				</Paragraph>
+				<Title As='h3' size='md'>
+					Способы доставки:
+				</Title>
 				<ul>
 					<li>
 						Курьерская доставка - 300 рублей (бесплатно при заказе от 5000
@@ -24,21 +29,25 @@ export default function DeliveryAndReturnsPage() {
 					</li>
 					<li>Самовывоз из магазина - бесплатно</li>
 				</ul>
-				<h3>Сроки доставки:</h3>
-				<p>
+				<Title As='h3' size='md'>
+					Сроки доставки:
+				</Title>
+				<Paragraph>
 					Доставка курьером занимает от 1 до 3 рабочих дней, почтой - от 3 до 7
 					рабочих дней в зависимости от региона.
-				</p>
+				</Paragraph>
 			</section>
 
 			<section>
-				<h2>Возврат</h2>
-				<p>
+				<Title>Возврат</Title>
+				<Paragraph>
 					Мы стремимся к тому, чтобы вы были полностью довольны своей покупкой.
 					Если по какой-то причине вы не удовлетворены товаром, вы можете
 					вернуть его в течение 14 дней с момента получения.
-				</p>
-				<h3>Условия возврата:</h3>
+				</Paragraph>
+				<Title As='h3' size='md'>
+					Условия возврата:
+				</Title>
 				<ul>
 					<li>
 						Товар должен быть в оригинальной упаковке и не использоваться.
@@ -52,7 +61,9 @@ export default function DeliveryAndReturnsPage() {
 					</li>
 				</ul>
 
-				<h3>Как вернуть товар:</h3>
+				<Title As='h3' size='md'>
+					Как вернуть товар:
+				</Title>
 				<ul>
 					<li>
 						Свяжитесь с нашей службой поддержки по телефону или электронной
@@ -65,10 +76,10 @@ export default function DeliveryAndReturnsPage() {
 					</li>
 				</ul>
 
-				<p>
+				<Paragraph>
 					Если у вас есть дополнительные вопросы, пожалуйста, свяжитесь с нашей
 					службой поддержки.
-				</p>
+				</Paragraph>
 			</section>
 		</main>
 	)

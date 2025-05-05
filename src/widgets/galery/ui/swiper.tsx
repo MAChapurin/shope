@@ -11,19 +11,25 @@ export const Swiper: FC<SwiperProps> = ({
 	swiperRef,
 	listRef,
 	className,
+	name,
 	...props
 }) => {
 	return (
 		<div ref={swiperRef} className={cn(styles.swiper, className)} {...props}>
-			<ul ref={listRef} className={styles.swiper__list}>
+			<ul
+				aria-label='Изображения товара'
+				ref={listRef}
+				className={styles.swiper__list}
+			>
 				{images?.map((image, index) => {
 					return (
 						<li key={index} className={styles.swiper__item}>
 							<Image
+								title={`${name} фото номер ${index}`}
 								className={styles.swiper__image}
 								width={400}
 								height={400}
-								alt=''
+								alt={`${name} фото номер ${index}`}
 								src={image}
 							/>
 						</li>

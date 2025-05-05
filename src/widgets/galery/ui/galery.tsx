@@ -7,7 +7,7 @@ import Image from 'next/image'
 import { cn } from '@/shared/lib'
 import { useGalery } from '../model/useGalery'
 
-export const Galery: FC<GalleryProps> = ({ images }) => {
+export const Galery: FC<GalleryProps> = ({ images, name }) => {
 	const {
 		activeSlideIndex,
 		setActiveSlideIndex,
@@ -17,10 +17,12 @@ export const Galery: FC<GalleryProps> = ({ images }) => {
 	} = useGalery()
 	return (
 		<div className={styles.galery}>
-			<div className={styles.galery__sidebar}>
+			<div className={styles.galery__sidebar} role='menubar'>
 				{images.map((image, index) => {
 					return (
 						<button
+							aria-label={`Проскролить до изображения ${name} номер ${index + 1}`}
+							role='menuitem'
 							className={cn(styles.galery__button, {
 								[styles['galery__button--active']]: activeSlideIndex === index
 							})}
@@ -30,6 +32,7 @@ export const Galery: FC<GalleryProps> = ({ images }) => {
 							}}
 						>
 							<Image
+								aria-hidden={true}
 								className={styles['galery__button-img']}
 								alt=''
 								src={image}
@@ -42,6 +45,7 @@ export const Galery: FC<GalleryProps> = ({ images }) => {
 			</div>
 			<div className={styles.galery__window}>
 				<Swiper
+					name={name}
 					swiperRef={swiperRef}
 					listRef={listRef}
 					images={images}

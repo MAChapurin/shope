@@ -31,7 +31,7 @@ export default async function ProductPage({ params }: { params: Params }) {
 						{`Купить ${categoryName} ${product.name}`}
 					</VisuallyHiddenTitle>
 					<div>
-						<Galery images={product.images.slice(0, 4)} />
+						<Galery images={product.images.slice(0, 4)} name={product.name} />
 					</div>
 					<div className={styles.product}>
 						<Title As='h2' className={styles.product__title} size='lg'>

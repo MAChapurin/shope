@@ -3,6 +3,7 @@ import { RefObject } from "react"
 export interface GalleryProps {
   images: string[]
   className?: string
+  name: string
 }
 
 export interface SwiperProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -10,4 +11,5 @@ export interface SwiperProps extends React.HTMLAttributes<HTMLDivElement> {
   swiperRef: RefObject<HTMLDivElement | null>
   images: string[]
   className?: string
+  name: string
 }

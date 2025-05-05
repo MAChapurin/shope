@@ -1,5 +1,5 @@
 'use client'
-import { FC, UIEvent, useEffect, useRef, useState } from 'react'
+import { FC } from 'react'
 import { GalleryProps } from '../types'
 import { Swiper } from './swiper'
 import styles from './styles.module.css'

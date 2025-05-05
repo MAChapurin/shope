@@ -1,5 +1,5 @@
 'use client'
-import { FC, useEffect, useRef } from 'react'
+import { FC } from 'react'
 import { SwiperProps } from '../types'
 import { cn } from '@/shared/lib'
 import Image from 'next/image'

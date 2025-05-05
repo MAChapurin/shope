@@ -3,7 +3,7 @@ import { API_URLS } from '@/shared/settings'
 import { Title, Paragraph, VisuallyHiddenTitle, Button } from '@/shared/ui'
 import { declareOfNumber } from '@/shared/utils'
 import { LikeButton, Rating } from '@/features'
-import { getFilters, FiltersType, SocialsList } from '@/widgets'
+import { getFilters, FiltersType, SocialsList, Galery } from '@/widgets'
 
 import Link from 'next/link'
 import { Suspense } from 'react'
@@ -30,7 +30,9 @@ export default async function ProductPage({ params }: { params: Params }) {
 					<VisuallyHiddenTitle>
 						{`Купить ${categoryName} ${product.name}`}
 					</VisuallyHiddenTitle>
-					<div>Galery</div>
+					<div>
+						<Galery images={product.images.slice(0, 4)} />
+					</div>
 					<div className={styles.product}>
 						<Title As='h2' className={styles.product__title} size='lg'>
 							{product.name}

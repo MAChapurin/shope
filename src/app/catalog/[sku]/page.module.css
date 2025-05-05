@@ -82,3 +82,11 @@
 .product__property-value {
 	color: var(--color-secondary);
 }
+
+@media (max-width: 1024px) {
+	.detail__product {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+	}
+}

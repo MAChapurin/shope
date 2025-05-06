@@ -19,7 +19,8 @@ export const Paragraph = ({
 					[styles.right]: align === 'right',
 					[styles.default]: color === 'default',
 					[styles.primary]: color === 'primary',
-					[styles.secondary]: color === 'secondary'
+					[styles.secondary]: color === 'secondary',
+					[styles.error]: color === 'error'
 				},
 				className
 			)}

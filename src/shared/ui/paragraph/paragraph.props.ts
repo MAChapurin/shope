@@ -1,6 +1,6 @@
 export interface ParagraphProps extends React.HTMLAttributes<HTMLParagraphElement> {
   children: React.ReactNode
-  className: string
+  className?: string
   align: 'left' | 'center' | 'right'
-  color: 'secondary' | 'primary' | 'default'
+  color: 'secondary' | 'primary' | 'default' | 'error'
 }

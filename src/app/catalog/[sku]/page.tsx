@@ -1,18 +1,23 @@
 import { ProductType } from '@/shared/types'
-import { API_URLS } from '@/shared/settings'
+import { API_URLS, PAGES_ID } from '@/shared/settings'
 import { Title, Paragraph, VisuallyHiddenTitle, Button } from '@/shared/ui'
-import { declareOfNumber } from '@/shared/utils'
+import { calculateAverage, declareOfNumber } from '@/shared/utils'
 import { LikeButton, Rating } from '@/features'
-import { getFilters, FiltersType, SocialsList, Galery } from '@/widgets'
+import {
+	getFilters,
+	FiltersType,
+	SocialsList,
+	Galery,
+	ReviewList
+} from '@/widgets'
 
 import Link from 'next/link'
 import { Suspense } from 'react'
 
 import styles from './page.module.css'
+import { cn } from '@/shared/lib'
 
 type Params = Promise<{ sku: string }>
-
-const SECTION_ID = 'review-section'
 
 export default async function ProductPage({ params }: { params: Params }) {
 	const { sku } = await params
@@ -22,6 +27,22 @@ export default async function ProductPage({ params }: { params: Params }) {
 	const categoryName = categories.find(
 		category => category.id === product.categoryId
 	)?.name
+
+	const ratingValues = product.reviews
+		.map(review => review.rating)
+		.filter(el => typeof el === 'number')
+
+	const averageRating =
+		ratingValues.length > 0 ? calculateAverage(ratingValues) : 5
+
+	const productPriceWithDiscount = (
+		(product.price / 100) *
+		(100 - product.discount)
+	).toFixed(2)
+
+	const isDiscount = !isNaN(+productPriceWithDiscount)
+
+	const productPrice = isDiscount ? productPriceWithDiscount : product.price
 
 	return (
 		<Suspense>
@@ -37,11 +58,29 @@ export default async function ProductPage({ params }: { params: Params }) {
 						<Title As='h2' className={styles.product__title} size='lg'>
 							{product.name}
 						</Title>
-						<Paragraph className={styles.product__price} color='primary'>
-							$ {product.price.toFixed(2)}
-						</Paragraph>
-						<Link href={`#${SECTION_ID}`} className={styles.product__rating}>
-							<Rating value={3} />
+						<div
+							className={cn(
+								styles.product__price,
+								styles['product__price-wrapper']
+							)}
+						>
+							{isDiscount && (
+								<Paragraph
+									className={styles['product__price--old']}
+									color='error'
+								>
+									$ {product.price.toFixed(2)}
+								</Paragraph>
+							)}
+							<Paragraph className={styles.product__price} color='primary'>
+								$ {productPrice}
+							</Paragraph>
+						</div>
+						<Link
+							href={'#' + PAGES_ID.SKU_DETAIL}
+							className={styles.product__rating}
+						>
+							<Rating value={averageRating} />
 							<span>
 								{declareOfNumber(
 									product.reviews.length,
@@ -86,8 +125,16 @@ export default async function ProductPage({ params }: { params: Params }) {
 						</div>
 					</div>
 				</section>
-				<section id={SECTION_ID}>
-					<h2>Отзывы</h2>
+				<section id={PAGES_ID.SKU_DETAIL}>
+					<nav role='tablist'>
+						<Link role='tab' href={'#' + PAGES_ID.REVIEWS}>
+							Отзывы
+						</Link>
+						<Link role='tab' href={'#' + PAGES_ID.DESCRIPTION}>
+							Описание
+						</Link>
+					</nav>
+					<ReviewList reviews={product.reviews} />
 				</section>
 			</main>
 		</Suspense>

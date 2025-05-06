@@ -1,4 +1,5 @@
 export * from './api-urls'
 export * from './custom-events'
+export * from './pages-id'
 export * from './pathnames'
 export * from './search-params'

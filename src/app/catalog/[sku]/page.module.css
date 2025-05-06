@@ -6,8 +6,29 @@
 	margin-bottom: 23px;
 }
 
-.product__price {
+.product__price-wrapper {
+	display: flex;
+	align-items: center;
+	column-gap: 20px;
 	margin-bottom: 60px;
+}
+
+.product__price {
+	position: relative;
+}
+
+.product__price--old {
+	position: relative;
+}
+
+.product__price--old::after {
+	content: '';
+	width: 100%;
+	height: 1px;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	background: var(--color-error);
 }
 
 .detail__product {

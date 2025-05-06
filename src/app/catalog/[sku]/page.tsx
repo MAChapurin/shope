@@ -14,8 +14,9 @@ import {
 import Link from 'next/link'
 import { Suspense } from 'react'
 
-import styles from './page.module.css'
 import { cn } from '@/shared/lib'
+
+import styles from './page.module.css'
 
 type Params = Promise<{ sku: string }>
 
@@ -125,7 +126,7 @@ export default async function ProductPage({ params }: { params: Params }) {
 						</div>
 					</div>
 				</section>
-				<section id={PAGES_ID.SKU_DETAIL}>
+				<section id={PAGES_ID.SKU_DETAIL} className={styles.detail__reviews}>
 					<nav role='tablist'>
 						<Link role='tab' href={'#' + PAGES_ID.REVIEWS}>
 							Отзывы
@@ -134,7 +135,26 @@ export default async function ProductPage({ params }: { params: Params }) {
 							Описание
 						</Link>
 					</nav>
-					<ReviewList reviews={product.reviews} />
+					<div className={styles.review}>
+						<div className={styles.tabs}>
+							<div style={{ display: 'none' }} className={styles.tabs__item}>
+								<ReviewList reviews={product.reviews} />
+							</div>
+							<div className={styles.tabs__item}>
+								<div className={styles.description}>
+									<Title As='h2' size='lg' align='center'>
+										{`${categoryName} ${product.name}`}
+									</Title>
+									<Paragraph align='center' color='secondary'>
+										{product.description}
+									</Paragraph>
+								</div>
+							</div>
+						</div>
+						<div className={styles.form}>
+							<h1>FORM</h1>
+						</div>
+					</div>
 				</section>
 			</main>
 		</Suspense>

@@ -2,10 +2,11 @@
 import { FC } from 'react'
 import { GalleryProps } from '../types'
 import { Swiper } from './swiper'
-import styles from './styles.module.css'
 import Image from 'next/image'
 import { cn } from '@/shared/lib'
 import { useGalery } from '../model/useGalery'
+
+import styles from './styles.module.css'
 
 export const Galery: FC<GalleryProps> = ({ images, name }) => {
 	const {

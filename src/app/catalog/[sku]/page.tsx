@@ -1,20 +1,25 @@
 import { ProductType } from '@/shared/types'
-import { API_URLS, PAGES_ID } from '@/shared/settings'
+import {
+	API_URLS,
+	PAGES_ID,
+	SEARCH_PARAMS,
+	TAB_VALUES
+} from '@/shared/settings'
 import { Title, Paragraph, VisuallyHiddenTitle, Button } from '@/shared/ui'
 import { calculateAverage, declareOfNumber } from '@/shared/utils'
-import { LikeButton, Rating } from '@/features'
+import { cn } from '@/shared/lib'
+
+import { AnchorLink, FloatTabIndicator, LikeButton, Rating } from '@/features'
 import {
 	getFilters,
 	FiltersType,
 	SocialsList,
 	Galery,
-	ReviewList
+	ReviewList,
+	Tabs
 } from '@/widgets'
 
-import Link from 'next/link'
 import { Suspense } from 'react'
-
-import { cn } from '@/shared/lib'
 
 import styles from './page.module.css'
 
@@ -44,6 +49,8 @@ export default async function ProductPage({ params }: { params: Params }) {
 	const isDiscount = !isNaN(+productPriceWithDiscount)
 
 	const productPrice = isDiscount ? productPriceWithDiscount : product.price
+
+	const reviewsLength = product.reviews.length
 
 	return (
 		<Suspense>
@@ -77,25 +84,37 @@ export default async function ProductPage({ params }: { params: Params }) {
 								$ {productPrice}
 							</Paragraph>
 						</div>
-						<Link
+						<AnchorLink
+							className={styles['product__review-link']}
 							href={'#' + PAGES_ID.SKU_DETAIL}
-							className={styles.product__rating}
+							id={PAGES_ID.SKU_DETAIL}
+							params={SEARCH_PARAMS.ACTIVE_TAB}
+							value={TAB_VALUES.REVIEWS}
 						>
 							<Rating value={averageRating} />
 							<span>
 								{declareOfNumber(
-									product.reviews.length,
+									reviewsLength,
 									['отзыв', 'отзыва', 'отзывов'],
 									true
 								)}
 							</span>
-						</Link>
-						<Paragraph
-							className={styles.product__description}
-							color='secondary'
+						</AnchorLink>
+						<AnchorLink
+							className={styles['product__description-link']}
+							href={'#' + PAGES_ID.SKU_DETAIL}
+							id={PAGES_ID.SKU_DETAIL}
+							params={SEARCH_PARAMS.ACTIVE_TAB}
+							value={TAB_VALUES.DESCRIPTION}
 						>
-							{product.description}
-						</Paragraph>
+							<Paragraph
+								className={styles['product--truncate-text']}
+								color='secondary'
+							>
+								{product.description}
+							</Paragraph>
+						</AnchorLink>
+
 						<div className={styles.product__cart}>
 							<div className={styles.product__counter}>
 								<button>-</button>
@@ -127,34 +146,33 @@ export default async function ProductPage({ params }: { params: Params }) {
 					</div>
 				</section>
 				<section id={PAGES_ID.SKU_DETAIL} className={styles.detail__reviews}>
-					<nav role='tablist'>
-						<Link role='tab' href={'#' + PAGES_ID.REVIEWS}>
-							Отзывы
-						</Link>
-						<Link role='tab' href={'#' + PAGES_ID.DESCRIPTION}>
+					<Tabs.TabControls>
+						<Tabs.TabButton tabId={TAB_VALUES.DESCRIPTION}>
 							Описание
-						</Link>
-					</nav>
-					<div className={styles.review}>
-						<div className={styles.tabs}>
-							<div style={{ display: 'none' }} className={styles.tabs__item}>
+						</Tabs.TabButton>
+						<Tabs.TabButton tabId={TAB_VALUES.REVIEWS}>
+							Отзывы {`(${reviewsLength})`}
+						</Tabs.TabButton>
+					</Tabs.TabControls>
+					<FloatTabIndicator />
+					<Tabs.TabContent>
+						<Tabs.TabPanel tabId={TAB_VALUES.DESCRIPTION}>
+							<div className={styles.description}>
+								<Title As='h2' size='lg' align='center'>
+									{`${categoryName} ${product.name}`}
+								</Title>
+								<Paragraph align='center' color='secondary'>
+									{product.description}
+								</Paragraph>
+							</div>
+						</Tabs.TabPanel>
+						<Tabs.TabPanel tabId={TAB_VALUES.REVIEWS}>
+							<div className={styles.reviews}>
 								<ReviewList reviews={product.reviews} />
+								<form>FORM</form>
 							</div>
-							<div className={styles.tabs__item}>
-								<div className={styles.description}>
-									<Title As='h2' size='lg' align='center'>
-										{`${categoryName} ${product.name}`}
-									</Title>
-									<Paragraph align='center' color='secondary'>
-										{product.description}
-									</Paragraph>
-								</div>
-							</div>
-						</div>
-						<div className={styles.form}>
-							<h1>FORM</h1>
-						</div>
-					</div>
+						</Tabs.TabPanel>
+					</Tabs.TabContent>
 				</section>
 			</main>
 		</Suspense>

@@ -1,0 +1,35 @@
+.tabs {
+	padding-block: 34px;
+	display: flex;
+	align-items: center;
+	column-gap: 80px;
+}
+
+.button {
+	font-size: 20px;
+	line-height: 26px;
+	color: var(--color-secondary);
+	transition: color var(--transition-duration);
+}
+
+.button--active {
+	color: var(--color-dark);
+}
+
+.panel {
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: translateX(100vw);
+	transition: transform var(--transition-duration);
+}
+
+.panel--active {
+	transform: translateX(0);
+}
+
+.content {
+	position: relative;
+	min-height: 600px;
+	overflow-x: hidden;
+}

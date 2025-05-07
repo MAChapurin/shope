@@ -22,6 +22,7 @@ import {
 import { Suspense } from 'react'
 
 import styles from './page.module.css'
+import { FormReview } from '@/widgets/form-review'
 
 type Params = Promise<{ sku: string }>
 
@@ -169,7 +170,7 @@ export default async function ProductPage({ params }: { params: Params }) {
 						<Tabs.TabPanel tabId={TAB_VALUES.REVIEWS}>
 							<div className={styles.reviews}>
 								<ReviewList reviews={product.reviews} />
-								<form>FORM</form>
+								<FormReview />
 							</div>
 						</Tabs.TabPanel>
 					</Tabs.TabContent>

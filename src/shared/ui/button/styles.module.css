@@ -36,6 +36,11 @@
 	width: 100%;
 }
 
+.button:disabled {
+	opacity: 50%;
+	cursor: not-allowed;
+}
+
 @media (max-width: 1024px) {
 	.button {
 		padding: 6px 12px;
@@ -46,17 +51,17 @@
 }
 
 @media (hover: hover) {
-	.button--default:hover {
+	.button--default:hover:not(:disabled) {
 		color: var(--color-dark);
 	}
 
-	.button--filled:hover {
+	.button--filled:hover:not(:disabled) {
 		background: var(--color-light);
 		color: var(--color-dark);
 		border-color: var(--color-dark);
 	}
 
-	.button--outline:hover {
+	.button--outline:hover:not(:disabled) {
 		background: var(--color-dark);
 		color: var(--color-light);
 	}

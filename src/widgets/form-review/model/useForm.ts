@@ -35,7 +35,11 @@ export const useForm = () => {
   }
 
   const resetForm = () => {
-    keepUserData ? onValue(INPUT_NAMES.REVIEW, '') : setValues(defaultValue);
+    if (keepUserData) {
+      onValue(INPUT_NAMES.REVIEW, '')
+    } else {
+      setValues(defaultValue);
+    }
     setRating(0)
   }
 

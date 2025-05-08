@@ -3,6 +3,7 @@ import { FC, useId } from 'react'
 import { InputProps } from '../types'
 
 import styles from './styles.module.css'
+import { cn } from '@/shared/lib'
 
 export const CheckboxUserData: FC<InputProps> = ({
 	checked,
@@ -11,7 +12,7 @@ export const CheckboxUserData: FC<InputProps> = ({
 }) => {
 	const id = useId()
 	return (
-		<label htmlFor={id} className={styles.label}>
+		<label htmlFor={id} className={cn(styles.label, className)}>
 			<input
 				checked={checked}
 				id={id}

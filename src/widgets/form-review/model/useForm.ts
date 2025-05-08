@@ -17,10 +17,7 @@ export const useForm = () => {
   const [rating, setRating] = useState(0)
   const [ratingErrorMessage, setRatingErrorMessage] = useState('')
 
-  const keepFromLocalStorage = localStorage.getItem(STORAGE_KEYS.KEEP_USER_DATA)
-  const initialData = keepFromLocalStorage ? Boolean(JSON.parse(keepFromLocalStorage)) : false
-
-  const [keepUserData, setKeepUserData] = useState(initialData)
+  const [keepUserData, setKeepUserData] = useState(false)
 
   const onUserDataCheckbox = () => {
     setKeepUserData(prev => !prev)
@@ -123,6 +120,12 @@ export const useForm = () => {
       resetForm()
     }
   }
+
+  useEffect(() => {
+    const keepFromLocalStorage = localStorage.getItem(STORAGE_KEYS.KEEP_USER_DATA)
+    const initialData = keepFromLocalStorage ? Boolean(JSON.parse(keepFromLocalStorage)) : false
+    setKeepUserData(initialData)
+  }, [])
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEYS.KEEP_USER_DATA, JSON.stringify(keepUserData))

@@ -1,5 +1,6 @@
 export * from './favorites-list'
 export * from './filters'
+export * from './form-review'
 export * from './footer'
 export * from './galery'
 export * from './header'

@@ -4,6 +4,7 @@ import {
 	ArrowDropdownIcon,
 	ArrowIcon,
 	CartIcon,
+	CloseIcon,
 	EyeIcon,
 	FacebookIcon,
 	FilterIcon,
@@ -23,6 +24,7 @@ import {
 const config = {
 	arrow: ArrowIcon,
 	cart: CartIcon,
+	close: CloseIcon,
 	dropdown: ArrowDropdownIcon,
 	eye: EyeIcon,
 	facebook: FacebookIcon,

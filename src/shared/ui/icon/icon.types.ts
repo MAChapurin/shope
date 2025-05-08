@@ -3,6 +3,7 @@ import { SVGProps } from 'react'
 export type IconType =
 	| 'arrow'
 	| 'cart'
+	| 'close'
 	| 'dropdown'
 	| 'eye'
 	| 'facebook'

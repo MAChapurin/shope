@@ -9,20 +9,28 @@ import { Title, Paragraph, VisuallyHiddenTitle, Button } from '@/shared/ui'
 import { calculateAverage, declareOfNumber } from '@/shared/utils'
 import { cn } from '@/shared/lib'
 
-import { AnchorLink, FloatTabIndicator, LikeButton, Rating } from '@/features'
+import {
+	AnchorLink,
+	CartCounter,
+	FloatTabIndicator,
+	LikeButton,
+	Rating
+} from '@/features'
+
 import {
 	getFilters,
 	FiltersType,
 	SocialsList,
 	Galery,
 	ReviewList,
-	Tabs
+	Tabs,
+	FormReview
 } from '@/widgets'
 
 import { Suspense } from 'react'
 
 import styles from './page.module.css'
-import { FormReview } from '@/widgets/form-review'
+import { Accordion } from '@/shared/ui/accordion'
 
 type Params = Promise<{ sku: string }>
 
@@ -52,6 +60,24 @@ export default async function ProductPage({ params }: { params: Params }) {
 	const productPrice = isDiscount ? productPriceWithDiscount : product.price
 
 	const reviewsLength = product.reviews.length
+
+	const Description = () => (
+		<div className={styles.description}>
+			<Title As='h2' size='lg' align='center'>
+				{`${categoryName} ${product.name}`}
+			</Title>
+			<Paragraph align='center' color='secondary'>
+				{product.description}
+			</Paragraph>
+		</div>
+	)
+
+	const ReviewContent = () => (
+		<>
+			<ReviewList reviews={product.reviews} />
+			<FormReview />
+		</>
+	)
 
 	return (
 		<Suspense>
@@ -118,9 +144,7 @@ export default async function ProductPage({ params }: { params: Params }) {
 
 						<div className={styles.product__cart}>
 							<div className={styles.product__counter}>
-								<button>-</button>
-								<div>1</div>
-								<button>+</button>
+								<CartCounter sku={product.sku} />
 							</div>
 							<Button className={styles.product__button} variant='outline'>
 								Добавить в корзину
@@ -147,33 +171,35 @@ export default async function ProductPage({ params }: { params: Params }) {
 					</div>
 				</section>
 				<section id={PAGES_ID.SKU_DETAIL} className={styles.detail__reviews}>
-					<Tabs.TabControls>
-						<Tabs.TabButton tabId={TAB_VALUES.DESCRIPTION}>
-							Описание
-						</Tabs.TabButton>
-						<Tabs.TabButton tabId={TAB_VALUES.REVIEWS}>
-							Отзывы {`(${reviewsLength})`}
-						</Tabs.TabButton>
-					</Tabs.TabControls>
-					<FloatTabIndicator />
-					<Tabs.TabContent>
-						<Tabs.TabPanel tabId={TAB_VALUES.DESCRIPTION}>
-							<div className={styles.description}>
-								<Title As='h2' size='lg' align='center'>
-									{`${categoryName} ${product.name}`}
-								</Title>
-								<Paragraph align='center' color='secondary'>
-									{product.description}
-								</Paragraph>
-							</div>
-						</Tabs.TabPanel>
-						<Tabs.TabPanel tabId={TAB_VALUES.REVIEWS}>
-							<div className={styles.reviews}>
-								<ReviewList reviews={product.reviews} />
-								<FormReview />
-							</div>
-						</Tabs.TabPanel>
-					</Tabs.TabContent>
+					<div className={styles.desktop}>
+						<Tabs.TabControls>
+							<Tabs.TabButton tabId={TAB_VALUES.DESCRIPTION}>
+								Описание
+							</Tabs.TabButton>
+							<Tabs.TabButton tabId={TAB_VALUES.REVIEWS}>
+								Отзывы {`(${reviewsLength})`}
+							</Tabs.TabButton>
+						</Tabs.TabControls>
+						<FloatTabIndicator />
+						<Tabs.TabContent>
+							<Tabs.TabPanel tabId={TAB_VALUES.DESCRIPTION}>
+								<Description />
+							</Tabs.TabPanel>
+							<Tabs.TabPanel tabId={TAB_VALUES.REVIEWS}>
+								<div className={styles.reviews}>
+									<ReviewContent />
+								</div>
+							</Tabs.TabPanel>
+						</Tabs.TabContent>
+					</div>
+					<div className={styles.mobile}>
+						<Accordion title='Описание'>
+							<Description />
+						</Accordion>
+						<Accordion title='Отзывы'>
+							<ReviewContent />
+						</Accordion>
+					</div>
 				</section>
 			</main>
 		</Suspense>

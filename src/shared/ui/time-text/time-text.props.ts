@@ -1,4 +1,4 @@
 export interface TimeTextProps extends React.HTMLAttributes<HTMLTimeElement> {
-  className?: string,
-  date: Date
+	className?: string
+	date: Date
 }

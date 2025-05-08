@@ -1,8 +1,8 @@
 const options: Intl.DateTimeFormatOptions = {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric'
-};
+	year: 'numeric',
+	month: 'long',
+	day: 'numeric'
+}
 
 /**
  * Formats a date into text representation.
@@ -14,10 +14,10 @@ const options: Intl.DateTimeFormatOptions = {
  * console.log(formatDate(date)); // "10 мая 2023 г."
  */
 export function formatDate(date: Date) {
-  let result = new Date(date)
-  if (!(result instanceof Date) || isNaN(result.getTime())) {
-    result = new Date()
-  }
+	let result = new Date(date)
+	if (!(result instanceof Date) || isNaN(result.getTime())) {
+		result = new Date()
+	}
 
-  return result.toLocaleDateString('ru-RU', options).replace('г.', '').trim();
+	return result.toLocaleDateString('ru-RU', options).replace('г.', '').trim()
 }

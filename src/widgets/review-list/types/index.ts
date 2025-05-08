@@ -1,5 +1,5 @@
-import { ReviewType } from "@/shared/types";
+import { ReviewType } from '@/shared/types'
 
 export interface ReviewsListProps {
-  reviews: ReviewType[]
+	reviews: ReviewType[]
 }

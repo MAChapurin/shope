@@ -3,27 +3,38 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { SEARCH_PARAMS, TAB_VALUES } from '@/shared/settings'
 import { useEffect } from 'react'
-import { useQueryString } from '@/shared/hooks';
+import { useQueryString } from '@/shared/hooks'
 
 export const useIndicator = () => {
-  const router = useRouter()
-  const searchparams = useSearchParams()
-  const pathname = usePathname()
+	const router = useRouter()
+	const searchparams = useSearchParams()
+	const pathname = usePathname()
 
-  const createQueryString = useQueryString()
+	const createQueryString = useQueryString()
 
-  const isDescriptionTabActive = searchparams.get(SEARCH_PARAMS.ACTIVE_TAB) === TAB_VALUES.DESCRIPTION
-  const isReviewTabActive = searchparams.get(SEARCH_PARAMS.ACTIVE_TAB) === TAB_VALUES.REVIEWS
+	const isDescriptionTabActive =
+		searchparams.get(SEARCH_PARAMS.ACTIVE_TAB) === TAB_VALUES.DESCRIPTION
+	const isReviewTabActive =
+		searchparams.get(SEARCH_PARAMS.ACTIVE_TAB) === TAB_VALUES.REVIEWS
 
-  useEffect(() => {
-    if (!isDescriptionTabActive && !isReviewTabActive) {
-      router.push(pathname + '?' + createQueryString(SEARCH_PARAMS.ACTIVE_TAB, TAB_VALUES.DESCRIPTION))
-    }
+	useEffect(() => {
+		if (!isDescriptionTabActive && !isReviewTabActive) {
+			router.push(
+				pathname +
+					'?' +
+					createQueryString(SEARCH_PARAMS.ACTIVE_TAB, TAB_VALUES.DESCRIPTION)
+			)
+		}
+	}, [
+		createQueryString,
+		isDescriptionTabActive,
+		isReviewTabActive,
+		pathname,
+		router
+	])
 
-  }, [createQueryString, isDescriptionTabActive, isReviewTabActive, pathname, router])
-
-  return {
-    isDescriptionTabActive,
-    isReviewTabActive
-  }
+	return {
+		isDescriptionTabActive,
+		isReviewTabActive
+	}
 }

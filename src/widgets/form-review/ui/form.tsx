@@ -1,9 +1,11 @@
 'use client'
 import { Button, Input, Paragraph, Title } from '@/shared/ui'
 
-import styles from './styles.module.css'
 import { useForm } from '../model/useForm'
-import { INPUT_NAMES } from '../setting'
+import { INPUT_NAMES, VALIDATION_SETTING } from '../setting'
+import { RatingInput } from '@/features'
+
+import styles from './styles.module.css'
 
 export const FormReview = () => {
 	const {
@@ -12,8 +14,13 @@ export const FormReview = () => {
 		values,
 		onInputChange,
 		error,
-		isDisabled
+		isDisabled,
+		rating,
+		setRating,
+		ratingErrorMessage,
+		setRatingErrorMessage
 	} = useForm()
+
 	return (
 		<form
 			onChange={resetInputError}
@@ -22,7 +29,7 @@ export const FormReview = () => {
 		>
 			<Title As='h2'>Добавить отзыв</Title>
 			<Paragraph className={styles.root__subtitle} color='secondary'>
-				Ваш email не будет опубликован. Обязательные поля помечены *
+				{VALIDATION_SETTING.LABEL_ALERT}
 			</Paragraph>
 			<Input
 				name={INPUT_NAMES.REVIEW}
@@ -30,6 +37,7 @@ export const FormReview = () => {
 				placeholder='Ваш отзыв*'
 				value={values.review}
 				onChange={onInputChange}
+				errorMessage={error?.review}
 				required
 			/>
 			<Input
@@ -49,6 +57,12 @@ export const FormReview = () => {
 				onChange={onInputChange}
 				errorMessage={error?.email}
 				required
+			/>
+			<RatingInput
+				rating={rating}
+				setRating={setRating}
+				errorMessage={ratingErrorMessage}
+				errorValueHandler={setRatingErrorMessage}
 			/>
 			<Button disabled={isDisabled} variant='filled' type='submit'>
 				Отправить

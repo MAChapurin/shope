@@ -1,4 +1,4 @@
 export enum TAB_VALUES {
-  REVIEWS = 'reviews',
-  DESCRIPTION = 'description'
+	REVIEWS = 'reviews',
+	DESCRIPTION = 'description'
 }

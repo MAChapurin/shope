@@ -1,6 +1,29 @@
 .rating {
+	position: relative;
 	display: flex;
 	align-items: center;
+}
+
+.rating--column {
+	padding: 10px;
+	flex-direction: column;
+	align-items: flex-start;
+	row-gap: 10px;
+}
+
+.rating__error {
+	position: absolute;
+	left: 10px;
+	bottom: 0;
+	font-size: 10px;
+	line-height: 12px;
+	color: var(--color-error);
+	opacity: 0;
+	transition: opacity var(--transition-duration);
+}
+
+.rating__error--visible {
+	opacity: 1;
 }
 
 .rating__value {
@@ -22,6 +45,12 @@
 	column-gap: 10px;
 }
 
+.rating__label {
+	font-size: 14px;
+	line-height: 22px;
+	color: var(--color-secondary);
+}
+
 .rating__star path {
 	stroke: transparent;
 	transition:
@@ -32,4 +61,16 @@
 .rating__star--transparent path {
 	stroke: var(--color-dark);
 	fill: transparent;
+}
+
+.rating__star--filled path {
+	stroke: var(--color-dark);
+	fill: var(--color-dark);
+}
+
+@media (hover: hover) {
+	.rating__star--hover:hover path {
+		stroke: var(--color-primary);
+		fill: var(--color-primary);
+	}
 }

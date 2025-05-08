@@ -1,8 +1,8 @@
 'use client'
 
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { isValidEmail } from '@/shared/utils'
-import { INPUT_NAMES, VALIDATION_SETTING } from '../setting'
+import { INPUT_NAMES, STORAGE_KEYS, VALIDATION_SETTING } from '../setting'
 
 const defaultValue = {
   name: '',
@@ -17,6 +17,15 @@ export const useForm = () => {
   const [rating, setRating] = useState(0)
   const [ratingErrorMessage, setRatingErrorMessage] = useState('')
 
+  const keepFromLocalStorage = localStorage.getItem(STORAGE_KEYS.KEEP_USER_DATA)
+  const initialData = keepFromLocalStorage ? Boolean(JSON.parse(keepFromLocalStorage)) : false
+
+  const [keepUserData, setKeepUserData] = useState(initialData)
+
+  const onUserDataCheckbox = () => {
+    setKeepUserData(prev => !prev)
+  }
+
   const onError = (name: string, value: string) => {
     setError(prev => ({ ...prev, [name]: value }))
   }
@@ -26,7 +35,7 @@ export const useForm = () => {
   }
 
   const resetForm = () => {
-    setValues(defaultValue)
+    keepUserData ? onValue(INPUT_NAMES.REVIEW, '') : setValues(defaultValue);
     setRating(0)
   }
 
@@ -104,9 +113,27 @@ export const useForm = () => {
 
     if (isValidationFields) {
       console.log('submit!!!')
+      if (keepUserData) {
+        localStorage.setItem(STORAGE_KEYS.USER_DATA, JSON.stringify({ name: values.name, email: values.email }))
+      }
       resetForm()
     }
   }
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEYS.KEEP_USER_DATA, JSON.stringify(keepUserData))
+  }, [keepUserData])
+
+  useEffect(() => {
+    if (keepUserData) {
+      const dataFromLocalStorage = localStorage.getItem(STORAGE_KEYS.USER_DATA)
+      if (dataFromLocalStorage) {
+        const { name, email } = JSON.parse(dataFromLocalStorage)
+        onValue(INPUT_NAMES.NAME, name)
+        onValue(INPUT_NAMES.EMAIL, email)
+      }
+    }
+  }, [])
 
   return {
     resetInputError,
@@ -119,6 +146,8 @@ export const useForm = () => {
     setRating,
     ratingErrorMessage,
     setRatingErrorMessage,
-    onError
+    onError,
+    keepUserData,
+    onUserDataCheckbox
   }
 }

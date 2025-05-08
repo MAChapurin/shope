@@ -6,6 +6,7 @@ import { INPUT_NAMES, VALIDATION_SETTING } from '../setting'
 import { RatingInput } from '@/features'
 
 import styles from './styles.module.css'
+import { CheckboxUserData } from '@/features/checkbox-save-user'
 
 export const FormReview = () => {
 	const {
@@ -18,7 +19,9 @@ export const FormReview = () => {
 		rating,
 		setRating,
 		ratingErrorMessage,
-		setRatingErrorMessage
+		setRatingErrorMessage,
+		keepUserData,
+		onUserDataCheckbox
 	} = useForm()
 
 	return (
@@ -58,6 +61,7 @@ export const FormReview = () => {
 				errorMessage={error?.email}
 				required
 			/>
+			<CheckboxUserData checked={keepUserData} onChange={onUserDataCheckbox} />
 			<RatingInput
 				rating={rating}
 				setRating={setRating}

@@ -20,3 +20,8 @@ export enum VALIDATION_SETTING {
   EMAIL_NO_VALID_MESSAGE = 'Email введен неккоректно',
   RATING_NO_VALID_MESSAGE = 'Рейтинг обязателен для заполнения'
 }
+
+export enum STORAGE_KEYS {
+  USER_DATA = 'userdata',
+  KEEP_USER_DATA = 'isKeepUserData'
+}

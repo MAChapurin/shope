@@ -1,4 +1,4 @@
 export interface CartCounterProps {
-  sku: number
-  className?: string
+	sku: number
+	className?: string
 }

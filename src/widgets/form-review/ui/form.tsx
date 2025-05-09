@@ -1,12 +1,10 @@
 'use client'
 import { Button, Input, Paragraph, Title } from '@/shared/ui'
+import { CheckboxUserData, RatingInput } from '@/features'
 
 import { useForm } from '../model/useForm'
 import { INPUT_NAMES, VALIDATION_SETTING } from '../setting'
-import { RatingInput } from '@/features'
-
 import styles from './styles.module.css'
-import { CheckboxUserData } from '@/features/checkbox-save-user'
 
 export const FormReview = () => {
 	const {

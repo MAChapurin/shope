@@ -4,3 +4,10 @@
 	flex-direction: column;
 	row-gap: 20px;
 }
+
+@media (max-width: 768px) {
+	.form {
+		padding-block: 20px;
+		padding-inline: 0;
+	}
+}

@@ -1,6 +1,7 @@
 export * from './anchor-link'
 export * from './cart-link-indicator'
 export * from './cart-counter'
+export * from './checkbox-save-user'
 export * from './button-to-detail'
 export * from './discount-switch'
 export * from './dropdown-category-filter'

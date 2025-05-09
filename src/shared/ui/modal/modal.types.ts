@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react'
 
 export interface ModalProps {
-  buttonChildrenSlot: ReactNode
-  children: ReactNode
-  className?: string
+	buttonChildrenSlot: ReactNode
+	children: ReactNode
+	className?: string
 }

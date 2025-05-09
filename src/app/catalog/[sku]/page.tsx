@@ -5,7 +5,13 @@ import {
 	SEARCH_PARAMS,
 	TAB_VALUES
 } from '@/shared/settings'
-import { Title, Paragraph, VisuallyHiddenTitle, Button } from '@/shared/ui'
+import {
+	Title,
+	Paragraph,
+	VisuallyHiddenTitle,
+	Button,
+	Accordion
+} from '@/shared/ui'
 import { calculateAverage, declareOfNumber } from '@/shared/utils'
 import { cn } from '@/shared/lib'
 
@@ -30,7 +36,6 @@ import {
 import { Suspense } from 'react'
 
 import styles from './page.module.css'
-import { Accordion } from '@/shared/ui/accordion'
 
 type Params = Promise<{ sku: string }>
 
@@ -196,7 +201,7 @@ export default async function ProductPage({ params }: { params: Params }) {
 						<Accordion title='Описание'>
 							<Description />
 						</Accordion>
-						<Accordion title='Отзывы'>
+						<Accordion title={`Отзывы (${reviewsLength})`}>
 							<ReviewContent />
 						</Accordion>
 					</div>

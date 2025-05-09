@@ -1,13 +1,36 @@
 import { ProductType } from '@/shared/types'
-import { Icon } from '@/shared/ui'
-import { declareOfNumber } from '@/shared/utils'
-import Link from 'next/link'
-import { getFilters } from '@/widgets/filters/api/getFilters'
-import { FiltersType } from '@/widgets/filters/types'
+import {
+	API_URLS,
+	PAGES_ID,
+	SEARCH_PARAMS,
+	TAB_VALUES
+} from '@/shared/settings'
+import { Title, Paragraph, VisuallyHiddenTitle, Button } from '@/shared/ui'
+import { calculateAverage, declareOfNumber } from '@/shared/utils'
+import { cn } from '@/shared/lib'
+
+import {
+	AnchorLink,
+	CartCounter,
+	FloatTabIndicator,
+	LikeButton,
+	Rating
+} from '@/features'
+
+import {
+	getFilters,
+	FiltersType,
+	SocialsList,
+	Galery,
+	ReviewList,
+	Tabs,
+	FormReview
+} from '@/widgets'
+
+import { Suspense } from 'react'
 
 import styles from './page.module.css'
-import { API_URLS } from '@/shared/settings'
-import { Suspense } from 'react'
+import { Accordion } from '@/shared/ui/accordion'
 
 type Params = Promise<{ sku: string }>
 
@@ -16,62 +39,167 @@ export default async function ProductPage({ params }: { params: Params }) {
 	const data = await fetch(API_URLS.PRODUCT_SKU + sku)
 	const product: ProductType = await data.json()
 	const { categories } = await getFilters<FiltersType>()
+	const categoryName = categories.find(
+		category => category.id === product.categoryId
+	)?.name
+
+	const ratingValues = product.reviews
+		.map(review => review.rating)
+		.filter(el => typeof el === 'number')
+
+	const averageRating =
+		ratingValues.length > 0 ? calculateAverage(ratingValues) : 5
+
+	const productPriceWithDiscount = (
+		(product.price / 100) *
+		(100 - product.discount)
+	).toFixed(2)
+
+	const isDiscount = !isNaN(+productPriceWithDiscount)
+
+	const productPrice = isDiscount ? productPriceWithDiscount : product.price
+
+	const reviewsLength = product.reviews.length
+
+	const Description = () => (
+		<div className={styles.description}>
+			<Title As='h2' size='lg' align='center'>
+				{`${categoryName} ${product.name}`}
+			</Title>
+			<Paragraph align='center' color='secondary'>
+				{product.description}
+			</Paragraph>
+		</div>
+	)
+
+	const ReviewContent = () => (
+		<>
+			<ReviewList reviews={product.reviews} />
+			<FormReview />
+		</>
+	)
 
 	return (
 		<Suspense>
 			<main className={styles.detail}>
 				<section className={styles.detail__product}>
-					<div>Galery</div>
+					<VisuallyHiddenTitle>
+						{`Купить ${categoryName} ${product.name}`}
+					</VisuallyHiddenTitle>
+					<div>
+						<Galery images={product.images.slice(0, 4)} name={product.name} />
+					</div>
 					<div className={styles.product}>
-						<h1 className={styles.product__title}>{product.name}</h1>
-						<p className={styles.product__price}>$ {product.price}</p>
-						<div className={styles.product__rating}>
-							<Icon name='star' />
-							<Icon name='star' />
-							<Icon name='star' />
-							<Icon name='star' />
-							<Icon name='star' />
+						<Title As='h2' className={styles.product__title} size='lg'>
+							{product.name}
+						</Title>
+						<div
+							className={cn(
+								styles.product__price,
+								styles['product__price-wrapper']
+							)}
+						>
+							{isDiscount && (
+								<Paragraph
+									className={styles['product__price--old']}
+									color='error'
+								>
+									$ {product.price.toFixed(2)}
+								</Paragraph>
+							)}
+							<Paragraph className={styles.product__price} color='primary'>
+								$ {productPrice}
+							</Paragraph>
+						</div>
+						<AnchorLink
+							className={styles['product__review-link']}
+							href={'#' + PAGES_ID.SKU_DETAIL}
+							id={PAGES_ID.SKU_DETAIL}
+							params={SEARCH_PARAMS.ACTIVE_TAB}
+							value={TAB_VALUES.REVIEWS}
+						>
+							<Rating value={averageRating} />
 							<span>
 								{declareOfNumber(
-									product.reviews.length,
+									reviewsLength,
 									['отзыв', 'отзыва', 'отзывов'],
 									true
 								)}
 							</span>
-						</div>
-						<p className={styles.product__description}>{product.description}</p>
+						</AnchorLink>
+						<AnchorLink
+							className={styles['product__description-link']}
+							href={'#' + PAGES_ID.SKU_DETAIL}
+							id={PAGES_ID.SKU_DETAIL}
+							params={SEARCH_PARAMS.ACTIVE_TAB}
+							value={TAB_VALUES.DESCRIPTION}
+						>
+							<Paragraph
+								className={styles['product--truncate-text']}
+								color='secondary'
+							>
+								{product.description}
+							</Paragraph>
+						</AnchorLink>
+
 						<div className={styles.product__cart}>
 							<div className={styles.product__counter}>
-								<button>-</button>
-								<div>1</div>
-								<button>+</button>
+								<CartCounter sku={product.sku} />
 							</div>
-							<button>Добавить в корзину</button>
+							<Button className={styles.product__button} variant='outline'>
+								Добавить в корзину
+							</Button>
 						</div>
 						<div className={styles.product__actions}>
-							<Icon name='like' />
-							<Link href={'/'}>
-								<Icon name='in' />
-							</Link>
-							<Link href={'/'}>
-								<Icon name='facebook' />
-							</Link>
-							<Link href={'/'}>
-								<Icon name='instagram' />
-							</Link>
-							<Link href={'/'}>
-								<Icon name='twitter' />
-							</Link>
+							<LikeButton sku={+sku} />
+							<SocialsList className={styles.product__socials} />
+						</div>
+						<div className={styles.product__property} role='table'>
+							<Paragraph className={styles.product__row} role='rowgroup'>
+								<span role='cell'>SKU: </span>
+								<span role='cell' className={styles['product__property-value']}>
+									{product.sku}
+								</span>
+							</Paragraph>
+							<Paragraph className={styles.product__row} role='rowgroup'>
+								<span role='cell'>Категория: </span>
+								<span role='cell' className={styles['product__property-value']}>
+									{categoryName}
+								</span>
+							</Paragraph>
 						</div>
 					</div>
-					<p>SKU: {product.sku}</p>
-					<p>
-						Категория:
-						{
-							categories.find(category => category.id === product.categoryId)
-								?.name
-						}
-					</p>
+				</section>
+				<section id={PAGES_ID.SKU_DETAIL} className={styles.detail__reviews}>
+					<div className={styles.desktop}>
+						<Tabs.TabControls>
+							<Tabs.TabButton tabId={TAB_VALUES.DESCRIPTION}>
+								Описание
+							</Tabs.TabButton>
+							<Tabs.TabButton tabId={TAB_VALUES.REVIEWS}>
+								Отзывы {`(${reviewsLength})`}
+							</Tabs.TabButton>
+						</Tabs.TabControls>
+						<FloatTabIndicator />
+						<Tabs.TabContent>
+							<Tabs.TabPanel tabId={TAB_VALUES.DESCRIPTION}>
+								<Description />
+							</Tabs.TabPanel>
+							<Tabs.TabPanel tabId={TAB_VALUES.REVIEWS}>
+								<div className={styles.reviews}>
+									<ReviewContent />
+								</div>
+							</Tabs.TabPanel>
+						</Tabs.TabContent>
+					</div>
+					<div className={styles.mobile}>
+						<Accordion title='Описание'>
+							<Description />
+						</Accordion>
+						<Accordion title='Отзывы'>
+							<ReviewContent />
+						</Accordion>
+					</div>
 				</section>
 			</main>
 		</Suspense>

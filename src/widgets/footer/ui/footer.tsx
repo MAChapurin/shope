@@ -1,12 +1,8 @@
 import Link from 'next/link'
-import {
-	FOOTER_NAV_LINKS,
-	FOOTER_SOCIALS_LINKS
-} from '../settings/links-settings'
-import { SubscriptionForm } from '@/widgets'
+import { FOOTER_NAV_LINKS } from '../settings/links-settings'
+import { SocialsList, SubscriptionForm } from '@/widgets'
 
 import styles from './styles.module.css'
-import { Icon } from '@/shared/ui'
 
 export const Footer = () => {
 	return (
@@ -27,15 +23,7 @@ export const Footer = () => {
 			</div>
 			<div className={styles.row}>
 				<p className={styles.copyright}>© 2024 Shoppe</p>
-				<ul className={styles.socialsList}>
-					{FOOTER_SOCIALS_LINKS.map(({ href, icon }, index) => (
-						<li key={index}>
-							<Link href={href}>
-								<Icon name={icon} />
-							</Link>
-						</li>
-					))}
-				</ul>
+				<SocialsList className={styles.socialsList} />
 			</div>
 		</footer>
 	)

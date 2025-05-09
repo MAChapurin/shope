@@ -1,0 +1,3 @@
+.test {
+	transition: max-height var(--transition-duration);
+}

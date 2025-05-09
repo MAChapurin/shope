@@ -1,0 +1,26 @@
+.counter {
+	width: max-content;
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.counter__button {
+	background: var(--color-secondary-light);
+	width: 33px;
+	height: 53px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.counter__value {
+	background: var(--color-secondary-light);
+	width: 33px;
+	height: 53px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

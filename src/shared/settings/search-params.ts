@@ -6,5 +6,6 @@ export enum SEARCH_PARAMS {
 	PRICE_MAX = 'priceMax',
 	DISCOUNT = 'discounted',
 	OFFSET = 'offset',
-	LIMIT = 'limit'
+	LIMIT = 'limit',
+	ACTIVE_TAB = 'activeTab'
 }

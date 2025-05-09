@@ -7,8 +7,9 @@ export const Title = ({
 	align = 'left',
 	children,
 	As = 'h2',
-	size,
-	className
+	size = 'lg',
+	className,
+	...props
 }: Partial<TitleProps>) => {
 	return (
 		<As
@@ -24,6 +25,7 @@ export const Title = ({
 				},
 				className
 			)}
+			{...props}
 		>
 			{children}
 		</As>

@@ -1,29 +1,32 @@
 import { Suspense } from 'react'
 import styles from './page.module.css'
+import { Paragraph, Title } from '@/shared/ui'
 
 export default function ContactsPage() {
 	return (
 		<Suspense>
-			<main className={styles.main}>
-				<h1>Контакты</h1>
+			<main className={styles.main} role='main'>
+				<Title As='h1' size='xl'>
+					Контакты
+				</Title>
 
-				<p>
+				<Paragraph>
 					Мы всегда рады помочь вам! Если у вас есть вопросы, предложения или
 					пожелания, не стесняйтесь обращаться к нам. Вот как вы можете
 					связаться с нашей командой:
-				</p>
+				</Paragraph>
 
-				<h2>Наши контактные данные</h2>
-				<p>
+				<Title>Наши контактные данные</Title>
+				<Paragraph>
 					<strong>Телефон:</strong> <a href='tel:+79031233232'>+79031233232</a>
-				</p>
-				<p>
+				</Paragraph>
+				<Paragraph>
 					<strong>Электронная почта:</strong>{' '}
 					<a href='mailto:examle@mail.com'>examle@mail.com</a>
-				</p>
-				<p>
+				</Paragraph>
+				<Paragraph>
 					<strong>Адрес:</strong> г. Москва Варшавское шоссе, 87Б
-				</p>
+				</Paragraph>
 
 				<iframe
 					className='invert grayscale'
@@ -34,19 +37,19 @@ export default function ContactsPage() {
 					loading='lazy'
 				/>
 
-				<h2>Часы работы</h2>
-				<p>
+				<Title>Часы работы</Title>
+				<Paragraph>
 					Пн - Пт: 9:00 - 18:00
 					<br />
 					Сб: 10:00 - 15:00
 					<br />
 					Вс: Выходной
-				</p>
+				</Paragraph>
 
-				<p style={{ textAlign: 'center' }}>
+				<Paragraph align='center'>
 					Спасибо за ваш интерес к <b>SHOPPE</b>! Мы ценим ваше время и
 					постараемся ответить на ваш запрос как можно быстрее.
-				</p>
+				</Paragraph>
 			</main>
 		</Suspense>
 	)

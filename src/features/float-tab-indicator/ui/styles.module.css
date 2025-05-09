@@ -1,0 +1,15 @@
+.root {
+	background: var(--color-secondary-light-2);
+	height: 1px;
+}
+
+.indicator {
+	width: 100px;
+	height: 1px;
+	background: var(--color-dark);
+	transition: transform var(--transition-duration);
+}
+
+.isReview {
+	transform: translateX(170px);
+}

@@ -4,6 +4,7 @@ body {
 	min-width: 320px;
 	font-family: var(--font-main);
 	scrollbar-width: none;
+	scroll-behavior: smooth;
 }
 
 * {
@@ -35,19 +36,6 @@ main {
 	min-height: calc(100dvh - 330px);
 }
 
-.visually-hidden {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	margin: -1px;
-	border: 0;
-	padding: 0;
-	white-space: nowrap;
-	clip-path: inset(100%);
-	clip: rect(0 0 0 0);
-	overflow: hidden;
-}
-
 :root {
 	--color-light: #ffffff;
 	--color-dark: #000000;
@@ -57,4 +45,5 @@ main {
 	--color-secondary-light-2: #d8d8d8;
 	--color-error: #d82700;
 	--max-width-app: 1248px;
+	--transition-duration: 0.3s;
 }

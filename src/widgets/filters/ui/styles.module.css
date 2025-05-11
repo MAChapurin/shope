@@ -28,7 +28,7 @@
 	inset: 0;
 	padding-block: 15px;
 	padding-right: 15px;
-	width: 100%;
+	width: 100dvw;
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -40,6 +40,7 @@
 		background 0.3s,
 		backdrop-filter 0.3s,
 		opacity 0.3s;
+	z-index: 100;
 }
 
 .sidebar__aside--open {

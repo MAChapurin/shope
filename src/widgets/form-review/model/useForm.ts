@@ -132,10 +132,16 @@ export const useForm = () => {
 		const keepFromLocalStorage = localStorage.getItem(
 			STORAGE_KEYS.KEEP_USER_DATA
 		)
-		const initialData = keepFromLocalStorage
-			? Boolean(JSON.parse(keepFromLocalStorage))
-			: false
-		setKeepUserData(initialData)
+		const initialData = keepFromLocalStorage === 'true'
+		if (initialData) {
+			const dataFromLocalStorage = localStorage.getItem(STORAGE_KEYS.USER_DATA)
+			if (dataFromLocalStorage) {
+				const { name, email } = JSON.parse(dataFromLocalStorage)
+				onValue(INPUT_NAMES.NAME, name)
+				onValue(INPUT_NAMES.EMAIL, email)
+				setKeepUserData(initialData)
+			}
+		}
 	}, [])
 
 	useEffect(() => {
@@ -144,17 +150,6 @@ export const useForm = () => {
 			JSON.stringify(keepUserData)
 		)
 	}, [keepUserData])
-
-	useEffect(() => {
-		if (keepUserData) {
-			const dataFromLocalStorage = localStorage.getItem(STORAGE_KEYS.USER_DATA)
-			if (dataFromLocalStorage) {
-				const { name, email } = JSON.parse(dataFromLocalStorage)
-				onValue(INPUT_NAMES.NAME, name)
-				onValue(INPUT_NAMES.EMAIL, email)
-			}
-		}
-	}, [])
 
 	return {
 		resetInputError,

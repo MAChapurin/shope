@@ -41,19 +41,17 @@
 	.containerMobile {
 		display: block;
 		position: relative;
-		z-index: 20;
+		z-index: 100;
 	}
 
 	.navMobile {
 		--top-offset: 90px;
 		width: 100dvw;
-		height: calc(100dvh - var(--top-offset));
+		height: 100dvh;
 		padding-block: 40px;
 		display: block;
-		position: absolute;
+		position: fixed;
 		inset: 0;
-		top: var(--top-offset);
-		left: -16px;
 		background: transparent;
 		backdrop-filter: blur(0);
 		pointer-events: none;
@@ -71,6 +69,7 @@
 	}
 
 	.listMobile {
+		width: min-content;
 		display: flex;
 		flex-direction: column;
 		row-gap: 24px;
@@ -87,6 +86,11 @@
 
 	.mobileMenuOpen .dividerMobile {
 		background: var(--color-secondary-light-2);
+	}
+
+	.mobileMenuOpen .close {
+		opacity: 1;
+		pointer-events: all;
 	}
 
 	.linkMobile {

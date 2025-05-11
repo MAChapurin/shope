@@ -2,9 +2,9 @@
 	width: 20px;
 	height: 15px;
 	position: relative;
-	position: relative;
 	cursor: pointer;
 	border-radius: 5px;
+	z-index: 100;
 }
 
 .menuToggle span {

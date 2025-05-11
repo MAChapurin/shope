@@ -47,3 +47,20 @@ main {
 	--max-width-app: 1248px;
 	--transition-duration: 0.3s;
 }
+
+@keyframes pulse {
+	0% {
+		background-color: var(--color-secondary);
+	}
+	50% {
+		background-color: var(--color-secondary-light);
+	}
+	100% {
+		background-color: var(--color-secondary);
+	}
+}
+
+[datatype='skeleton'] {
+	border-radius: 4px;
+	animation: pulse 1.5s infinite ease-in-out;
+}

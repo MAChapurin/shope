@@ -114,6 +114,10 @@
 	column-gap: 16px;
 }
 
+.product__rowProperty {
+	margin-bottom: 20px;
+}
+
 .product__property-value {
 	color: var(--color-secondary);
 }

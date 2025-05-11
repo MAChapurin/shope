@@ -21,6 +21,7 @@
 	height: 120px;
 	border-radius: 4px;
 	outline: 1px solid transparent;
+	outline-offset: -1px;
 	transition: outline-color var(--transition-duration);
 	overflow: hidden;
 }
@@ -94,11 +95,5 @@
 
 	.galery__sidebar {
 		display: none;
-	}
-}
-
-@media (hover: hover) {
-	.galery__button:hover .galery__button-img {
-		transform: scale(1.1);
 	}
 }

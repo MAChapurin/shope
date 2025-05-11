@@ -1,5 +1,6 @@
 .detail {
 	padding-top: 30px;
+	overflow-x: hidden;
 }
 
 .detail__reviews {
@@ -35,6 +36,11 @@
 	top: 50%;
 	left: 0;
 	background: var(--color-error);
+}
+
+.product__row .product__shared {
+	margin-left: auto;
+	display: none;
 }
 
 .detail__product {
@@ -168,6 +174,14 @@
 	}
 
 	.product__review-link {
+		display: none;
+	}
+
+	.product__row .product__shared {
+		display: block;
+	}
+
+	.product__actions {
 		display: none;
 	}
 }

@@ -26,7 +26,6 @@ import {
 import {
 	getFilters,
 	FiltersType,
-	SocialsList,
 	Galery,
 	ReviewList,
 	Tabs,
@@ -36,6 +35,7 @@ import {
 import { Suspense } from 'react'
 
 import styles from './page.module.css'
+import { SharedButton, SharedButtonList } from '@/features/shared-button'
 
 type Params = Promise<{ sku: string }>
 
@@ -110,6 +110,7 @@ export default async function ProductPage({ params }: { params: Params }) {
 							<Paragraph className={styles.product__price} color='primary'>
 								$ {productPrice}
 							</Paragraph>
+							<SharedButton className={styles.product__shared} />
 						</div>
 						<div className={styles.desktop}>
 							<AnchorLink
@@ -156,7 +157,7 @@ export default async function ProductPage({ params }: { params: Params }) {
 						</div>
 						<div className={styles.product__actions}>
 							<LikeButton sku={+sku} />
-							<SocialsList className={styles.product__socials} />
+							<SharedButtonList className={styles.product__socials} />
 						</div>
 						<div
 							className={cn(styles.product__property, styles.desktop)}

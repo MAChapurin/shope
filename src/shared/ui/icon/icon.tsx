@@ -16,6 +16,7 @@ import {
 	LogoutIcon,
 	ProfileIcon,
 	SearchIcon,
+	SharedIcon,
 	StarIcon,
 	SuccessIcon,
 	TwitterIcon
@@ -37,6 +38,7 @@ const config = {
 	mail: MailIcon,
 	profile: ProfileIcon,
 	search: SearchIcon,
+	shared: SharedIcon,
 	star: StarIcon,
 	success: SuccessIcon,
 	twitter: TwitterIcon

@@ -16,6 +16,7 @@ export type IconType =
 	| 'mail'
 	| 'profile'
 	| 'search'
+	| 'shared'
 	| 'star'
 	| 'success'
 	| 'twitter'

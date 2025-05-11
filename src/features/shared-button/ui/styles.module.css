@@ -1,0 +1,37 @@
+.shared {
+	position: relative;
+	display: flex;
+	align-items: center;
+	column-gap: 29px;
+}
+
+.shared__link {
+	color: var(--color-secondary);
+	transition: color var(--transition-duration);
+}
+
+.shared__list {
+	position: absolute;
+	right: 0;
+	transform: translateX(300px);
+	transition: transform var(--transition-duration);
+}
+
+.shared__list.open {
+	transform: translateX(0);
+}
+
+.shared__button {
+	transition: opacity var(--transition-duration);
+}
+
+.shared__button.open {
+	opacity: 0;
+	pointer-events: none;
+}
+
+@media (hover: hover) {
+	.shared__button:hover .shared__link {
+		color: var(--color-primary);
+	}
+}

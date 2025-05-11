@@ -33,9 +33,11 @@ export const Modal: FC<ModalProps> = ({
 					[styles['modal__content--open']]: isOpen
 				})}
 			>
-				<button className={styles.modal__close}>
-					<Icon name='close' />
-				</button>
+				<div className={styles.modal__header}>
+					<button className={styles.modal__close}>
+						<Icon name='close' />
+					</button>
+				</div>
 				<div ref={ref} className={styles.modal__content}>
 					{children}
 				</div>

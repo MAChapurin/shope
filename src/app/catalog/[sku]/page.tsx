@@ -57,10 +57,10 @@ export async function generateMetadata({
 	}
 }
 
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+// const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
 export default async function ProductPage({ params }: { params: Params }) {
-	await delay(10000)
+	// await delay(10000)
 	const { sku } = await params
 	const data = await fetch(API_URLS.PRODUCT_SKU + sku)
 	const product: ProductType = await data.json()

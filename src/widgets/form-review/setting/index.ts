@@ -5,6 +5,7 @@ export enum INPUT_NAMES {
 }
 
 export enum VALIDATION_SETTING {
+	SUCCESS_MESSAGE = 'Отзыв успешно отправлен.',
 	LABEL_ALERT = 'Ваш email не будет опубликован. Обязательные поля помечены *',
 	MAX_NAME_LENGTH = 16,
 	MAX_NAME_LENGTH_MESSAGE = `Максимальная длинна должна быть ${VALIDATION_SETTING.MAX_NAME_LENGTH}`,

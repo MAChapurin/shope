@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 
 export const useToast = () => {
 	const [isVisible, setIsVisible] = useState(false)
+	const [message, setMessage] = useState('')
 
 	const showToast = () => {
 		setIsVisible(true)
@@ -16,6 +17,16 @@ export const useToast = () => {
 		return () => {
 			unsubscribe()
 		}
-	})
-	return isVisible
+	}, [])
+
+	useEffect(() => {
+		const unsubscribe = emitter.subscribe(CUSTOM_EVENTS.ADD_TOST, (data: string) => {
+			setMessage(data)
+			showToast()
+		})
+		return () => {
+			unsubscribe()
+		}
+	}, [])
+	return { isVisible, message }
 }

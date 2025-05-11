@@ -91,19 +91,14 @@ export default async function ProductPage({ params }: { params: Params }) {
 					<VisuallyHiddenTitle>
 						{`Купить ${categoryName} ${product.name}`}
 					</VisuallyHiddenTitle>
-					<div>
+					<div className={styles.detail__galery}>
 						<Galery images={product.images.slice(0, 4)} name={product.name} />
 					</div>
 					<div className={styles.product}>
 						<Title As='h2' className={styles.product__title} size='lg'>
 							{product.name}
 						</Title>
-						<div
-							className={cn(
-								styles.product__price,
-								styles['product__price-wrapper']
-							)}
-						>
+						<div className={cn(styles.product__price, styles.product__row)}>
 							{isDiscount && (
 								<Paragraph
 									className={styles['product__price--old']}
@@ -116,37 +111,41 @@ export default async function ProductPage({ params }: { params: Params }) {
 								$ {productPrice}
 							</Paragraph>
 						</div>
-						<AnchorLink
-							className={styles['product__review-link']}
-							href={'#' + PAGES_ID.SKU_DETAIL}
-							id={PAGES_ID.SKU_DETAIL}
-							params={SEARCH_PARAMS.ACTIVE_TAB}
-							value={TAB_VALUES.REVIEWS}
-						>
-							<Rating value={averageRating} />
-							<span>
-								{declareOfNumber(
-									reviewsLength,
-									['отзыв', 'отзыва', 'отзывов'],
-									true
-								)}
-							</span>
-						</AnchorLink>
-						<AnchorLink
-							className={styles['product__description-link']}
-							href={'#' + PAGES_ID.SKU_DETAIL}
-							id={PAGES_ID.SKU_DETAIL}
-							params={SEARCH_PARAMS.ACTIVE_TAB}
-							value={TAB_VALUES.DESCRIPTION}
-						>
-							<Paragraph
-								className={styles['product--truncate-text']}
-								color='secondary'
+						<div className={styles.desktop}>
+							<AnchorLink
+								className={cn(styles['product__review-link'])}
+								href={'#' + PAGES_ID.SKU_DETAIL}
+								id={PAGES_ID.SKU_DETAIL}
+								params={SEARCH_PARAMS.ACTIVE_TAB}
+								value={TAB_VALUES.REVIEWS}
 							>
-								{product.description}
-							</Paragraph>
-						</AnchorLink>
-
+								<Rating value={averageRating} />
+								<span>
+									{declareOfNumber(
+										reviewsLength,
+										['отзыв', 'отзыва', 'отзывов'],
+										true
+									)}
+								</span>
+							</AnchorLink>
+							<AnchorLink
+								className={cn(
+									styles['product__description-link'],
+									styles.desktop
+								)}
+								href={'#' + PAGES_ID.SKU_DETAIL}
+								id={PAGES_ID.SKU_DETAIL}
+								params={SEARCH_PARAMS.ACTIVE_TAB}
+								value={TAB_VALUES.DESCRIPTION}
+							>
+								<Paragraph
+									className={styles['product--truncate-text']}
+									color='secondary'
+								>
+									{product.description}
+								</Paragraph>
+							</AnchorLink>
+						</div>
 						<div className={styles.product__cart}>
 							<div className={styles.product__counter}>
 								<CartCounter sku={product.sku} />
@@ -159,7 +158,10 @@ export default async function ProductPage({ params }: { params: Params }) {
 							<LikeButton sku={+sku} />
 							<SocialsList className={styles.product__socials} />
 						</div>
-						<div className={styles.product__property} role='table'>
+						<div
+							className={cn(styles.product__property, styles.desktop)}
+							role='table'
+						>
 							<Paragraph className={styles.product__row} role='rowgroup'>
 								<span role='cell'>SKU: </span>
 								<span role='cell' className={styles['product__property-value']}>

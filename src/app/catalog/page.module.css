@@ -8,16 +8,16 @@
 
 .catalog__title {
 	margin-bottom: 39px;
-	/* position: sticky;
-	top: 130px; */
+	position: fixed;
+	top: 130px;
 	background: var(--color-light);
 }
 
 .catalog__filters {
 	width: 100%;
 	max-width: 261px;
-	/* position: fixed;
-	top: 210px; */
+	position: fixed;
+	top: 210px;
 }
 
 .catalog__products {
@@ -54,6 +54,7 @@
 	}
 
 	.catalog__title {
+		position: static;
 		top: 88px;
 		z-index: 10;
 		background: #ffffff90;

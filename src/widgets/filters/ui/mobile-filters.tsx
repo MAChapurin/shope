@@ -48,7 +48,12 @@ export const MobileFilters = ({ children }: { children: React.ReactNode }) => {
 					>
 						<Icon name='close' className={styles.rotate180} />
 					</button>
-					<div className={styles.sidebar__content} ref={ref}>
+					<div
+						className={cn(styles.sidebar__content, {
+							[styles['sidebar__content--open']]: isOpen
+						})}
+						ref={ref}
+					>
 						<button onClick={onClose} className={styles.sidebar__button}>
 							<Icon name='arrow' className={styles.rotate180} /> Назад
 						</button>

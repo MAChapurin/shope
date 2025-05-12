@@ -47,9 +47,11 @@ export default async function CatalogPage(props: {
 				<Title className={styles.catalog__title} As='h1' size='xl'>
 					Каталог товаров
 				</Title>
+
 				<MobileFilters>
 					<Filters />
 				</MobileFilters>
+
 				<div className={styles.catalog__container}>
 					<aside className={styles.catalog__filters}>
 						<Filters />
@@ -81,11 +83,7 @@ export default async function CatalogPage(props: {
 									)
 								})}
 							</ul>
-							<Pagination
-								totalProducts={res.totalProducts}
-								limit={res.limit}
-								// limit={5}
-							/>
+							<Pagination totalProducts={res.totalProducts} limit={res.limit} />
 						</section>
 					)}
 

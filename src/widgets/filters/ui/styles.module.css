@@ -29,7 +29,7 @@
 	padding-block: 15px;
 	padding-right: 15px;
 	width: 100dvw;
-	height: 100vh;
+	height: 100dvh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -62,13 +62,27 @@
 }
 
 .sidebar__content {
+	max-height: 100dvh;
+	overflow-y: scroll;
+	scrollbar-width: none;
 	padding: 16px;
+	padding-bottom: 32px;
 	position: fixed;
 	left: 0;
 	bottom: 0;
 	background: var(--color-light);
 	width: 100dvw;
 	border-radius: 16px;
+	transform: translateY(100%);
+	opacity: 0.5;
+	transition:
+		transform var(--transition-duration),
+		opacity var(--transition-duration);
+}
+
+.sidebar__content--open {
+	transform: translateY(0);
+	opacity: 1;
 }
 
 body:has(.sidebar__aside--open) {

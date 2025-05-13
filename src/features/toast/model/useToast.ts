@@ -20,10 +20,13 @@ export const useToast = () => {
 	}, [])
 
 	useEffect(() => {
-		const unsubscribe = emitter.subscribe(CUSTOM_EVENTS.ADD_TOST, (data: string) => {
-			setMessage(data)
-			showToast()
-		})
+		const unsubscribe = emitter.subscribe(
+			CUSTOM_EVENTS.ADD_TOST,
+			(data: string) => {
+				setMessage(data)
+				showToast()
+			}
+		)
 		return () => {
 			unsubscribe()
 		}

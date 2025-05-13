@@ -1,5 +1,5 @@
 import { cn } from '@/shared/lib'
-import styles from './skeleton.module.css'
+import styles from './_styles/skeleton.module.css'
 
 export default function Loading() {
 	return (

@@ -13,7 +13,7 @@ import { Filters, MobileFilters } from '@/widgets'
 
 import { Suspense } from 'react'
 
-import styles from './page.module.css'
+import styles from './_styles/page.module.css'
 
 type SearchParams = Promise<{ [key: string]: string | undefined }>
 type ResponseType = {
@@ -23,9 +23,11 @@ type ResponseType = {
 	totalProducts: number
 }
 
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 export default async function CatalogPage(props: {
 	searchParams: SearchParams
 }) {
+	await delay(3000)
 	const searchParams = await props.searchParams
 	const { name, priceMin, priceMax, discounted, categoryId, offset } =
 		searchParams

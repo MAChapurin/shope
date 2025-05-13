@@ -1,4 +1,5 @@
 export * from './calculateAverage'
 export * from './declareOfNumber'
+export * from './delay'
 export * from './formatDate'
 export * from './isValidMail'

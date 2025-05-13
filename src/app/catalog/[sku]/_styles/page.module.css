@@ -1,4 +1,5 @@
 .detail {
+	min-height: var(--min-height-main);
 	padding-top: 30px;
 	overflow-x: hidden;
 }

@@ -2,6 +2,7 @@
 	padding-block: 112px;
 	margin: 0 auto;
 	max-width: 670px;
+	min-height: var(--min-height-main);
 }
 
 .title {

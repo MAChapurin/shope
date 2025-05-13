@@ -1,6 +1,5 @@
 import { VisuallyHiddenTitle } from '@/shared/ui'
-import { Hero } from '@/widgets/hero'
-import { NewProductList } from '@/widgets/new-product-list'
+import { Hero, NewProductList } from '@/widgets'
 
 export default function Home() {
 	return (

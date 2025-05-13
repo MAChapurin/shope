@@ -1,5 +1,6 @@
 .catalog {
 	padding-top: 30px;
+	min-height: var(--min-height-main);
 }
 
 .catalog__container {

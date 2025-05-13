@@ -45,6 +45,7 @@ main {
 	--color-secondary-light-2: #d8d8d8;
 	--color-error: #d82700;
 	--max-width-app: 1248px;
+	--min-height-main: main calc(100dvh - 330px);
 	--transition-duration: 0.3s;
 }
 

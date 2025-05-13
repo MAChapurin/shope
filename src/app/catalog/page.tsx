@@ -11,8 +11,6 @@ import {
 } from '@/features'
 import { Filters, MobileFilters } from '@/widgets'
 
-import { Suspense } from 'react'
-
 import styles from './_styles/page.module.css'
 
 type SearchParams = Promise<{ [key: string]: string | undefined }>
@@ -23,11 +21,9 @@ type ResponseType = {
 	totalProducts: number
 }
 
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 export default async function CatalogPage(props: {
 	searchParams: SearchParams
 }) {
-	await delay(3000)
 	const searchParams = await props.searchParams
 	const { name, priceMin, priceMax, discounted, categoryId, offset } =
 		searchParams
@@ -44,65 +40,63 @@ export default async function CatalogPage(props: {
 	const res: ResponseType = await data.json()
 
 	return (
-		<Suspense>
-			<main className={styles.catalog}>
-				<Title className={styles.catalog__title} As='h1' size='xl'>
-					Каталог товаров
-				</Title>
+		<main className={styles.catalog}>
+			<Title className={styles.catalog__title} As='h1' size='xl'>
+				Каталог товаров
+			</Title>
 
-				<MobileFilters>
+			<MobileFilters>
+				<Filters />
+			</MobileFilters>
+
+			<div className={styles.catalog__container}>
+				<aside className={styles.catalog__filters}>
 					<Filters />
-				</MobileFilters>
+				</aside>
+				{res.products?.length > 0 && (
+					<section className={styles.catalog__products}>
+						<ul className={styles.list}>
+							{res.products?.map((el, index) => {
+								return (
+									<li key={index}>
+										<ProductCard
+											name={el.name}
+											images={el.images}
+											price={el.price}
+											discount={el.discount}
+											sku={el.sku}
+											topRightSlot={<LikeFlag sku={el.sku} />}
+											actions={
+												<>
+													<button>
+														<Icon name='cart' />
+													</button>
+													<ButtonToDetail sku={el.sku} />
+													<LikeButton sku={el.sku} />
+												</>
+											}
+										/>
+									</li>
+								)
+							})}
+						</ul>
+						<Pagination totalProducts={res.totalProducts} limit={res.limit} />
+					</section>
+				)}
 
-				<div className={styles.catalog__container}>
-					<aside className={styles.catalog__filters}>
-						<Filters />
-					</aside>
-					{res.products?.length > 0 && (
-						<section className={styles.catalog__products}>
-							<ul className={styles.list}>
-								{res.products?.map((el, index) => {
-									return (
-										<li key={index}>
-											<ProductCard
-												name={el.name}
-												images={el.images}
-												price={el.price}
-												discount={el.discount}
-												sku={el.sku}
-												topRightSlot={<LikeFlag sku={el.sku} />}
-												actions={
-													<>
-														<button>
-															<Icon name='cart' />
-														</button>
-														<ButtonToDetail sku={el.sku} />
-														<LikeButton sku={el.sku} />
-													</>
-												}
-											/>
-										</li>
-									)
-								})}
-							</ul>
-							<Pagination totalProducts={res.totalProducts} limit={res.limit} />
-						</section>
-					)}
-
-					{res.products.length === 0 && (
-						<div className={styles.catalog__alert} role='alert'>
-							<p className={styles.catalog__text}>
-								По важему запросу ничего не найдено
-							</p>
-							<p className={styles.catalog__text}>
-								Попробуйте выставить другие параметры поиска или сбросить
-								установленные фильтры
-							</p>
-							<ResetFiltersButton />
-						</div>
-					)}
-				</div>
-			</main>
-		</Suspense>
+				{res.products.length === 0 && (
+					<div className={styles.catalog__alert} role='alert'>
+						<p className={styles.catalog__text}>
+							По важему запросу ничего не найдено
+						</p>
+						<p className={styles.catalog__text}>
+							Попробуйте выставить другие параметры поиска или сбросить
+							установленные фильтры
+						</p>
+						<ResetFiltersButton />
+					</div>
+				)}
+			</div>
+		</main>
 	)
 }

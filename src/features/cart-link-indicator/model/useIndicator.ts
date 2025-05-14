@@ -1,5 +1,5 @@
 'use client'
-import { useCart } from "@/entities/cart"
+import { useCart } from '@/entities/cart'
 
 export const useIndicator = () => {
 	const { cart } = useCart()

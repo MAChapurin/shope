@@ -4,7 +4,6 @@ const options: Intl.DateTimeFormatOptions = {
 	day: 'numeric'
 }
 
-
 export function formatDate(date: Date) {
 	let result = new Date(date)
 	if (!(result instanceof Date) || isNaN(result.getTime())) {

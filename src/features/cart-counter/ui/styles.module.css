@@ -9,18 +9,31 @@
 
 .counter__button {
 	background: var(--color-secondary-light);
+	color: var(--color-dark);
 	width: 33px;
 	height: 53px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	transition: color var(--transition-duration);
 }
 
 .counter__value {
 	background: var(--color-secondary-light);
+	color: var(--color-dark);
 	width: 33px;
 	height: 53px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	transition: color var(--transition-duration);
+}
+
+.counter__button:disabled {
+	color: var(--color-secondary-light-2);
+	cursor: not-allowed;
+}
+
+.counter__value--disabled {
+	color: var(--color-secondary-light-2);
 }

@@ -1,3 +1,4 @@
+export * from './add-to-cart'
 export * from './anchor-link'
 export * from './cart-link-indicator'
 export * from './cart-counter'

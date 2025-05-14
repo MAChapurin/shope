@@ -39,6 +39,7 @@ import {
 import { Metadata } from 'next'
 
 import styles from './_styles/page.module.css'
+import { AddToCart } from '@/features/add-to-cart'
 
 type Params = Promise<{ sku: string }>
 
@@ -168,9 +169,10 @@ export default async function ProductPage({ params }: { params: Params }) {
 						<div className={styles.product__counter}>
 							<CartCounter sku={product.sku} />
 						</div>
-						<Button className={styles.product__button} variant='outline'>
+						{/* <Button className={styles.product__button} variant='outline'>
 							Добавить в корзину
-						</Button>
+						</Button> */}
+						<AddToCart className={styles.product__button} sku={product.sku} />
 					</div>
 					<div className={styles.product__actions}>
 						<LikeButton sku={+sku} />

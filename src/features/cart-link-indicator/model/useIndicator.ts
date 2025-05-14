@@ -1,5 +1,10 @@
+'use client'
+import { useCart } from "@/entities/cart"
+
 export const useIndicator = () => {
-	const count = 0
+	const { cart } = useCart()
+
+	const count = cart.length
 	return {
 		count
 	}

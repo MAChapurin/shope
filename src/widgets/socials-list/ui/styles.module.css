@@ -1,0 +1,16 @@
+.list {
+	display: flex;
+	align-items: center;
+	column-gap: 29px;
+}
+
+.list__link {
+	color: var(--color-secondary);
+	transition: color var(--transition-duration);
+}
+
+@media (hover: hover) {
+	.list__link:hover {
+		color: var(--color-primary);
+	}
+}

@@ -1,10 +1,10 @@
-import { Hero } from '@/widgets/hero'
-import { NewProductList } from '@/widgets/new-product-list'
+import { VisuallyHiddenTitle } from '@/shared/ui'
+import { Hero, NewProductList } from '@/widgets'
 
 export default function Home() {
 	return (
 		<main role='main'>
-			<h1 className='visually-hidden'>Магазин Shoppe</h1>
+			<VisuallyHiddenTitle>Магазин Shoppe</VisuallyHiddenTitle>
 			<Hero />
 			<NewProductList />
 		</main>

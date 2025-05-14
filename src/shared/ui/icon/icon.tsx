@@ -4,6 +4,7 @@ import {
 	ArrowDropdownIcon,
 	ArrowIcon,
 	CartIcon,
+	CloseIcon,
 	EyeIcon,
 	FacebookIcon,
 	FilterIcon,
@@ -11,9 +12,11 @@ import {
 	InstagramIcon,
 	LikeFilledIcon,
 	LikeIcon,
+	MailIcon,
 	LogoutIcon,
 	ProfileIcon,
 	SearchIcon,
+	SharedIcon,
 	StarIcon,
 	SuccessIcon,
 	TwitterIcon
@@ -22,6 +25,7 @@ import {
 const config = {
 	arrow: ArrowIcon,
 	cart: CartIcon,
+	close: CloseIcon,
 	dropdown: ArrowDropdownIcon,
 	eye: EyeIcon,
 	facebook: FacebookIcon,
@@ -31,8 +35,10 @@ const config = {
 	likeFilled: LikeFilledIcon,
 	like: LikeIcon,
 	logout: LogoutIcon,
+	mail: MailIcon,
 	profile: ProfileIcon,
 	search: SearchIcon,
+	shared: SharedIcon,
 	star: StarIcon,
 	success: SuccessIcon,
 	twitter: TwitterIcon

@@ -1,0 +1,28 @@
+.list {
+	display: flex;
+	flex-direction: column;
+}
+
+.list__item:not(:last-of-type) {
+	border-bottom: 1px solid var(--color-secondary-light-2);
+}
+
+.review {
+	padding-block: 24px;
+}
+
+.review__header {
+	margin-bottom: 16px;
+	display: flex;
+	align-items: center;
+	column-gap: 10px;
+}
+
+.review__time {
+	font-size: 14px;
+	line-height: 22px;
+}
+
+.review__rating {
+	margin-bottom: 24px;
+}

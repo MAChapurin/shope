@@ -1,0 +1,151 @@
+.root {
+	padding-top: 30px;
+	margin: 0 auto;
+	width: 100%;
+	max-width: var(--max-width-app);
+}
+
+.root__top {
+	height: 670px;
+	display: grid;
+	grid-template-columns: 700px 1fr;
+	column-gap: 60px;
+}
+
+.galery {
+	height: 572px;
+	display: grid;
+	grid-template-columns: 125px 1fr;
+	column-gap: 39px;
+}
+
+.galery__btnColumn {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.galery__button {
+	width: 125px;
+	height: 125px;
+}
+
+.galery__img {
+	width: 100%;
+	height: 100%;
+}
+
+.detail {
+	display: flex;
+	flex-direction: column;
+}
+
+.detail__title {
+	margin-bottom: 23px;
+	height: 32px;
+}
+
+.detail__price {
+	margin-bottom: 60px;
+	height: 26px;
+}
+
+.detail__rating {
+	margin-bottom: 20px;
+	width: 207px;
+	height: 23px;
+}
+
+.detail__description {
+	margin-bottom: 75px;
+	height: 48px;
+}
+
+.detail__button {
+	margin-bottom: 80px;
+	height: 50px;
+}
+
+.actions {
+	margin-bottom: 37px;
+	display: flex;
+	align-items: center;
+	column-gap: 29px;
+}
+
+.actions__item {
+	width: 20px;
+	height: 20px;
+}
+
+.actions__item:first-of-type {
+	margin-right: auto;
+}
+
+.detail__tableRow {
+	margin-bottom: 20px;
+	width: 40px;
+	height: 26px;
+}
+
+.detail__tableRow:last-of-type {
+	width: 140px;
+}
+
+.header {
+	padding-top: 24px;
+	padding-bottom: 34px;
+	display: flex;
+	column-gap: 80px;
+	border-bottom: 1px solid var(--color-secondary-light-2);
+}
+
+.header__title {
+	width: 95px;
+	height: 26px;
+}
+
+.tab {
+	padding: 80px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	row-gap: 20px;
+}
+
+.tab__title {
+	width: 250px;
+	height: 32px;
+}
+
+.tab__description {
+	width: 100%;
+	height: 52px;
+}
+
+@media (max-width: 1024px) {
+	.root__top {
+		height: min-content;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.galery {
+		margin-bottom: 70px;
+		width: 100%;
+		height: 672px;
+	}
+}
+
+@media (max-width: 768px) {
+	.galery {
+		width: calc(100dvw - 32px);
+		height: calc(100dvw - 32px);
+		grid-template-columns: 1fr;
+	}
+
+	.galery__btnColumn {
+		display: none;
+	}
+}

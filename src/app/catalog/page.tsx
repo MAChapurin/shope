@@ -1,6 +1,6 @@
 import { Icon, Title } from '@/shared/ui'
 import { ProductType } from '@/shared/types'
-import { Filters } from '@/widgets/filters/ui/filters'
+import { API_URLS, SEARCH_PARAMS } from '@/shared/settings'
 import { ProductCard } from '@/entities/product'
 import {
 	ButtonToDetail,
@@ -9,11 +9,9 @@ import {
 	Pagination,
 	ResetFiltersButton
 } from '@/features'
-import { MobileFilters } from '@/widgets/filters'
+import { Filters, MobileFilters } from '@/widgets'
 
-import { API_URLS, SEARCH_PARAMS } from '@/shared/settings'
-import styles from './page.module.css'
-import { Suspense } from 'react'
+import styles from './_styles/page.module.css'
 
 type SearchParams = Promise<{ [key: string]: string | undefined }>
 type ResponseType = {
@@ -42,67 +40,63 @@ export default async function CatalogPage(props: {
 	const res: ResponseType = await data.json()
 
 	return (
-		<Suspense>
-			<main className={styles.catalog}>
-				<Title className={styles.catalog__title} As='h1' size='xl'>
-					Каталог товаров
-				</Title>
-				<MobileFilters>
-					<Filters />
-				</MobileFilters>
-				<div className={styles.catalog__container}>
-					<aside className={styles.catalog__filters}>
-						<Filters />
-					</aside>
-					{res.products?.length > 0 && (
-						<section className={styles.catalog__products}>
-							<ul className={styles.list}>
-								{res.products?.map((el, index) => {
-									return (
-										<li key={index}>
-											<ProductCard
-												name={el.name}
-												images={el.images}
-												price={el.price}
-												discount={el.discount}
-												sku={el.sku}
-												topRightSlot={<LikeFlag sku={el.sku} />}
-												actions={
-													<>
-														<button>
-															<Icon name='cart' />
-														</button>
-														<ButtonToDetail sku={el.sku} />
-														<LikeButton sku={el.sku} />
-													</>
-												}
-											/>
-										</li>
-									)
-								})}
-							</ul>
-							<Pagination
-								totalProducts={res.totalProducts}
-								limit={res.limit}
-								// limit={5}
-							/>
-						</section>
-					)}
+		<main className={styles.catalog}>
+			<Title className={styles.catalog__title} As='h1' size='xl'>
+				Каталог товаров
+			</Title>
 
-					{res.products.length === 0 && (
-						<div className={styles.catalog__alert}>
-							<p className={styles.catalog__text}>
-								По важему запросу ничего не найдено
-							</p>
-							<p className={styles.catalog__text}>
-								Попробуйте выставить другие параметры поиска или сбросить
-								установленные фильтры
-							</p>
-							<ResetFiltersButton />
-						</div>
-					)}
-				</div>
-			</main>
-		</Suspense>
+			<MobileFilters>
+				<Filters />
+			</MobileFilters>
+
+			<div className={styles.catalog__container}>
+				<aside className={styles.catalog__filters}>
+					<Filters />
+				</aside>
+				{res.products?.length > 0 && (
+					<section className={styles.catalog__products}>
+						<ul className={styles.list}>
+							{res.products?.map((el, index) => {
+								return (
+									<li key={index}>
+										<ProductCard
+											name={el.name}
+											images={el.images}
+											price={el.price}
+											discount={el.discount}
+											sku={el.sku}
+											topRightSlot={<LikeFlag sku={el.sku} />}
+											actions={
+												<>
+													<button>
+														<Icon name='cart' />
+													</button>
+													<ButtonToDetail sku={el.sku} />
+													<LikeButton sku={el.sku} />
+												</>
+											}
+										/>
+									</li>
+								)
+							})}
+						</ul>
+						<Pagination totalProducts={res.totalProducts} limit={res.limit} />
+					</section>
+				)}
+
+				{res.products.length === 0 && (
+					<div className={styles.catalog__alert} role='alert'>
+						<p className={styles.catalog__text}>
+							По важему запросу ничего не найдено
+						</p>
+						<p className={styles.catalog__text}>
+							Попробуйте выставить другие параметры поиска или сбросить
+							установленные фильтры
+						</p>
+						<ResetFiltersButton />
+					</div>
+				)}
+			</div>
+		</main>
 	)
 }

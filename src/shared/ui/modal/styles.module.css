@@ -1,0 +1,21 @@
+.modal__overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100dvw;
+	height: 100dvh;
+	background-color: greenyellow;
+	/* background: var(--color-light); */
+	border: 1px solid var(--color-secondary-light);
+	z-index: 100;
+}
+
+.modal__header {
+	display: flex;
+}
+
+.modal__close {
+	margin-left: auto;
+}

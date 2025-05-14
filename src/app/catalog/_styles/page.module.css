@@ -1,5 +1,6 @@
 .catalog {
 	padding-top: 30px;
+	min-height: var(--min-height-main);
 }
 
 .catalog__container {
@@ -8,7 +9,7 @@
 
 .catalog__title {
 	margin-bottom: 39px;
-	position: sticky;
+	position: fixed;
 	top: 130px;
 	background: var(--color-light);
 }
@@ -54,6 +55,7 @@
 	}
 
 	.catalog__title {
+		position: static;
 		top: 88px;
 		z-index: 10;
 		background: #ffffff90;

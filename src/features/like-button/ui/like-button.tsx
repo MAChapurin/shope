@@ -8,12 +8,17 @@ import { useLikeButton } from '../model/useLikeButton'
 
 import styles from './styles.module.css'
 
-export const LikeButton: FC<LikeButtonProps> = ({ sku, ...props }) => {
+export const LikeButton: FC<LikeButtonProps> = ({
+	sku,
+	className,
+	...props
+}) => {
 	const { isLiked, onClick } = useLikeButton(sku)
 
 	return (
 		<button
-			className={styles.btn}
+			aria-label={isLiked ? 'Убрать из избранного' : 'Добавить в избранное'}
+			className={cn(styles.btn, className)}
 			data-value={sku}
 			onClick={onClick}
 			{...props}

@@ -6,7 +6,7 @@ import { useToast } from '../model/useToast'
 import styles from './styles.module.css'
 
 export const Toast = () => {
-	const isVisible = useToast()
+	const { isVisible, message } = useToast()
 	return (
 		<div className={styles.root}>
 			<div
@@ -15,9 +15,7 @@ export const Toast = () => {
 				})}
 			>
 				<Icon name='success' className={styles.icon} />{' '}
-				<p className={styles.text}>
-					Ваш email подписан на новости и уведомления
-				</p>
+				<p className={styles.text}>{message}</p>
 			</div>
 		</div>
 	)

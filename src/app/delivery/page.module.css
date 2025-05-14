@@ -1,4 +1,5 @@
 .main {
+	min-height: var(--min-height-main);
 	margin: 0 auto;
 	padding-block: 24px;
 }

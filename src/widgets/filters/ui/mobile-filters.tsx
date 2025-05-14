@@ -1,12 +1,19 @@
 'use client'
 import { cn } from '@/shared/lib'
 import { Icon } from '@/shared/ui'
-import { useState } from 'react'
+import { useClickOutside } from '@/shared/hooks'
+
+import { useRef, useState } from 'react'
 
 import styles from './styles.module.css'
 
 export const MobileFilters = ({ children }: { children: React.ReactNode }) => {
 	const [isOpen, setIsOpen] = useState(false)
+	const ref = useRef<HTMLDivElement>(null!)
+	const onClose = () => {
+		setIsOpen(false)
+	}
+	useClickOutside(ref, onClose)
 	return (
 		<div className={styles.sidebar}>
 			<button
@@ -34,15 +41,24 @@ export const MobileFilters = ({ children }: { children: React.ReactNode }) => {
 						[styles['sidebar__aside--open']]: isOpen
 					})}
 				>
-					{children}
 					<button
-						onClick={() => {
-							setIsOpen(false)
-						}}
-						className={styles.sidebar__button}
+						aria-label='Закрыть фильтры'
+						onClick={onClose}
+						className={styles.sidebar__close}
 					>
-						<Icon name='arrow' className={styles.rotate180} /> Назад
+						<Icon name='close' className={styles.rotate180} />
 					</button>
+					<div
+						className={cn(styles.sidebar__content, {
+							[styles['sidebar__content--open']]: isOpen
+						})}
+						ref={ref}
+					>
+						<button onClick={onClose} className={styles.sidebar__button}>
+							<Icon name='arrow' className={styles.rotate180} /> Назад
+						</button>
+						{children}
+					</div>
 				</aside>
 			</div>
 		</div>

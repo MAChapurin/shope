@@ -163,7 +163,7 @@ export default async function ProductPage({ params }: { params: Params }) {
 						<div className={styles.product__counter}>
 							<CartCounter sku={product.sku} />
 						</div>
-						<AddToCart className={styles.product__button} sku={product.sku} />
+						<AddToCart className={styles.product__button} product={product} />
 					</div>
 					<div className={styles.product__actions}>
 						<LikeButton sku={+sku} />

@@ -11,8 +11,8 @@ import { Button } from '@/shared/ui'
 import { CART__TEXT } from '@/entities/cart'
 import styles from './styles.module.css'
 
-export const AddToCart: FC<AddToCartProps> = ({ sku, className }) => {
-	const { onClick, isAdded } = useAddToCart(sku)
+export const AddToCart: FC<AddToCartProps> = ({ product, className }) => {
+	const { onClick, isAdded } = useAddToCart(product)
 	return (
 		<Button
 			aria-label={isAdded ? CART__TEXT.REMOVE_TO_CART : CART__TEXT.ADD_TO_CART}

@@ -7,12 +7,24 @@
 .button__text {
 	position: absolute;
 	inset: auto;
-	/* top: 50%; */
-	/* left: 50%; */
 	transform: translateX(-50%);
 	transition: transform var(--transition-duration);
 }
 
-/* .button__text--visible {
-	transform: translateY(0);
-} */
+.action {
+	position: relative;
+}
+
+.action__success {
+	position: absolute;
+	top: -5px;
+	right: -5px;
+	width: 12px;
+	height: 12px;
+	opacity: 0;
+	transition: opacity var(--transition-duration);
+}
+
+.action__success--visible {
+	opacity: 1;
+}

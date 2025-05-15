@@ -6,7 +6,8 @@ export type ProductType = {
 	name: string
 	price: number
 	reviews: ReviewType[]
-	sku: number
+	sku: number,
+	count?: number
 }
 
 export type ReviewType = {

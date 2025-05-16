@@ -1,11 +1,18 @@
-import { Suspense } from 'react'
+import { Title } from '@/shared/ui'
+import { CartList, FormOrder } from '@/widgets'
+
+import styles from './page.module.css'
 
 export default function CartPage() {
 	return (
-		<Suspense fallback={<div>loading cart...</div>}>
-			<main>
-				<h1>CART PAGE</h1>
-			</main>
-		</Suspense>
+		<main className={styles.container}>
+			<Title As='h1' align='center' className={styles.title}>
+				Корзина
+			</Title>
+			<div className={styles.content}>
+				<CartList />
+				<FormOrder />
+			</div>
+		</main>
 	)
 }

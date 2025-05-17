@@ -112,6 +112,10 @@
 	display: none;
 }
 
+.openSearch {
+	column-gap: 10px;
+}
+
 @media (hover: hover) {
 	.button:hover {
 		color: var(--color-secondary);

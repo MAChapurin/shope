@@ -1,6 +1,7 @@
 'use client'
 
-import { PATH_NAMES, SEARCH_PARAMS } from '@/shared/settings'
+import { emitter } from '@/shared/lib'
+import { CUSTOM_EVENTS, PATH_NAMES, SEARCH_PARAMS } from '@/shared/settings'
 import { useRouter, useSearchParams } from 'next/navigation'
 import {
 	FormEvent,
@@ -48,11 +49,21 @@ export const useSearch = () => {
 		event.preventDefault()
 		router.push(
 			PATH_NAMES.CATALOG +
-				'?' +
-				createQueryString(SEARCH_PARAMS.SEARCH, ref.current?.value || '')
+			'?' +
+			createQueryString(SEARCH_PARAMS.SEARCH, ref.current?.value || '')
 		)
 		onClose()
 	}
+
+	useEffect(() => {
+		const unsubscribe = emitter.subscribe(
+			CUSTOM_EVENTS.OPEN_SEARCH,
+			onOpen
+		)
+		return () => {
+			unsubscribe()
+		}
+	}, [])
 
 	return {
 		id,

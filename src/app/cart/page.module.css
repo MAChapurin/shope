@@ -51,6 +51,13 @@
 	background: var(--color-secondary-light-2);
 }
 
+@media (max-width: 1024px) {
+	.content {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
 @media (hover: hover) {
 	.empty__link:hover {
 		background: var(--color-light);

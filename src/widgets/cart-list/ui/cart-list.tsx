@@ -33,10 +33,11 @@ export const CartList = () => {
 						<div className={styles.link__right}>
 							<Title>{el.name}</Title>
 							<Paragraph color='primary'>$ {el.price}</Paragraph>
+							<CartCounter sku={el.sku} className={styles.link__counter} />
 						</div>
 					</Link>
 					<div className={styles.cart__actions}>
-						<CartCounter sku={el.sku} />
+						<CartCounter sku={el.sku} className={styles.cart__counter} />
 						<button
 							onClick={() => removeFromCartBySku(el.sku)}
 							className={styles.cart__delete}

@@ -22,6 +22,16 @@
 	column-gap: 40px;
 }
 
+.link__right {
+	display: flex;
+	flex-direction: column;
+	row-gap: 10px;
+}
+
+.link__counter {
+	display: none;
+}
+
 .cart__actions {
 	display: flex;
 	align-items: flex-start;
@@ -30,6 +40,17 @@
 
 .cart__delete svg {
 	transition: transform var(--transition-duration);
+}
+
+@media (max-width: 576px) {
+	.link__counter {
+		margin-top: auto;
+		display: flex;
+	}
+
+	.cart__counter {
+		display: none;
+	}
 }
 
 @media (hover: hover) {

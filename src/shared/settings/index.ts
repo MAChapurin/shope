@@ -1,5 +1,6 @@
 export * from './api-urls'
 export * from './custom-events'
+export * from './forms-setting'
 export * from './pages-id'
 export * from './pathnames'
 export * from './search-params'

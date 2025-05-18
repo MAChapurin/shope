@@ -1,11 +1,15 @@
 'use client'
 
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
-import { INPUT_NAMES, STORAGE_KEYS, VALIDATION_SETTING } from '../setting'
+import { STORAGE_KEYS } from '../setting'
 
 import { isValidEmail } from '@/shared/utils'
 import { emitter } from '@/shared/lib'
-import { CUSTOM_EVENTS } from '@/shared/settings'
+import {
+	CUSTOM_EVENTS,
+	INPUT_NAMES,
+	VALIDATION_SETTING
+} from '@/shared/settings'
 
 const defaultValue = {
 	name: '',

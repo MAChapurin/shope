@@ -1,7 +1,7 @@
-import { ProductType } from "@/shared/types";
+import { ProductType } from '@/shared/types'
 
 export interface CartItem extends ProductType {
-  count: number
+	count: number
 }
 
 export type CartType = CartItem[]

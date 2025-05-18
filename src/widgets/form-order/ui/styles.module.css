@@ -1,17 +1,9 @@
-.sum {
-	padding: 20px;
-	background: var(--color-secondary-light);
-	border-radius: 4px;
-}
-
-.sum__top {
-	padding-bottom: 16px;
-	border-bottom: 1px solid var(--color-secondary-light-2);
-}
-
-.sum__footer {
-	padding-top: 16px;
+.form {
 	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	flex-direction: column;
+	row-gap: 24px;
+}
+
+.form__button {
+	width: 100%;
 }

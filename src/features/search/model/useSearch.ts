@@ -49,17 +49,14 @@ export const useSearch = () => {
 		event.preventDefault()
 		router.push(
 			PATH_NAMES.CATALOG +
-			'?' +
-			createQueryString(SEARCH_PARAMS.SEARCH, ref.current?.value || '')
+				'?' +
+				createQueryString(SEARCH_PARAMS.SEARCH, ref.current?.value || '')
 		)
 		onClose()
 	}
 
 	useEffect(() => {
-		const unsubscribe = emitter.subscribe(
-			CUSTOM_EVENTS.OPEN_SEARCH,
-			onOpen
-		)
+		const unsubscribe = emitter.subscribe(CUSTOM_EVENTS.OPEN_SEARCH, onOpen)
 		return () => {
 			unsubscribe()
 		}

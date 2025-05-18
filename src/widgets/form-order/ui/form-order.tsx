@@ -5,55 +5,69 @@ import { Button, Input } from '@/shared/ui'
 import { INPUT_NAMES, INPUT_PLACEHOLDERS } from '@/shared/settings'
 
 import { AddressAutoComplete } from '@/features/address-auto-complete/ui/address-auto-complete'
+
+import { useFormOrder } from '../model/useFormOrder'
 import styles from './styles.module.css'
-import { useState } from 'react'
 
 export const FormOrder = () => {
-	const [address, setAddress] = useState('')
+	const {
+		onSubmit,
+		values,
+		onInputChange,
+		error,
+		isDisabled,
+		resetInputError
+	} = useFormOrder()
 	return (
-		<form className={styles.form}>
+		<form
+			className={styles.form}
+			onSubmit={onSubmit}
+			onChange={resetInputError}
+		>
 			<Input
 				name={INPUT_NAMES.EMAIL}
 				type='email'
 				placeholder={INPUT_PLACEHOLDERS.EMAIL}
-				// value={values.email}
-				// onChange={onInputChange}
-				// errorMessage={error?.email}
+				value={values.email}
+				onChange={onInputChange}
+				errorMessage={error?.email}
 				required
 			/>
 			<PasswordInput
 				name={INPUT_NAMES.PASSWORD}
+				value={values.password}
+				onChange={onInputChange}
+				errorMessage={error?.password}
 				placeholder={INPUT_PLACEHOLDERS.PASSWORD}
 				required
 			/>
 			<AddressAutoComplete
-				value={address}
-				onChange={e => {
-					setAddress(e.target.value)
-				}}
-				setValue={setAddress}
+				errorMessage={error?.address}
+				value={values.address}
+				onChange={onInputChange}
+				setValue={() => {}}
 			/>
 			<Input
 				name={INPUT_NAMES.NAME}
 				type='text'
 				placeholder={INPUT_PLACEHOLDERS.NAME}
-				// errorMessage={error?.name}
-				// value={values.name}
-				// onChange={onInputChange}
+				errorMessage={error?.name}
+				value={values.name}
+				onChange={onInputChange}
 				required
 			/>
 			<Input
 				name={INPUT_NAMES.PHONE}
 				type='tel'
 				placeholder={INPUT_PLACEHOLDERS.PHONE}
-				// errorMessage={error?.name}
-				// value={values.name}
-				// onChange={onInputChange}
+				errorMessage={error?.tel}
+				value={values.tel}
+				onChange={onInputChange}
 				required
 			/>
 			<SumOrder />
 			<Button
-				disabled
+				disabled={isDisabled}
 				type='submit'
 				className={styles.form__button}
 				variant='filled'

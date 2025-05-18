@@ -3,10 +3,11 @@ import { Icon, Input } from '@/shared/ui'
 import { FC, useState } from 'react'
 
 import { InputProps } from '@/shared/ui/input/input.types'
-import styles from './styles.module.css'
 import { cn } from '@/shared/lib'
+import styles from './styles.module.css'
 
 export const PasswordInput: FC<InputProps> = ({
+	value,
 	className,
 	errorMessage,
 	...props
@@ -15,6 +16,7 @@ export const PasswordInput: FC<InputProps> = ({
 	const onClick = () => {
 		setType(prev => (prev === 'password' ? 'text' : 'password'))
 	}
+	const isShow = typeof value === 'string' && value.length > 0
 	return (
 		<div className={styles.root}>
 			<Input
@@ -24,6 +26,7 @@ export const PasswordInput: FC<InputProps> = ({
 				{...props}
 			/>
 			<button
+				style={{ opacity: isShow ? 1 : 0 }}
 				type='button'
 				aria-label={type === 'password' ? 'Показать пароль' : 'Скрыть пароль'}
 				datatype={type}

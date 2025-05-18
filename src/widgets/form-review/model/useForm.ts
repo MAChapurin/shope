@@ -1,13 +1,13 @@
 'use client'
 
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
-import { STORAGE_KEYS } from '../setting'
 
 import { isValidEmail } from '@/shared/utils'
 import { emitter } from '@/shared/lib'
 import {
 	CUSTOM_EVENTS,
 	INPUT_NAMES,
+	STORAGE_KEYS,
 	VALIDATION_SETTING
 } from '@/shared/settings'
 
@@ -120,7 +120,10 @@ export const useForm = () => {
 			checkRatingValue()
 
 		if (isValidationFields) {
-			emitter.emit(CUSTOM_EVENTS.ADD_TOST, VALIDATION_SETTING.SUCCESS_MESSAGE)
+			emitter.emit(
+				CUSTOM_EVENTS.ADD_TOST,
+				VALIDATION_SETTING.SUCCESS_MESSAGE_REVIEW
+			)
 
 			if (keepUserData) {
 				localStorage.setItem(

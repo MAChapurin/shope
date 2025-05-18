@@ -6,12 +6,17 @@
 	padding-right: 40px;
 }
 
+.root__input span {
+	top: 33px;
+}
+
 .root__button {
 	position: absolute;
 	top: 50%;
 	right: 5px;
 	transform: translateY(-50%);
 	cursor: pointer;
+	transition: opacity var(--transition-duration);
 }
 
 .root__icon {

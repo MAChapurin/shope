@@ -2,6 +2,10 @@
 	position: relative;
 }
 
+.root__input span {
+	top: 33px;
+}
+
 .dropdown {
 	width: 100%;
 	max-height: 0px;

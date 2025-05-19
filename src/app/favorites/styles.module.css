@@ -1,0 +1,12 @@
+.root {
+	max-width: var(--max-width-app);
+	margin: 0 auto;
+}
+
+.root__content {
+	width: 100%;
+	height: 80dvh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

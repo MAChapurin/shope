@@ -4,8 +4,8 @@ import { CartCounterProps } from '../types'
 import { cn } from '@/shared/lib'
 import { useCounter } from '../model/useCounter'
 
-import styles from './styles.module.css'
 import { CART__SETTINGS } from '@/entities/cart'
+import styles from './styles.module.css'
 
 export const CartCounter: FC<CartCounterProps> = ({ sku, className }) => {
 	const { value, increment, decrement, isAdded } = useCounter(sku)

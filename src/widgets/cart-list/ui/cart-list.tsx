@@ -3,7 +3,7 @@
 import { useCart } from '@/entities/cart'
 import Image from 'next/image'
 import { cn } from '@/shared/lib'
-import { Icon, Paragraph, Title } from '@/shared/ui'
+import { ClickLimiter, Icon, Paragraph, Title } from '@/shared/ui'
 import { CartCounter } from '@/features'
 
 import Link from 'next/link'
@@ -33,7 +33,9 @@ export const CartList = () => {
 						<div className={styles.link__right}>
 							<Title>{el.name}</Title>
 							<Paragraph color='primary'>$ {el.price}</Paragraph>
-							<CartCounter sku={el.sku} className={styles.link__counter} />
+							<ClickLimiter className={styles.link__counter}>
+								<CartCounter sku={el.sku} />
+							</ClickLimiter>
 						</div>
 					</Link>
 					<div className={styles.cart__actions}>

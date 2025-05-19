@@ -1,5 +1,6 @@
 export * from './accordion'
 export * from './button'
+export * from './click-limiter'
 export * from './container'
 export * from './icon/icon'
 export * from './input'

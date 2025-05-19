@@ -37,3 +37,50 @@
 .counter__value--disabled {
 	color: var(--color-secondary-light-2);
 }
+
+.count {
+	position: relative;
+	background: var(--color-secondary-light);
+	border-radius: 4px;
+}
+
+.count:has(.count__dropdown--open) {
+	border-radius: 4px 4px 0 0;
+}
+
+.count__button {
+	width: 50px;
+	height: 26px;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	transition: color var(--transition-duration);
+}
+
+.count__dropdown {
+	position: absolute;
+	top: 26px;
+	left: 0;
+	width: 100%;
+	height: 0;
+	display: flex;
+	background: var(--color-secondary-light);
+	border-radius: 0 0 4px 4px;
+	overflow: hidden;
+	transition: height var(--transition-duration);
+}
+
+.count__dropdown--open {
+	height: 26px;
+}
+
+.count__icon {
+	width: 10;
+	height: 10;
+	transform: rotateX(0);
+	transition: transform var(--transition-duration);
+}
+
+.count__icon--rotate180 {
+	transform: rotateX(180deg);
+}

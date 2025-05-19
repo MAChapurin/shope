@@ -4,7 +4,7 @@ import { useCart } from '@/entities/cart'
 import Image from 'next/image'
 import { cn } from '@/shared/lib'
 import { ClickLimiter, Icon, Paragraph, Title } from '@/shared/ui'
-import { CartCounter } from '@/features'
+import { CartCounter, CartCounterDropdown } from '@/features'
 
 import Link from 'next/link'
 import { PATH_NAMES } from '@/shared/settings'
@@ -34,7 +34,8 @@ export const CartList = () => {
 							<Title>{el.name}</Title>
 							<Paragraph color='primary'>$ {el.price}</Paragraph>
 							<ClickLimiter className={styles.link__counter}>
-								<CartCounter sku={el.sku} />
+								{/* <CartCounter sku={el.sku} /> */}
+								<CartCounterDropdown sku={el.sku} />
 							</ClickLimiter>
 						</div>
 					</Link>

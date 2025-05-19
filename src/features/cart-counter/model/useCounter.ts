@@ -1,7 +1,8 @@
 import { CART__SETTINGS, CART_MESSAGES, useCart } from '@/entities/cart'
+import { useClickOutside } from '@/shared/hooks'
 import { emitter } from '@/shared/lib'
 import { CUSTOM_EVENTS } from '@/shared/settings'
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export const useCounter = (sku: number) => {
 	const { cart, incrementBySku, decrementBySku, isInCartBySku } = useCart()
@@ -10,6 +11,19 @@ export const useCounter = (sku: number) => {
 	const increment = () => incrementBySku(sku)
 	const decrement = () => decrementBySku(sku)
 	const isAdded = isInCartBySku(sku)
+
+	const [isOpen, setIsOpen] = useState(false)
+
+	const onClose = () => {
+		setIsOpen(false)
+	}
+
+	const onToogle = () => {
+		setIsOpen(prev => !prev)
+	}
+
+	const ref = useRef<HTMLDivElement>(null!)
+	useClickOutside(ref, onClose)
 
 	useEffect(() => {
 		if (value === CART__SETTINGS.MAX) {
@@ -21,6 +35,9 @@ export const useCounter = (sku: number) => {
 		value,
 		increment,
 		decrement,
-		isAdded
+		isAdded,
+		ref,
+		isOpen,
+		onToogle
 	}
 }

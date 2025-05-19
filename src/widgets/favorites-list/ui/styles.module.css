@@ -21,6 +21,7 @@
 	align-items: center;
 	justify-content: center;
 	row-gap: 30px;
+	animation: slideUp 1s ease-out forwards;
 }
 
 .illustration {
@@ -69,5 +70,16 @@
 
 	.skeleton__img {
 		height: 136px;
+	}
+}
+
+@keyframes slideUp {
+	0% {
+		opacity: 0;
+		transform: translateY(-1000px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
 	}
 }

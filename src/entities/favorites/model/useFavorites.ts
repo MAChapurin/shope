@@ -60,7 +60,10 @@ export const useFavorites = () => {
 
 	useEffect(() => {
 		if (typeof window !== 'undefined' && favoritesList.length > 0) {
-			localStorage.setItem(STORAGE_KEYS.FAVORITES, JSON.stringify(favoritesList))
+			localStorage.setItem(
+				STORAGE_KEYS.FAVORITES,
+				JSON.stringify(favoritesList)
+			)
 		}
 	}, [favoritesList])
 

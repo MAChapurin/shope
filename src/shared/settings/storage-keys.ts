@@ -1,5 +1,6 @@
 export enum STORAGE_KEYS {
-	USER_DATA = 'userdata',
+	CART = 'cart_key',
+	FAVORITES = 'favorites_key',
 	KEEP_USER_DATA = 'isKeepUserData',
-	FAVORITES = 'favorites_key'
+	USER_DATA = 'userdata'
 }

@@ -1,9 +1,10 @@
 'use client'
 
-import { useSyncExternalStore } from 'react'
+import { useEffect, useSyncExternalStore } from 'react'
 import { CartType } from '../types'
 import { CART__SETTINGS } from '../settings'
 import { ProductType } from '@/shared/types'
+import { STORAGE_KEYS } from '@/shared/settings'
 
 let cart: CartType = []
 const subscribers: Set<() => void> = new Set()
@@ -29,6 +30,11 @@ const cartStore = {
 	subscribe(callback: () => void) {
 		subscribers.add(callback)
 		return () => subscribers.delete(callback)
+	},
+
+	addToCartList(cartList: CartType) {
+		cart = cartList
+		emitChange()
 	},
 
 	addToCartBySku(product: ProductType) {
@@ -80,14 +86,22 @@ export const useCart = () => {
 
 	const {
 		addToCartBySku,
+		addToCartList,
 		isInCartBySku,
 		removeFromCartBySku,
 		incrementBySku,
 		decrementBySku
 	} = cartStore
 
+	useEffect(() => {
+		if (cartList.length > 0) {
+			localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify(cartList))
+		}
+	}, [cartList])
+
 	return {
 		addToCartBySku,
+		addToCartList,
 		cart: cartList,
 		isInCartBySku,
 		removeFromCartBySku,

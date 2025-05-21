@@ -1,15 +1,21 @@
 'use client'
-import { useFavorites } from '@/entities'
+import { useCart, useFavorites } from '@/entities'
+
 import { STORAGE_KEYS } from '@/shared/settings'
 import { useLayoutEffect } from 'react'
 
 export const useLocalStorage = () => {
 	const { setFavoritesList } = useFavorites()
+	const { addToCartList } = useCart()
 
 	useLayoutEffect(() => {
-		const initialData = localStorage.getItem(STORAGE_KEYS.FAVORITES)
-		if (initialData) {
-			setFavoritesList(JSON.parse(initialData))
+		const initialFavorites = localStorage.getItem(STORAGE_KEYS.FAVORITES)
+		if (initialFavorites) {
+			setFavoritesList(JSON.parse(initialFavorites))
 		}
-	}, [setFavoritesList])
+		const initialCart = localStorage.getItem(STORAGE_KEYS.CART)
+		if (initialCart) {
+			addToCartList(JSON.parse(initialCart))
+		}
+	}, [setFavoritesList, addToCartList])
 }

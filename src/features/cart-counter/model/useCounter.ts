@@ -6,12 +6,12 @@ import { useEffect, useRef, useState } from 'react'
 
 export const useCounter = (sku: number) => {
 	const { cart, incrementBySku, decrementBySku, isInCartBySku } = useCart()
-
 	const value = cart.find(el => el.sku === sku)?.count
 	const increment = () => incrementBySku(sku)
 	const decrement = () => decrementBySku(sku)
 	const isAdded = isInCartBySku(sku)
 
+	const [mounted, setMounted] = useState(false)
 	const [isOpen, setIsOpen] = useState(false)
 
 	const onClose = () => {
@@ -31,6 +31,10 @@ export const useCounter = (sku: number) => {
 		}
 	}, [value])
 
+	useEffect(() => {
+		setMounted(true)
+	}, [])
+
 	return {
 		value,
 		increment,
@@ -38,6 +42,7 @@ export const useCounter = (sku: number) => {
 		isAdded,
 		ref,
 		isOpen,
-		onToogle
+		onToogle,
+		mounted
 	}
 }

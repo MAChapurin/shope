@@ -12,28 +12,34 @@ import { CART__TEXT } from '@/entities/cart'
 import styles from './styles.module.css'
 
 export const AddToCart: FC<AddToCartProps> = ({ product, className }) => {
-	const { onClick, isAdded } = useAddToCart(product)
+	const { onClick, isAdded, mounted } = useAddToCart(product)
 	return (
-		<Button
-			aria-label={isAdded ? CART__TEXT.REMOVE_TO_CART : CART__TEXT.ADD_TO_CART}
-			onClick={onClick}
-			className={cn(styles.button, className)}
-			variant='outline'
-		>
-			<span
-				aria-hidden={isAdded}
-				style={{ transform: `translateY(${isAdded ? 0 : -100}px)` }}
-				className={styles.button__text}
-			>
-				{CART__TEXT.REMOVE_TO_CART}
-			</span>
-			<span
-				aria-hidden={!isAdded}
-				style={{ transform: `translateY(${isAdded ? 100 : 0}px)` }}
-				className={styles.button__text}
-			>
-				{CART__TEXT.ADD_TO_CART}
-			</span>
-		</Button>
+		<>
+			{mounted && (
+				<Button
+					aria-label={
+						isAdded ? CART__TEXT.REMOVE_TO_CART : CART__TEXT.ADD_TO_CART
+					}
+					onClick={onClick}
+					className={cn(styles.button, className)}
+					variant='outline'
+				>
+					<span
+						aria-hidden={isAdded}
+						style={{ transform: `translateY(${isAdded ? 0 : -100}px)` }}
+						className={styles.button__text}
+					>
+						{CART__TEXT.REMOVE_TO_CART}
+					</span>
+					<span
+						aria-hidden={!isAdded}
+						style={{ transform: `translateY(${isAdded ? 100 : 0}px)` }}
+						className={styles.button__text}
+					>
+						{CART__TEXT.ADD_TO_CART}
+					</span>
+				</Button>
+			)}
+		</>
 	)
 }

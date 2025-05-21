@@ -2,9 +2,11 @@ import { CART_MESSAGES, useCart } from '@/entities/cart'
 import { emitter } from '@/shared/lib'
 import { CUSTOM_EVENTS } from '@/shared/settings'
 import { ProductType } from '@/shared/types'
+import { useEffect, useState } from 'react'
 
 export const useAddToCart = (product: ProductType) => {
 	const { addToCartBySku, removeFromCartBySku, isInCartBySku } = useCart()
+	const [mounted, setMounted] = useState(false)
 
 	const isAdded = isInCartBySku(product.sku)
 
@@ -18,5 +20,9 @@ export const useAddToCart = (product: ProductType) => {
 		}
 	}
 
-	return { onClick, isAdded }
+	useEffect(() => {
+		setMounted(true)
+	}, [])
+
+	return { onClick, isAdded, mounted }
 }

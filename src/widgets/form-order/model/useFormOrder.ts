@@ -123,8 +123,17 @@ export const useFormOrder = () => {
 		return true
 	}
 
-	const isErrorField = Object.values(error).some(el => el.trim().length > 0)
+	const checkValidPhone = () => {
+		if (
+			values.tel.replace(/\D/g, '').length < VALIDATION_SETTING.PHONE_LENGTH
+		) {
+			onError(INPUT_NAMES.PHONE, VALIDATION_SETTING.PHONE_ERROR_MESSAGE)
+			return false
+		}
+		return true
+	}
 
+	const isErrorField = Object.values(error).some(el => el.trim().length > 0)
 	const isEmptyField = Object.values(values).some(el => el.trim().length === 0)
 	const isDisabled = isEmptyField || isErrorField
 
@@ -134,7 +143,8 @@ export const useFormOrder = () => {
 			checkValidName() &&
 			checkValidEmail() &&
 			checkValidAddress() &&
-			checkValidPassword()
+			checkValidPassword() &&
+			checkValidPhone()
 
 		if (isValidationFields) {
 			emitter.emit(

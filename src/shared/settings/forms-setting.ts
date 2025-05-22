@@ -37,6 +37,8 @@ export const VALIDATION_SETTING = {
 	MIN_REVIEW_LENGTH: 1,
 	MIN_ADDRESS_LENGTH: 3,
 	MAX_ADDRESS_LENGTH: 300,
+	PHONE_LENGTH: 11,
+	PHONE_ERROR_MESSAGE: 'Некоректный номер телефона',
 	MIN_REVIEW_LENGTH_MESSAGE: 'Отзыв слишком короткий',
 	EMAIL_NO_VALID_MESSAGE: 'Email введен неккоректно',
 	RATING_NO_VALID_MESSAGE: 'Рейтинг обязателен для заполнения',

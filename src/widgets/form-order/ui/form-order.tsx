@@ -1,10 +1,13 @@
 'use client'
 
-import { PasswordInput, SumOrder } from '@/features'
+import {
+	AddressAutoComplete,
+	PasswordInput,
+	PhoneInputMask,
+	SumOrder
+} from '@/features'
 import { Button, Input } from '@/shared/ui'
 import { INPUT_NAMES, INPUT_PLACEHOLDERS } from '@/shared/settings'
-
-import { AddressAutoComplete } from '@/features/address-auto-complete/ui/address-auto-complete'
 
 import { useFormOrder } from '../model/useFormOrder'
 import styles from './styles.module.css'
@@ -56,9 +59,8 @@ export const FormOrder = () => {
 				onChange={onInputChange}
 				required
 			/>
-			<Input
+			<PhoneInputMask
 				name={INPUT_NAMES.PHONE}
-				type='tel'
 				placeholder={INPUT_PLACEHOLDERS.PHONE}
 				errorMessage={error?.tel}
 				value={values.tel}

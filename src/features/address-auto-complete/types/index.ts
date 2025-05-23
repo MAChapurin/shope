@@ -1,11 +1,10 @@
 import {
 	DetailedHTMLProps,
-	Dispatch,
 	InputHTMLAttributes,
-	SetStateAction
 } from 'react'
 
-export type SetValueType = Dispatch<SetStateAction<string>>
+export type SetValueType = (value: string) => void
+
 
 export interface AddressAutoCompleteProps
 	extends DetailedHTMLProps<

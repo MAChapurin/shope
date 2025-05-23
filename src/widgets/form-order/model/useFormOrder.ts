@@ -49,6 +49,12 @@ export const useFormOrder = () => {
 		onValue(name, e.target.value)
 	}
 
+	const onAddressDropdown = (value: string) => {
+		const name = INPUT_NAMES.ADDRESS
+		onError(name, '')
+		onValue(name, value)
+	}
+
 	const resetInputError = (e: FormEvent<HTMLFormElement>) => {
 		if (e.target instanceof HTMLInputElement) {
 			const name = e.target.name
@@ -164,6 +170,7 @@ export const useFormOrder = () => {
 		onInputChange,
 		error,
 		isDisabled,
-		onError
+		onError,
+		onAddressDropdown
 	}
 }

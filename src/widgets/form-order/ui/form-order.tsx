@@ -16,6 +16,7 @@ export const FormOrder = () => {
 	const {
 		onSubmit,
 		values,
+		onAddressDropdown,
 		onInputChange,
 		error,
 		isDisabled,
@@ -48,7 +49,7 @@ export const FormOrder = () => {
 				errorMessage={error?.address}
 				value={values.address}
 				onChange={onInputChange}
-				setValue={() => {}}
+				setValue={onAddressDropdown}
 			/>
 			<Input
 				name={INPUT_NAMES.NAME}

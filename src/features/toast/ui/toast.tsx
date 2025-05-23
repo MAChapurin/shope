@@ -6,17 +6,17 @@ import { useToast } from '../model/useToast'
 import styles from './styles.module.css'
 
 export const Toast = () => {
-	const { isVisible, message } = useToast()
+	const { messages } = useToast()
 	return (
-		<div className={styles.root}>
-			<div
-				className={cn(styles.toast, {
-					[styles.show]: isVisible
-				})}
-			>
-				<Icon name='success' className={styles.icon} />{' '}
-				<p className={styles.text}>{message}</p>
-			</div>
-		</div>
+		<ul className={styles.root}>
+			{messages.map(message => {
+				return (
+					<li key={message.id} className={cn(styles.toast, styles.show)}>
+						<Icon name='success' className={styles.icon} />{' '}
+						<p className={styles.text}>{message.message}</p>
+					</li>
+				)
+			})}
+		</ul>
 	)
 }

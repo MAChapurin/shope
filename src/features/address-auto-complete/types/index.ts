@@ -1,10 +1,6 @@
-import {
-	DetailedHTMLProps,
-	InputHTMLAttributes,
-} from 'react'
+import { DetailedHTMLProps, InputHTMLAttributes } from 'react'
 
 export type SetValueType = (value: string) => void
-
 
 export interface AddressAutoCompleteProps
 	extends DetailedHTMLProps<

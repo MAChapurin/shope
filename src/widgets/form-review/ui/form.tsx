@@ -3,7 +3,11 @@ import { Button, Input, Paragraph, Title } from '@/shared/ui'
 import { CheckboxUserData, RatingInput } from '@/features'
 
 import { useForm } from '../model/useForm'
-import { INPUT_NAMES, VALIDATION_SETTING } from '../setting'
+import {
+	INPUT_NAMES,
+	INPUT_PLACEHOLDERS,
+	VALIDATION_SETTING
+} from '@/shared/settings'
 import styles from './styles.module.css'
 
 export const FormReview = () => {
@@ -35,7 +39,7 @@ export const FormReview = () => {
 			<Input
 				name={INPUT_NAMES.REVIEW}
 				type='text'
-				placeholder='Ваш отзыв*'
+				placeholder={INPUT_PLACEHOLDERS.REVIEW}
 				value={values.review}
 				onChange={onInputChange}
 				errorMessage={error?.review}
@@ -44,7 +48,7 @@ export const FormReview = () => {
 			<Input
 				name={INPUT_NAMES.NAME}
 				type='text'
-				placeholder='Ваше имя*'
+				placeholder={INPUT_PLACEHOLDERS.NAME}
 				errorMessage={error?.name}
 				value={values.name}
 				onChange={onInputChange}
@@ -53,7 +57,7 @@ export const FormReview = () => {
 			<Input
 				name={INPUT_NAMES.EMAIL}
 				type='email'
-				placeholder='Ваш email*'
+				placeholder={INPUT_PLACEHOLDERS.EMAIL}
 				value={values.email}
 				onChange={onInputChange}
 				errorMessage={error?.email}

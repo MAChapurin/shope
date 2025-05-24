@@ -1,12 +1,13 @@
 'use client'
 
 import { ProductCard } from '@/entities'
-import styles from './styles.module.css'
 import { useEffect, useState } from 'react'
 import { Icon } from '@/shared/ui'
-import { ButtonToDetail, LikeButton } from '@/features'
 import { ProductType } from '@/shared/types'
+import { ButtonToDetail, LikeButton } from '@/features'
 import { getProductBySku } from '../api/getProductBySku'
+
+import styles from './styles.module.css'
 
 export const FavoritesItem = ({ sku }: { sku: number }) => {
 	const [product, setProduct] = useState<ProductType | null>(null)
@@ -14,7 +15,13 @@ export const FavoritesItem = ({ sku }: { sku: number }) => {
 		getProductBySku(sku).then(setProduct)
 	}, [])
 	if (!product) {
-		return <div className={styles.skeleton}>loading...</div>
+		return (
+			<div className={styles.skeleton}>
+				<div className={styles.skeleton__img} datatype='skeleton'></div>
+				<div className={styles.skeleton__title} datatype='skeleton'></div>
+				<div className={styles.skeleton__price} datatype='skeleton'></div>
+			</div>
+		)
 	}
 
 	return (

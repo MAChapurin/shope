@@ -3,12 +3,16 @@
 	max-width: var(--max-width-app);
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 100dvh;
 }
 
 .hero {
 	position: relative;
 	margin-block: 15px 69px;
 	padding: 39px;
+	width: 100%;
 	height: 646px;
 	display: flex;
 	flex-direction: column;
@@ -56,9 +60,11 @@
 	width: 320px;
 	height: 32px;
 	margin-bottom: 39px;
+	align-self: self-start;
 }
 
 .list {
+	width: 100%;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
 	grid-auto-rows: 500px;

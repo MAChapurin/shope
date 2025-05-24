@@ -1,22 +1,11 @@
 'use client'
 
+import { STORAGE_KEYS } from '@/shared/settings'
 import { useEffect, useSyncExternalStore } from 'react'
-
-const STORAGE_KEY = 'favorites_key'
 
 type FavoritesType = number[]
 
-const getInitialFavorites = (): FavoritesType => {
-	if (typeof window !== 'undefined') {
-		const favoritesFromLocalStorage = localStorage.getItem(STORAGE_KEY)
-		return favoritesFromLocalStorage
-			? JSON.parse(favoritesFromLocalStorage)
-			: []
-	}
-	return []
-}
-
-let favorites: FavoritesType = getInitialFavorites()
+let favorites: FavoritesType = []
 const subscribers: Set<() => void> = new Set()
 
 const emitChange = () => {
@@ -53,6 +42,10 @@ const favoritesStore = {
 
 	getIsLikedBySku(sku: number): boolean {
 		return favorites.includes(sku)
+	},
+
+	setFavoritesList(list: FavoritesType) {
+		favorites = list
 	}
 }
 
@@ -63,17 +56,21 @@ export const useFavorites = () => {
 		favoritesStore.getServerSnapshot
 	)
 
-	const { onClickHandler, getIsLikedBySku } = favoritesStore
+	const { onClickHandler, getIsLikedBySku, setFavoritesList } = favoritesStore
 
 	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			localStorage.setItem(STORAGE_KEY, JSON.stringify(favoritesList))
+		if (typeof window !== 'undefined' && favoritesList.length > 0) {
+			localStorage.setItem(
+				STORAGE_KEYS.FAVORITES,
+				JSON.stringify(favoritesList)
+			)
 		}
 	}, [favoritesList])
 
 	return {
 		getIsLikedBySku,
 		favorites: favoritesList,
-		onClickHandler
+		onClickHandler,
+		setFavoritesList
 	}
 }

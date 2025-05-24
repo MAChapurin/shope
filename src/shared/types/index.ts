@@ -7,6 +7,7 @@ export type ProductType = {
 	price: number
 	reviews: ReviewType[]
 	sku: number
+	count?: number
 }
 
 export type ReviewType = {

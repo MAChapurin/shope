@@ -1,7 +1,7 @@
 'use client'
 
 import { useFavorites } from '@/entities'
-import { Title } from '@/shared/ui'
+import { Button, Icon, Illustration, Paragraph } from '@/shared/ui'
 
 import { FavoritesItem } from './favorites-item'
 import Link from 'next/link'
@@ -13,18 +13,23 @@ export const FavoritesList = () => {
 	const { favorites } = useFavorites()
 	return (
 		<section className={styles.favorites}>
-			<Title className={styles.favorites__title}>
-				Вам понравились эти товары
-			</Title>
 			<ul className={styles.list}>
 				{favorites.map(sku => {
 					return <FavoritesItem sku={sku} key={sku} />
 				})}
 			</ul>
 			{favorites.length === 0 && (
-				<div>
-					<p>Здесь пока ничего нет</p>
-					<Link href={PATH_NAMES.CATALOG}>Перейти в каталог</Link>
+				<div className={styles.favorites__empty}>
+					<div className={styles.illustration}>
+						<div className={styles.illustration__top}>
+							<Icon name='likeFilled' />0
+						</div>
+						<Illustration name='hand' />
+					</div>
+					<Paragraph color='secondary'>Здесь пока ничего нет</Paragraph>
+					<Link href={PATH_NAMES.CATALOG}>
+						<Button variant='filled'>Перейти в каталог</Button>
+					</Link>
 				</div>
 			)}
 		</section>

@@ -1,0 +1,9 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	row-gap: 24px;
+}
+
+.form__button {
+	width: 100%;
+}

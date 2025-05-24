@@ -1,0 +1,40 @@
+.root {
+	position: relative;
+}
+
+.root__input input {
+	padding-right: 40px;
+}
+
+.root__input span {
+	top: 33px;
+}
+
+.root__button {
+	position: absolute;
+	top: 50%;
+	right: 5px;
+	transform: translateY(-50%);
+	cursor: pointer;
+	transition: opacity var(--transition-duration);
+}
+
+.root__icon {
+	position: relative;
+}
+
+.root__cross {
+	position: absolute;
+	top: 8px;
+	left: 0;
+	width: 30px;
+	height: 2px;
+	background: currentColor;
+	z-index: 1;
+	transform: rotate(45deg) scaleX(0);
+	transition: transform var(--transition-duration);
+}
+
+.root__button[datatype='text'] .root__cross {
+	transform: rotate(45deg) scaleX(1);
+}

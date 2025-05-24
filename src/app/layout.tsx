@@ -5,6 +5,7 @@ import { Container } from '@/shared/ui'
 import { Footer, Header } from '@/widgets'
 import { Toast } from '@/features/toast/ui/toast'
 import { Suspense } from 'react'
+import { StorageManager } from '@/features/storage-manager'
 
 const dmSans = DM_Sans({
 	variable: '--font-main',
@@ -31,6 +32,7 @@ export default function RootLayout({
 					</Suspense>
 					<Footer />
 					<Toast />
+					<StorageManager />
 				</Container>
 			</body>
 		</html>

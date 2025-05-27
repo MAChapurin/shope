@@ -1,8 +1,9 @@
-import { Icon, Title } from '@/shared/ui'
+import { Title } from '@/shared/ui'
 import { ProductType } from '@/shared/types'
 import { API_URLS, SEARCH_PARAMS } from '@/shared/settings'
 import { ProductCard } from '@/entities/product'
 import {
+	AddToCartAction,
 	ButtonToDetail,
 	LikeButton,
 	LikeFlag,
@@ -68,9 +69,7 @@ export default async function CatalogPage(props: {
 											topRightSlot={<LikeFlag sku={el.sku} />}
 											actions={
 												<>
-													<button>
-														<Icon name='cart' />
-													</button>
+													<AddToCartAction product={el} />
 													<ButtonToDetail sku={el.sku} />
 													<LikeButton sku={el.sku} />
 												</>

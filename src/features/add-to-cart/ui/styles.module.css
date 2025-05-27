@@ -1,0 +1,30 @@
+.button {
+	position: relative;
+	overflow-y: hidden;
+	min-height: 53px;
+}
+
+.button__text {
+	position: absolute;
+	inset: auto;
+	transform: translateX(-50%);
+	transition: transform var(--transition-duration);
+}
+
+.action {
+	position: relative;
+}
+
+.action__success {
+	position: absolute;
+	top: -5px;
+	right: -5px;
+	width: 12px;
+	height: 12px;
+	opacity: 0;
+	transition: opacity var(--transition-duration);
+}
+
+.action__success--visible {
+	opacity: 1;
+}

@@ -1,12 +1,9 @@
 'use client'
-import { useFavorites } from '@/entities'
+
+import { useLikeCount } from '../model/useLikeCount'
 import styles from './styles.module.css'
 
 export const LikeCount = () => {
-	const { favorites } = useFavorites()
-	return (
-		favorites.length > 0 && (
-			<div className={styles.count}>{favorites.length}</div>
-		)
-	)
+	const count = useLikeCount()
+	return count > 0 && <div className={styles.count}>{count}</div>
 }

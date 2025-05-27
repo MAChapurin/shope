@@ -1,12 +1,5 @@
-/**
- * Declines depending on the number
- * @param {number} number
- * @param {string[]} titles Strings for decline
- * @param {boolean} [full=false] If true - returns number + string
- * @return {string}
- */
-
 const cases = [2, 0, 1, 1, 1, 2]
+
 export function declareOfNumber(
 	number: number,
 	titles: [string, string, string],

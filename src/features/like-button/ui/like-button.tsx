@@ -13,22 +13,26 @@ export const LikeButton: FC<LikeButtonProps> = ({
 	className,
 	...props
 }) => {
-	const { isLiked, onClick } = useLikeButton(sku)
+	const { isLiked, onClick, mounted } = useLikeButton(sku)
 
 	return (
-		<button
-			aria-label={isLiked ? 'Убрать из избранного' : 'Добавить в избранное'}
-			className={cn(styles.btn, className)}
-			data-value={sku}
-			onClick={onClick}
-			{...props}
-		>
-			<Icon
-				className={cn(styles.btn__icon, {
-					[styles['btn__icon--liked']]: isLiked
-				})}
-				name='like'
-			/>{' '}
-		</button>
+		<>
+			{mounted && (
+				<button
+					aria-label={isLiked ? 'Убрать из избранного' : 'Добавить в избранное'}
+					className={cn(styles.btn, className)}
+					data-value={sku}
+					onClick={onClick}
+					{...props}
+				>
+					<Icon
+						className={cn(styles.btn__icon, {
+							[styles['btn__icon--liked']]: isLiked
+						})}
+						name='like'
+					/>{' '}
+				</button>
+			)}
+		</>
 	)
 }

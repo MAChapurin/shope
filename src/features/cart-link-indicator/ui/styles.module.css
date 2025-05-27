@@ -3,15 +3,21 @@
 }
 
 .indicator {
+	width: 15px;
+	height: 15px;
 	padding: 2px;
 	position: absolute;
-	top: -5px;
+	top: -10px;
 	right: -5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	background: var(--color-light);
 	border: 1px solid var(--color-dark);
 	border-radius: 50%;
 	pointer-events: none;
-	font-size: 10px;
+	font-size: 8px;
+	line-height: 8px;
 	line-height: 54%;
 	transition: opacity 0.3s;
 }

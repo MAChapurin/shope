@@ -29,9 +29,9 @@
 	border-bottom-color: var(--color-error);
 }
 
-.root__input:focus:not(.root__input--error) {
+/* .root__input:focus:not(.root__input--error) {
 	box-shadow: 0 0 1px 1px var(--color-primary);
-}
+} */
 
 .root__input.root__input--error:focus {
 	border-color: var(--color-error);

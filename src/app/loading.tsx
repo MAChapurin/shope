@@ -1,9 +1,10 @@
+import { Loader } from '@/shared/ui'
 import styles from './loading.module.css'
 
 const placeholderPaginationArray = Array.from({ length: 5 })
 const placeholderCardArray = Array.from({ length: 6 })
 
-export default function Loading() {
+export function LoadingHomes() {
 	return (
 		<div className={styles.root}>
 			<div className={styles.hero}>
@@ -30,6 +31,14 @@ export default function Loading() {
 					</div>
 				))}
 			</div>
+		</div>
+	)
+}
+
+export default function Loading() {
+	return (
+		<div className={styles.root}>
+			<Loader />
 		</div>
 	)
 }

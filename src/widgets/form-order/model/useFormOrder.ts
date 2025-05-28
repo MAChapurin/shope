@@ -8,22 +8,33 @@ import {
 	CUSTOM_EVENTS,
 	INPUT_NAMES,
 	PATH_NAMES,
+	STORAGE_KEYS,
 	VALIDATION_SETTING
 } from '@/shared/settings'
 import { emitter } from '@/shared/lib'
 import { useRouter } from 'next/navigation'
+import {
+	createOrder,
+	getProfile,
+	loginUser,
+	registerUser,
+	TypeUserData,
+	useCart
+} from '@/entities'
 
-const defaultValue = {
+const defaultValue: TypeUserData = {
 	name: '',
 	email: '',
 	address: '',
 	password: '',
-	tel: ''
+	phone: ''
 }
 
 export const useFormOrder = () => {
-	const [error, setError] = useState<Record<string, string>>(defaultValue)
-	const [values, setValues] = useState<Record<string, string>>(defaultValue)
+	const { cart } = useCart()
+
+	const [error, setError] = useState<TypeUserData>(defaultValue)
+	const [values, setValues] = useState<TypeUserData>(defaultValue)
 
 	const router = useRouter()
 
@@ -39,9 +50,9 @@ export const useFormOrder = () => {
 		setValues(prev => ({ ...prev, [name]: value }))
 	}
 
-	// const resetForm = () => {
-	//   setValues(defaultValue)
-	// }
+	const resetForm = () => {
+		setValues(defaultValue)
+	}
 
 	const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const name = e.target.name
@@ -131,7 +142,7 @@ export const useFormOrder = () => {
 
 	const checkValidPhone = () => {
 		if (
-			values.tel.replace(/\D/g, '').length < VALIDATION_SETTING.PHONE_LENGTH
+			values.phone.replace(/\D/g, '').length < VALIDATION_SETTING.PHONE_LENGTH
 		) {
 			onError(INPUT_NAMES.PHONE, VALIDATION_SETTING.PHONE_ERROR_MESSAGE)
 			return false
@@ -143,7 +154,24 @@ export const useFormOrder = () => {
 	const isEmptyField = Object.values(values).some(el => el.trim().length === 0)
 	const isDisabled = isEmptyField || isErrorField
 
-	const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+	const getToken = async (values: TypeUserData) => {
+		let token = ''
+		try {
+			const access_token = await registerUser(values)
+			if (access_token) {
+				token = access_token
+				return token
+			} else {
+				token = await loginUser(values)
+				return token
+			}
+		} catch (error) {
+			console.log(error)
+			return null
+		}
+	}
+
+	const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		const isValidationFields =
 			checkValidName() &&
@@ -153,12 +181,22 @@ export const useFormOrder = () => {
 			checkValidPhone()
 
 		if (isValidationFields) {
+			const token = await getToken(values)
+			if (token) {
+				localStorage.setItem(STORAGE_KEYS.TOKEN, token)
+			}
+
+			const order = cart.map(({ name, price, count }) => {
+				return { name, price, count }
+			})
+			const newOrder = await createOrder({ items: order })
+			const user = await getProfile()
+			console.log('token', token, 'user\n', user, 'order\n', newOrder)
 			emitter.emit(
 				CUSTOM_EVENTS.ADD_TOST,
 				VALIDATION_SETTING.SUCCESS_MESSAGE_ORDER
 			)
-			console.log(values)
-			// resetForm()
+			resetForm()
 			setTimeout(navigateToProfile, 200)
 		}
 	}

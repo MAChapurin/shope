@@ -63,8 +63,8 @@ export const FormOrder = () => {
 			<PhoneInputMask
 				name={INPUT_NAMES.PHONE}
 				placeholder={INPUT_PLACEHOLDERS.PHONE}
-				errorMessage={error?.tel}
-				value={values.tel}
+				errorMessage={error?.phone}
+				value={values.phone}
 				onChange={onInputChange}
 				required
 			/>

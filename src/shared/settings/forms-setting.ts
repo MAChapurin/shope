@@ -4,7 +4,7 @@ export enum INPUT_NAMES {
 	REVIEW = 'review',
 	PASSWORD = 'password',
 	ADDRESS = 'address',
-	PHONE = 'tel'
+	PHONE = 'phone'
 }
 
 export enum INPUT_PLACEHOLDERS {

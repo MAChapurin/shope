@@ -19,7 +19,8 @@ import {
 	loginUser,
 	registerUser,
 	TypeUserData,
-	useCart
+	useCart,
+	useProfile
 } from '@/entities'
 
 const defaultValue: TypeUserData = {
@@ -32,6 +33,7 @@ const defaultValue: TypeUserData = {
 
 export const useFormOrder = () => {
 	const { cart } = useCart()
+	const { setUser } = useProfile()
 
 	const [error, setError] = useState<TypeUserData>(defaultValue)
 	const [values, setValues] = useState<TypeUserData>(defaultValue)
@@ -191,6 +193,8 @@ export const useFormOrder = () => {
 			})
 			const newOrder = await createOrder({ items: order })
 			const user = await getProfile()
+			setUser(user)
+			emitter.emit(CUSTOM_EVENTS.ADD_ORDER, newOrder)
 			console.log('token', token, 'user\n', user, 'order\n', newOrder)
 			emitter.emit(
 				CUSTOM_EVENTS.ADD_TOST,

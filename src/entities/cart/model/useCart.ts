@@ -7,6 +7,7 @@ import { ProductType } from '@/shared/types'
 import { STORAGE_KEYS } from '@/shared/settings'
 
 let cart: CartType = []
+
 const subscribers: Set<() => void> = new Set()
 
 const emitChange = () => {
@@ -50,7 +51,10 @@ const cartStore = {
 	},
 
 	isInCartBySku(sku: number): boolean {
-		return cart.some(el => el.sku === sku)
+		if (cart.length > 0) {
+			return cart.some(el => el.sku === sku)
+		}
+		return false
 	},
 
 	incrementBySku(sku: number) {

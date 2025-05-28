@@ -3,5 +3,6 @@ export enum STORAGE_KEYS {
 	FAVORITES = 'favorites_key',
 	KEEP_USER_DATA = 'isKeepUserData',
 	USER_DATA = 'userdata',
-	TOKEN = 'shope_token'
+	TOKEN = 'shope_token',
+	USER = 'user_key'
 }

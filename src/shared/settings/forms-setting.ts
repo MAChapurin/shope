@@ -12,11 +12,14 @@ export enum INPUT_PLACEHOLDERS {
 	EMAIL = 'Email*',
 	REVIEW = 'Отзыв*',
 	PASSWORD = 'Пароль*',
+	PASSWORD_REPEAT = 'Повторите пароль*',
 	ADDRESS = 'Адрес*',
 	PHONE = 'Телефон*'
 }
 
 export const VALIDATION_SETTING = {
+	GREETING: 'Добро пожаловать!',
+	SUCCESS_REGISTER: 'Регистрация прошла успешно.',
 	SUCCESS_MESSAGE_ORDER: 'Заказ успешно оплачен.',
 	SUCCESS_MESSAGE_REVIEW: 'Отзыв успешно отправлен.',
 	LABEL_ALERT: 'Ваш email не будет опубликован. Обязательные поля помечены *',

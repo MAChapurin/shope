@@ -1,12 +1,7 @@
 'use client'
 
-import {
-	AddressAutoComplete,
-	PasswordInput,
-	PhoneInputMask,
-	SumOrder
-} from '@/features'
-import { Button, Input } from '@/shared/ui'
+import { AddressAutoComplete, SumOrder } from '@/features'
+import { Button, Input, PasswordInput, PhoneInputMask } from '@/shared/ui'
 import { INPUT_NAMES, INPUT_PLACEHOLDERS } from '@/shared/settings'
 
 import { useFormOrder } from '../model/useFormOrder'

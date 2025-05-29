@@ -5,7 +5,10 @@ export enum PATH_NAMES {
 	CATALOG = '/catalog',
 	DELIVERY = '/delivery',
 	FAVORITES = '/favorites',
+	LOGIN = '/login',
 	MAIN = '/',
 	PROFILE = '/profile',
-	TERMS = '/terms'
+	TERMS = '/terms',
+	REGISTER = '/register',
+	RESTORE = '/restore'
 }

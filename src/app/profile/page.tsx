@@ -1,5 +1,5 @@
-import { LoginForm } from '@/features/autorization/ui/login-form'
-import { RegisterForm } from '@/features/autorization/ui/register-form'
+import { LoginForm } from '@/features/authorization/ui/login-form'
+import { RegisterForm } from '@/features/authorization/ui/register-form'
 import { VisuallyHiddenTitle } from '@/shared/ui'
 import { CurrentOrder } from '@/widgets'
 

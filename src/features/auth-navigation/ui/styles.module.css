@@ -1,0 +1,38 @@
+.nav {
+	height: 60px;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	background: var(--color-secondary-light);
+	border-radius: 8px;
+}
+
+.nav::after {
+	position: absolute;
+	content: '';
+	top: 5px;
+	left: 9px;
+	width: 236px;
+	height: 50px;
+	background: var(--color-light);
+	border-radius: 8px;
+	transition: transform var(--transition-duration);
+}
+
+.nav__link {
+	width: 100%;
+	position: relative;
+	font-size: 20px;
+	line-height: 26px;
+	text-align: center;
+	z-index: 1;
+}
+
+.nav:has(.nav__link--left)::after {
+	left: 9px;
+}
+
+.nav:has(.nav__link--right)::after {
+	transform: translateX(245px);
+}

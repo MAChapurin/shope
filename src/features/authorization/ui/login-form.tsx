@@ -18,8 +18,9 @@ export const LoginForm = () => {
 		resetInputError
 	} = useAuth()
 	return (
-		<form onSubmit={onLogin} onChange={resetInputError}>
+		<form className={styles.form} onSubmit={onLogin} onChange={resetInputError}>
 			<Input
+				className={styles.form__input}
 				name={INPUT_NAMES.EMAIL}
 				type='email'
 				placeholder={INPUT_PLACEHOLDERS.EMAIL}
@@ -29,6 +30,7 @@ export const LoginForm = () => {
 				required
 			/>
 			<PasswordInput
+				className={styles.form__input}
 				name={INPUT_NAMES.PASSWORD}
 				value={values.password}
 				onChange={onInputChange}
@@ -36,16 +38,23 @@ export const LoginForm = () => {
 				placeholder={INPUT_PLACEHOLDERS.PASSWORD}
 				required
 			/>
-			<Checkbox checked={false} onChange={() => {}} text={'Запомнить меня'} />
+			<Checkbox
+				className={styles.form__checkbox}
+				checked={false}
+				onChange={() => {}}
+				text={'Запомнить меня'}
+			/>
 			<Button
+				className={styles.form__button}
 				disabled={isDisabledLogin}
 				type='submit'
-				className={styles.form__button}
 				variant='filled'
 			>
 				Вход
 			</Button>
-			<Link href={PATH_NAMES.MAIN}>Забыли пароль ?</Link>
+			<Link className={styles.form__link} href={PATH_NAMES.RESTORE}>
+				Забыли пароль ?
+			</Link>
 		</form>
 	)
 }

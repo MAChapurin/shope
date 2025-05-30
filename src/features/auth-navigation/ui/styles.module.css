@@ -15,7 +15,7 @@
 	left: 9px;
 	width: 236px;
 	height: 50px;
-	background: var(--color-light);
+	background: transparent;
 	border-radius: 8px;
 	transition: transform var(--transition-duration);
 }
@@ -31,8 +31,10 @@
 
 .nav:has(.nav__link--left)::after {
 	left: 9px;
+	background: var(--color-light);
 }
 
 .nav:has(.nav__link--right)::after {
 	transform: translateX(245px);
+	background: var(--color-light);
 }

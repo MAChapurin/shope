@@ -27,7 +27,7 @@ export const Avatar = () => {
 	}, [setNewOrder])
 	return (
 		<Link className={styles.avatar} href={PATH_NAMES.PROFILE}>
-			{user ? getFirstLetter(user.name) : <Icon name='profile' />}
+			{user && user.name ? getFirstLetter(user.name) : <Icon name='profile' />}
 		</Link>
 	)
 }

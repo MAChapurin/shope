@@ -3,6 +3,7 @@ export enum INPUT_NAMES {
 	EMAIL = 'email',
 	REVIEW = 'review',
 	PASSWORD = 'password',
+	PASSWORD_REPEAT = 'password_repeat',
 	ADDRESS = 'address',
 	PHONE = 'phone'
 }
@@ -23,6 +24,7 @@ export const VALIDATION_SETTING = {
 	SUCCESS_MESSAGE_ORDER: 'Заказ успешно оплачен.',
 	SUCCESS_MESSAGE_REVIEW: 'Отзыв успешно отправлен.',
 	LABEL_ALERT: 'Ваш email не будет опубликован. Обязательные поля помечены *',
+	MAIL_EXIST: 'Такой пользователь уже был зарегистрирован',
 	MAX_NAME_LENGTH: 16,
 	MAX_NAME_LENGTH_MESSAGE: `Максимальная длинна должна быть 16`,
 	MIN_NAME_LENGTH: 2,
@@ -46,5 +48,7 @@ export const VALIDATION_SETTING = {
 	EMAIL_NO_VALID_MESSAGE: 'Email введен неккоректно',
 	RATING_NO_VALID_MESSAGE: 'Рейтинг обязателен для заполнения',
 	MIN_ADDRESS_LENGTH_MESSAGE: 'Адрес слишком короткий',
-	MAX_ADDRESS_LENGTH_MESSAGE: 'Адрес слишком длинный'
+	MAX_ADDRESS_LENGTH_MESSAGE: 'Адрес слишком длинный',
+	PASSWORD_REPEAT_ERROR: 'Пароли должны совпадать',
+	PASSWORD_WRONG: 'Неверный пароль',
 }

@@ -1,0 +1,10 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	row-gap: 40px;
+}
+
+.form__link {
+	width: max-content;
+	align-self: center;
+}

@@ -1,11 +1,12 @@
 import { ProductType } from '@/shared/types'
 
 export type TypeUserData = {
-	name: string
 	email: string
-	address: string
 	password: string
-	phone: string
+	password_repeat?: string
+	name?: string
+	address?: string
+	phone?: string
 }
 
 export type OrderItem = Required<Pick<ProductType, 'name' | 'count' | 'price'>>

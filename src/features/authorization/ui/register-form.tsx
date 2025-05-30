@@ -16,7 +16,11 @@ export const RegisterForm = () => {
 		resetInputError
 	} = useAuth()
 	return (
-		<form onSubmit={onRegister} onChange={resetInputError}>
+		<form
+			className={styles.form}
+			onSubmit={onRegister}
+			onChange={resetInputError}
+		>
 			<Input
 				name={INPUT_NAMES.EMAIL}
 				type='email'
@@ -35,10 +39,10 @@ export const RegisterForm = () => {
 				required
 			/>
 			<PasswordInput
-				name={INPUT_NAMES.PASSWORD}
+				name={INPUT_NAMES.PASSWORD_REPEAT}
 				value={values.password}
 				onChange={onInputChange}
-				errorMessage={error?.password}
+				errorMessage={error?.password_repeat}
 				placeholder={INPUT_PLACEHOLDERS.PASSWORD_REPEAT}
 				required
 			/>
@@ -52,6 +56,7 @@ export const RegisterForm = () => {
 				type='submit'
 				className={styles.form__button}
 				variant='filled'
+				fullWidth
 			>
 				Зарегистрироваться
 			</Button>

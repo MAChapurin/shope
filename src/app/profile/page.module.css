@@ -1,0 +1,14 @@
+.main {
+	min-height: calc(100dvh - 350px);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	row-gap: 40px;
+}
+
+.nav {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	column-gap: 40px;
+}

@@ -49,6 +49,7 @@ export const LoginForm = () => {
 				disabled={isDisabledLogin}
 				type='submit'
 				variant='filled'
+				fullWidth
 			>
 				Вход
 			</Button>

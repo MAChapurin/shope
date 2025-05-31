@@ -3,7 +3,6 @@ import { TypeUserData } from '../types'
 import { getToken } from '@/shared/utils/getToken'
 
 export const registerUser = async (data: TypeUserData) => {
-
 	const request = await fetch(`${API_URLS.REGISTER}`, {
 		method: 'POST',
 		headers: {
@@ -30,6 +29,7 @@ export const loginUser = async (
 		},
 		body: JSON.stringify(data)
 	})
+
 	const { access_token } = await request.json()
 	return access_token
 }

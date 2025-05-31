@@ -42,7 +42,7 @@ export const FormOrder = () => {
 			/>
 			<AddressAutoComplete
 				errorMessage={error?.address}
-				value={values.address}
+				value={values.address || ''}
 				onChange={onInputChange}
 				setValue={onAddressDropdown}
 			/>

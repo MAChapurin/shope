@@ -76,11 +76,11 @@ export const useFormOrder = () => {
 	}
 
 	const checkValidName = () => {
-		if (values.name.trim().length < VALIDATION_SETTING.MIN_NAME_LENGTH) {
+		if (values.name && values.name.trim().length < VALIDATION_SETTING.MIN_NAME_LENGTH) {
 			onError(INPUT_NAMES.NAME, VALIDATION_SETTING.MIN_NAME_LENGTH__MESSAGE)
 			return false
 		}
-		if (values.name.length > VALIDATION_SETTING.MAX_NAME_LENGTH) {
+		if (values.name && values.name.length > VALIDATION_SETTING.MAX_NAME_LENGTH) {
 			onError(INPUT_NAMES.NAME, VALIDATION_SETTING.MAX_NAME_LENGTH_MESSAGE)
 			return false
 		}
@@ -125,14 +125,14 @@ export const useFormOrder = () => {
 	}
 
 	const checkValidAddress = () => {
-		if (values.address.trim().length < VALIDATION_SETTING.MIN_ADDRESS_LENGTH) {
+		if (values.address && values.address.trim().length < VALIDATION_SETTING.MIN_ADDRESS_LENGTH) {
 			onError(
 				INPUT_NAMES.ADDRESS,
 				VALIDATION_SETTING.MIN_ADDRESS_LENGTH_MESSAGE
 			)
 			return false
 		}
-		if (values.address.length > VALIDATION_SETTING.MAX_ADDRESS_LENGTH) {
+		if (values.address && values.address.length > VALIDATION_SETTING.MAX_ADDRESS_LENGTH) {
 			onError(
 				INPUT_NAMES.ADDRESS,
 				VALIDATION_SETTING.MAX_ADDRESS_LENGTH_MESSAGE
@@ -144,7 +144,7 @@ export const useFormOrder = () => {
 
 	const checkValidPhone = () => {
 		if (
-			values.phone.replace(/\D/g, '').length < VALIDATION_SETTING.PHONE_LENGTH
+			values.phone && values.phone.replace(/\D/g, '').length < VALIDATION_SETTING.PHONE_LENGTH
 		) {
 			onError(INPUT_NAMES.PHONE, VALIDATION_SETTING.PHONE_ERROR_MESSAGE)
 			return false

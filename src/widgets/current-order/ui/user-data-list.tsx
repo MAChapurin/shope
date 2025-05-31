@@ -21,9 +21,9 @@ export const UserDataList = () => {
 	const userDataList: UserDataItemProps[] = [
 		{ title: 'Номер', description: id },
 		{ title: 'Детали заказа', description: formatDate(new Date(createdAt)) },
-		{ title: 'Имя', description: name },
+		{ title: 'Имя', description: name || '' },
 		{ title: 'EMAIL', description: email },
-		{ title: 'Адрес доставки', description: address },
+		{ title: 'Адрес доставки', description: address || '' },
 		{ title: 'Телефон', description: getPhoneMask(phone) as string }
 	]
 	return (

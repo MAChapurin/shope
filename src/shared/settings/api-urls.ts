@@ -8,5 +8,6 @@ export const API_URLS = {
 	REGISTER: ROOT_URL + 'auth/register',
 	LOGIN: ROOT_URL + 'auth/login',
 	PROFILE: ROOT_URL + 'user/profile',
-	ORDER: ROOT_URL + 'order'
-}
+	ORDER: ROOT_URL + 'order',
+	ORDER_MY: ROOT_URL + 'order/my'
+} as const

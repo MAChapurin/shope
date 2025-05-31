@@ -1,5 +1,5 @@
 'use client'
-import { useProfile } from '@/entities'
+import { OrdersList, useProfile } from '@/entities'
 import { PATH_NAMES } from '@/shared/settings'
 import { Button, Paragraph, Title, VisuallyHiddenTitle } from '@/shared/ui'
 import { CurrentOrder } from '@/widgets'
@@ -8,7 +8,6 @@ import styles from './page.module.css'
 
 export default function ProfilePage() {
 	const { user } = useProfile()
-
 	if (!user) {
 		return (
 			<main className={styles.main}>
@@ -31,10 +30,10 @@ export default function ProfilePage() {
 	}
 
 	return (
-		<main className={styles.main}>
+		<main className={''}>
 			<VisuallyHiddenTitle>Профиль</VisuallyHiddenTitle>
 			<CurrentOrder />
-			<div>Hello user!!!</div>
+			<OrdersList />
 		</main>
 	)
 }

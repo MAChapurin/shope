@@ -1,0 +1,22 @@
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.table tr:nth-child(2n) {
+	background: var(--color-secondary-light);
+}
+
+.table__th {
+	padding-block: 16px;
+	text-align: left;
+	border-bottom: 1px solid var(--color-dark);
+	color: var(--color-dark);
+}
+
+.table__td {
+	padding-block: 16px;
+	text-align: left;
+	color: var(--color-secondary);
+}

@@ -50,5 +50,5 @@ export const VALIDATION_SETTING = {
 	MIN_ADDRESS_LENGTH_MESSAGE: 'Адрес слишком короткий',
 	MAX_ADDRESS_LENGTH_MESSAGE: 'Адрес слишком длинный',
 	PASSWORD_REPEAT_ERROR: 'Пароли должны совпадать',
-	PASSWORD_WRONG: 'Неверный пароль',
+	PASSWORD_WRONG: 'Неверный пароль'
 }

@@ -11,7 +11,7 @@ export const OrderTable = () => {
 	}
 
 	const sum = order.data
-		.map(el => el.price * el.count)
+		.map(el => el.price * (el.count || 1))
 		.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
 		.toFixed()
 

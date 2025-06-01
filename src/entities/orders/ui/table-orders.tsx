@@ -1,7 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { getUserOrders } from '../api'
-import { Loader } from '@/shared/ui'
 import { ProductType } from '@/shared/types'
 import { formatDate } from '@/shared/utils'
 
@@ -20,14 +19,23 @@ export const OrdersList = () => {
 	const [orders, setOrders] = useState<UserOrder[] | null>(null)
 	useEffect(() => {
 		const getData = async () => {
-			const data = await getUserOrders()
-			setOrders(data)
+			try {
+				const data = await getUserOrders()
+				console.log('test', data)
+				if (data?.statusCode === 401) {
+					setOrders([])
+				} else {
+					setOrders(data)
+				}
+			} catch (error) {
+				console.log(error)
+			}
 		}
 		getData()
 	}, [])
 
 	if (!orders) {
-		return <Loader />
+		return null
 	}
 
 	if (orders.length === 0) {

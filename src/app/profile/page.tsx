@@ -1,8 +1,7 @@
 'use client'
 import { OrdersList, useProfile } from '@/entities'
 import { PATH_NAMES } from '@/shared/settings'
-import { Button, Paragraph, Title, VisuallyHiddenTitle } from '@/shared/ui'
-import { CurrentOrder } from '@/widgets'
+import { Button, Paragraph, Title } from '@/shared/ui'
 import Link from 'next/link'
 import styles from './page.module.css'
 
@@ -10,8 +9,7 @@ export default function ProfilePage() {
 	const { user } = useProfile()
 	if (!user) {
 		return (
-			<main className={styles.main}>
-				<VisuallyHiddenTitle>Профиль</VisuallyHiddenTitle>
+			<div className={styles.main}>
 				<Title align='center'>Вы не авторизованы</Title>
 				<Paragraph align='center'>
 					Если у вас есть аккаунт, то выполните вход, если нет то пройдите
@@ -25,14 +23,12 @@ export default function ProfilePage() {
 						<Button variant='filled'>Зарегистрироваться</Button>
 					</Link>
 				</nav>
-			</main>
+			</div>
 		)
 	}
 
 	return (
-		<main className={''}>
-			<VisuallyHiddenTitle>Профиль</VisuallyHiddenTitle>
-			<CurrentOrder />
+		<main className={styles.profile}>
 			<OrdersList />
 		</main>
 	)

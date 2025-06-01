@@ -3,16 +3,18 @@ import Link from 'next/link'
 import { PATH_NAMES } from '@/shared/settings'
 import { cn } from '@/shared/lib'
 import { usePathname } from 'next/navigation'
-
+import { LogoutButton } from '@/features/logout-button'
 import styles from './styles.module.css'
 
 export const NavigationProfile = () => {
 	const pathname = usePathname()
+
 	const isOrdersPage =
 		pathname === PATH_NAMES.PROFILE_ORDERS || pathname === PATH_NAMES.PROFILE
 
 	const isCurrentOrderPage = pathname === PATH_NAMES.PROFILE_ORDER
 	const isUserPage = pathname === PATH_NAMES.PROFILE_USER
+
 	return (
 		<div className={styles.nav}>
 			<Link
@@ -39,7 +41,10 @@ export const NavigationProfile = () => {
 			>
 				Профиль
 			</Link>
-			<button className={styles.nav__item}>Выйти</button>
+			<LogoutButton className={styles.nav__item} />
+			{/* <Link className={styles.nav__item} href={'/profile/cookie-test'}>
+				Cookie test
+			</Link> */}
 			<div
 				className={cn(styles.nav__indicator, {
 					[styles['nav__indicator--order']]: isOrdersPage,

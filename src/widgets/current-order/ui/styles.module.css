@@ -99,6 +99,22 @@
 	text-align: right;
 }
 
+.empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	row-gap: 20px;
+}
+
+.empty__nav {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	row-gap: 20px;
+}
+
 @media (max-width: 1024px) {
 	.root {
 		display: flex;

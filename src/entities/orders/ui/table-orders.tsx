@@ -1,9 +1,11 @@
-'use client'
-import { useEffect, useState } from 'react'
-import { getUserOrders } from '../api'
 import { ProductType } from '@/shared/types'
 import { formatDate } from '@/shared/utils'
+import { Button, Paragraph } from '@/shared/ui'
+import { PATH_NAMES } from '@/shared/settings'
 
+import Link from 'next/link'
+
+import { getUserOrders } from '../api'
 import styles from './styles.module.css'
 
 type OrderItem = Pick<ProductType, 'name' | 'count' | 'price'>
@@ -15,31 +17,24 @@ type UserOrder = {
 	id: number
 }
 
-export const OrdersList = () => {
-	const [orders, setOrders] = useState<UserOrder[] | null>(null)
-	useEffect(() => {
-		const getData = async () => {
-			try {
-				const data = await getUserOrders()
-				console.log('test', data)
-				if (data?.statusCode === 401) {
-					setOrders([])
-				} else {
-					setOrders(data)
-				}
-			} catch (error) {
-				console.log(error)
-			}
-		}
-		getData()
-	}, [])
+export const OrdersList = async () => {
+	const orders: UserOrder[] = await getUserOrders()
 
 	if (!orders) {
 		return null
 	}
 
 	if (orders.length === 0) {
-		return <div>Вы еще ничего у нас не заказали</div>
+		return (
+			<div className={styles.empty}>
+				<Paragraph align='center' color='secondary'>
+					История заказов пуста
+				</Paragraph>
+				<Link href={PATH_NAMES.CATALOG}>
+					<Button variant='filled'>Перейти в каталог</Button>
+				</Link>
+			</div>
+		)
 	}
 
 	return (

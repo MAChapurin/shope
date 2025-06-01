@@ -1,0 +1,7 @@
+.data {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: repeat(3, 1fr);
+	grid-auto-flow: column;
+	gap: 44px;
+}

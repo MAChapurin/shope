@@ -1,6 +1,5 @@
 .main {
-	/* min-height: calc(100dvh - 350px); */
-	height: max-content;
+	min-height: calc(100dvh - 450px);
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

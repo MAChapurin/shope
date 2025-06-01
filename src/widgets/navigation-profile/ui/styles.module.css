@@ -45,3 +45,9 @@
 	width: 90px;
 	transform: translateX(340px);
 }
+
+@media (hover: hover) {
+	.nav__item:hover {
+		color: var(--color-dark);
+	}
+}

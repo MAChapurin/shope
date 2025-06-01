@@ -1,6 +1,6 @@
 import { API_URLS } from '@/shared/settings'
 import { TypeUserData } from '../types'
-import { getToken } from '@/shared/utils/getToken'
+import { getToken } from '@/app/actions'
 
 export const registerUser = async (data: TypeUserData) => {
 	const request = await fetch(`${API_URLS.REGISTER}`, {
@@ -15,7 +15,6 @@ export const registerUser = async (data: TypeUserData) => {
 	if (res.statusCode === 401) {
 		throw Error(res.message)
 	}
-	console.log(res)
 	return res.access_token
 }
 
@@ -35,9 +34,10 @@ export const loginUser = async (
 }
 
 export const getProfile = async () => {
+	const token = await getToken()
 	const request = await fetch(API_URLS.PROFILE, {
 		headers: {
-			Authorization: `Bearer ${getToken()}`
+			Authorization: `Bearer ${token}`
 		}
 	})
 

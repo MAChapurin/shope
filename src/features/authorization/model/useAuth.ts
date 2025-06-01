@@ -1,3 +1,4 @@
+import { createToken } from '@/app/actions'
 import {
 	getProfile,
 	loginUser,
@@ -10,7 +11,6 @@ import {
 	CUSTOM_EVENTS,
 	INPUT_NAMES,
 	PATH_NAMES,
-	STORAGE_KEYS,
 	VALIDATION_SETTING
 } from '@/shared/settings'
 import { isValidEmail, removePropertyAndReturn } from '@/shared/utils'
@@ -128,6 +128,7 @@ export const useAuth = () => {
 			token = await registerUser(
 				removePropertyAndReturn(values, INPUT_NAMES.PASSWORD_REPEAT)
 			)
+
 			return token
 		} catch (error) {
 			console.log(error)
@@ -143,7 +144,7 @@ export const useAuth = () => {
 		if (isValidationFields) {
 			const token = await handlerLogin()
 			if (token) {
-				localStorage.setItem(STORAGE_KEYS.TOKEN, token)
+				createToken(token)
 			} else {
 				onError(INPUT_NAMES.PASSWORD, VALIDATION_SETTING.PASSWORD_WRONG)
 				setIsPending(false)
@@ -152,7 +153,6 @@ export const useAuth = () => {
 
 			const user = await getProfile()
 			setUser(user)
-			console.log('token', token, 'user\n', user)
 			emitter.emit(CUSTOM_EVENTS.ADD_TOST, VALIDATION_SETTING.GREETING)
 			setIsPending(false)
 			router.push(PATH_NAMES.PROFILE)
@@ -168,7 +168,7 @@ export const useAuth = () => {
 		if (isValidationFields) {
 			const token = await handlerRegister()
 			if (token) {
-				localStorage.setItem(STORAGE_KEYS.TOKEN, token)
+				createToken(token)
 			} else {
 				onError(INPUT_NAMES.EMAIL, VALIDATION_SETTING.MAIL_EXIST)
 				setIsPending(false)

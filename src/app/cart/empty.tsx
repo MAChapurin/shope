@@ -1,8 +1,9 @@
-import { Paragraph, Title } from '@/shared/ui'
 import Link from 'next/link'
+import { Paragraph, Title } from '@/shared/ui'
 import { PATH_NAMES } from '@/shared/settings'
-import styles from './page.module.css'
 import { SearchButtonOpen } from '@/features/search'
+
+import styles from './page.module.css'
 
 export const EmptyCartContent = () => {
 	return (

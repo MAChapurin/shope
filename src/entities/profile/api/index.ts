@@ -36,6 +36,7 @@ export const loginUser = async (
 export const getProfile = async () => {
 	const token = await getToken()
 	const request = await fetch(API_URLS.PROFILE, {
+		cache: 'no-store',
 		headers: {
 			Authorization: `Bearer ${token}`
 		}
@@ -43,4 +44,18 @@ export const getProfile = async () => {
 
 	const user = request.json()
 	return user
+}
+
+export const updateProfile = async (data: Partial<TypeUserData>) => {
+	const token = await getToken()
+	const request = await fetch(`${API_URLS.PROFILE}`, {
+		method: 'PATCH',
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${token}`
+		},
+		body: JSON.stringify(data)
+	})
+
+	return request.json()
 }

@@ -8,7 +8,6 @@ import {
 	CUSTOM_EVENTS,
 	INPUT_NAMES,
 	PATH_NAMES,
-	STORAGE_KEYS,
 	VALIDATION_SETTING
 } from '@/shared/settings'
 import { emitter } from '@/shared/lib'
@@ -197,10 +196,6 @@ export const useFormOrder = () => {
 
 		if (isValidationFields) {
 			const token = await getToken(values)
-			if (token) {
-				localStorage.setItem(STORAGE_KEYS.TOKEN, token)
-			}
-
 			const order = cart.map(({ name, price, count }) => {
 				return { name, price, count }
 			})

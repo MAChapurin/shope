@@ -30,9 +30,17 @@ export const OrdersList = async () => {
 				<Paragraph align='center' color='secondary'>
 					История заказов пуста
 				</Paragraph>
-				<Link href={PATH_NAMES.CATALOG}>
-					<Button variant='filled'>Перейти в каталог</Button>
-				</Link>
+				<Paragraph align='center' color='secondary'>
+					Перейдите в каталог или завершите оформление в корзине
+				</Paragraph>
+				<div className={styles.empty__nav}>
+					<Link href={PATH_NAMES.CATALOG}>
+						<Button variant='filled'>Перейти в каталог</Button>
+					</Link>
+					<Link href={PATH_NAMES.CATALOG}>
+						<Button variant='filled'>Перейти в корзину</Button>
+					</Link>
+				</div>
 			</div>
 		)
 	}

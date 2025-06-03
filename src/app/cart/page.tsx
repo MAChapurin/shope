@@ -7,9 +7,11 @@ import { EmptyCartContent } from './empty'
 
 import { useEffect, useState } from 'react'
 import styles from './page.module.css'
+import { useProfile } from '@/entities'
 
 export default function CartPage() {
 	const { cart } = useCart()
+	const { user } = useProfile()
 	const [isLoading, setIsLoading] = useState(true)
 	useEffect(() => {
 		const id = setTimeout(() => {
@@ -33,7 +35,7 @@ export default function CartPage() {
 			{cart.length > 0 && !isLoading && (
 				<div className={styles.content}>
 					<CartList />
-					<FormOrder />
+					{user ? <div>Form auth</div> : <FormOrder />}
 				</div>
 			)}
 		</main>

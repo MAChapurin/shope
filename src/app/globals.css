@@ -38,12 +38,16 @@ main {
 
 :root {
 	--color-light: #ffffff;
+	--color-light-90: #ffffff90;
 	--color-dark: #000000;
 	--color-primary: #a18a68;
 	--color-secondary: #707070;
 	--color-secondary-light: #efefef;
 	--color-secondary-light-2: #d8d8d8;
 	--color-error: #d82700;
+	--shadow-base: 2px 2px 4px 0px #00000033;
+	--shadow-sm: 2px 2px 4px 0px #0000001a;
+	--shadow-lg: 0 0 12px 4px #00000010;
 	--max-width-app: 1248px;
 	--min-height-main: main calc(100dvh - 330px);
 	--transition-duration: 0.3s;

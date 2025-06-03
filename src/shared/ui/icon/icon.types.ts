@@ -5,6 +5,7 @@ export type IconType =
 	| 'cart'
 	| 'close'
 	| 'dropdown'
+	| 'edit'
 	| 'eye'
 	| 'facebook'
 	| 'filters'

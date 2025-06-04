@@ -1,9 +1,8 @@
 'use client'
 import { useRouter } from 'next/navigation'
-import { deleteToken } from '@/app/actions'
-import { PATH_NAMES } from '@/shared/settings'
 import { useState } from 'react'
-import { useProfile } from '@/entities'
+import { PATH_NAMES } from '@/shared/settings'
+import { deleteToken, useProfile } from '@/entities'
 
 export const useLogout = () => {
 	const [isDisabled, setIsDisabled] = useState(false)

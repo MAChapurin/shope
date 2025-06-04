@@ -1,8 +1,8 @@
-import { createToken } from '@/app/actions'
 import {
 	getProfile,
 	loginUser,
 	registerUser,
+	saveToken,
 	TypeUserData,
 	useProfile
 } from '@/entities'
@@ -33,6 +33,11 @@ export const useAuth = () => {
 	const [error, setError] = useState<TypeUserData>(defaultValue)
 	const [values, setValues] = useState<TypeUserData>(defaultValue)
 	const [isPending, setIsPending] = useState(false)
+
+	const [isKeepToken, setIsKeepToken] = useState(false)
+	const onKeepToken = () => {
+		setIsKeepToken(prev => !prev)
+	}
 
 	const onError = (name: string, value: string) => {
 		setError(prev => ({ ...prev, [name]: value }))
@@ -144,7 +149,7 @@ export const useAuth = () => {
 		if (isValidationFields) {
 			const token = await handlerLogin()
 			if (token) {
-				createToken(token)
+				saveToken(token)
 			} else {
 				onError(INPUT_NAMES.PASSWORD, VALIDATION_SETTING.PASSWORD_WRONG)
 				setIsPending(false)
@@ -168,7 +173,7 @@ export const useAuth = () => {
 		if (isValidationFields) {
 			const token = await handlerRegister()
 			if (token) {
-				createToken(token)
+				saveToken(token)
 			} else {
 				onError(INPUT_NAMES.EMAIL, VALIDATION_SETTING.MAIL_EXIST)
 				setIsPending(false)
@@ -195,6 +200,8 @@ export const useAuth = () => {
 		onRegister,
 		isDisabledLogin,
 		isDisabledRegister,
-		resetInputError
+		resetInputError,
+		isKeepToken,
+		onKeepToken
 	}
 }

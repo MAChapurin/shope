@@ -3,9 +3,12 @@
 import { ACCESS_TOKEN } from '@/shared/constants'
 import { cookies } from 'next/headers'
 
-export async function createToken(token: string) {
+export async function saveToken(token: string, isSave: boolean = false) {
 	const cookieStore = await cookies()
-	cookieStore.set(ACCESS_TOKEN, token)
+	const maxAge = isSave
+		? 30 * 24 * 60 * 60 // месяц
+		: 30 * 60 // 30 минут
+	cookieStore.set(ACCESS_TOKEN, token, { maxAge })
 }
 
 export async function getToken() {

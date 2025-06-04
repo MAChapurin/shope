@@ -15,11 +15,11 @@ import { useRouter } from 'next/navigation'
 import {
 	createOrder,
 	getProfile,
-	loginUser,
 	registerUser,
 	TypeUserData,
 	useCart,
-	useProfile
+	useProfile,
+	saveToken
 } from '@/entities'
 
 const defaultValue: TypeUserData = {
@@ -30,12 +30,24 @@ const defaultValue: TypeUserData = {
 	phone: ''
 }
 
-export const useFormOrder = () => {
-	const { cart } = useCart()
+export const useFormOrder = (user: TypeUserData | null) => {
+	const initialDataValues = {
+		name: user?.name ? user.name : '',
+		email: user?.email ? user.email : '',
+		address: user?.address ? user.address : '',
+		password: '',
+		phone: user?.phone ? user.phone : ''
+	}
+
+	const isAuth = user ? true : false
+
+	const { cart, clearCart } = useCart()
 	const { setUser } = useProfile()
 
 	const [error, setError] = useState<TypeUserData>(defaultValue)
-	const [values, setValues] = useState<TypeUserData>(defaultValue)
+	const [values, setValues] = useState<TypeUserData>(
+		user ? initialDataValues : defaultValue
+	)
 
 	const router = useRouter()
 
@@ -165,51 +177,70 @@ export const useFormOrder = () => {
 	}
 
 	const isErrorField = Object.values(error).some(el => el.trim().length > 0)
-	const isEmptyField = Object.values(values).some(el => el.trim().length === 0)
+	const isEmptyField = Object.values(
+		isAuth
+			? { name: values.name, address: values.address, phone: values.phone }
+			: values
+	).some(el => el?.trim().length === 0)
 	const isDisabled = isEmptyField || isErrorField
 
-	const getToken = async (values: TypeUserData) => {
+	const getToken = async () => {
 		let token = ''
 		try {
-			const access_token = await registerUser(values)
-			if (access_token) {
-				token = access_token
-				return token
-			} else {
-				token = await loginUser(values)
-				return token
-			}
+			token = await registerUser(values)
+			return token
 		} catch (error) {
-			console.log(error)
+			if (error instanceof Error) {
+				onError(INPUT_NAMES.EMAIL, error.message)
+			}
 			return null
 		}
 	}
 
 	const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		const isValidationFields =
-			checkValidName() &&
-			checkValidEmail() &&
-			checkValidAddress() &&
-			checkValidPassword() &&
-			checkValidPhone()
+		const order = cart.map(({ name, price, count }) => {
+			return { name, price, count }
+		})
 
-		if (isValidationFields) {
-			const token = await getToken(values)
-			const order = cart.map(({ name, price, count }) => {
-				return { name, price, count }
-			})
-			const newOrder = await createOrder({ items: order })
-			const user = await getProfile()
-			setUser(user)
-			emitter.emit(CUSTOM_EVENTS.ADD_ORDER, newOrder)
-			console.log('token', token, 'user\n', user, 'order\n', newOrder)
-			emitter.emit(
-				CUSTOM_EVENTS.ADD_TOST,
-				VALIDATION_SETTING.SUCCESS_MESSAGE_ORDER
-			)
-			resetForm()
-			setTimeout(navigateToProfile, 200)
+		if (isAuth) {
+			const isValidUpdateUserFields =
+				checkValidName() && checkValidAddress() && checkValidPhone()
+
+			if (isValidUpdateUserFields) {
+				const newOrder = await createOrder({ items: order })
+				emitter.emit(CUSTOM_EVENTS.ADD_ORDER, newOrder)
+				emitter.emit(
+					CUSTOM_EVENTS.ADD_TOST,
+					VALIDATION_SETTING.SUCCESS_MESSAGE_ORDER
+				)
+				resetForm()
+				setTimeout(navigateToProfile, 200)
+				clearCart()
+			}
+		} else {
+			const isValidationFieldsRegister =
+				checkValidName() &&
+				checkValidEmail() &&
+				checkValidAddress() &&
+				checkValidPassword() &&
+				checkValidPhone()
+
+			const token = await getToken()
+			if (isValidationFieldsRegister && token) {
+				saveToken(token)
+				const newOrder = await createOrder({ items: order })
+				const user = await getProfile()
+				setUser(user)
+				emitter.emit(CUSTOM_EVENTS.ADD_ORDER, newOrder)
+				emitter.emit(
+					CUSTOM_EVENTS.ADD_TOST,
+					VALIDATION_SETTING.SUCCESS_MESSAGE_ORDER
+				)
+				resetForm()
+				setTimeout(navigateToProfile, 200)
+				clearCart()
+			}
 		}
 	}
 
@@ -221,6 +252,7 @@ export const useFormOrder = () => {
 		error,
 		isDisabled,
 		onError,
-		onAddressDropdown
+		onAddressDropdown,
+		isAuth
 	}
 }

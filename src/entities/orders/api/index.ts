@@ -1,14 +1,18 @@
-import { getToken } from '@/app/actions'
+import { getToken } from '@/entities/profile'
 import { API_URLS } from '@/shared/settings'
 
 export const getUserOrders = async () => {
 	const token = await getToken()
-	const request = await fetch(API_URLS.ORDER_MY, {
+	const response = await fetch(API_URLS.ORDER_MY, {
 		headers: {
 			Authorization: `Bearer ${token}`
 		}
 	})
 
-	const orders = await request.json()
+	if (!response.ok) {
+		return null
+	}
+
+	const orders = await response.json()
 	return orders
 }

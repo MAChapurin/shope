@@ -19,7 +19,6 @@ type UserOrder = {
 
 export const OrdersList = async () => {
 	const orders: UserOrder[] = await getUserOrders()
-
 	if (!orders) {
 		return null
 	}

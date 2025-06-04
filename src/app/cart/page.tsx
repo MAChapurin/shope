@@ -1,43 +1,20 @@
-'use client'
-import { Loader, Title } from '@/shared/ui'
+import { Title } from '@/shared/ui'
 import { CartList, FormOrder } from '@/widgets'
 
-import { useCart } from '@/entities/cart'
-import { EmptyCartContent } from './empty'
-
-import { useEffect, useState } from 'react'
 import styles from './page.module.css'
-import { useProfile } from '@/entities'
+import { getProfile } from '@/entities'
 
-export default function CartPage() {
-	const { cart } = useCart()
-	const { user } = useProfile()
-	const [isLoading, setIsLoading] = useState(true)
-	useEffect(() => {
-		const id = setTimeout(() => {
-			setIsLoading(false)
-		}, 1000)
-		return () => {
-			clearTimeout(id)
-		}
-	}, [])
+export default async function CartPage() {
+	const user = await getProfile()
 	return (
 		<main className={styles.container}>
 			<Title As='h1' align='center' className={styles.title}>
 				Корзина
 			</Title>
-			{isLoading && (
-				<div className={styles.loader}>
-					<Loader />
-				</div>
-			)}
-			{cart.length === 0 && !isLoading && <EmptyCartContent />}
-			{cart.length > 0 && !isLoading && (
-				<div className={styles.content}>
-					<CartList />
-					{user ? <div>Form auth</div> : <FormOrder />}
-				</div>
-			)}
+			<div className={styles.content}>
+				<CartList />
+				<FormOrder user={user} />
+			</div>
 		</main>
 	)
 }

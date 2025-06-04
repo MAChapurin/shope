@@ -8,7 +8,7 @@ export enum PATH_NAMES {
 	LOGIN = '/login',
 	MAIN = '/',
 	PROFILE = '/profile',
-	PROFILE_ORDERS = '/profile/orders',
+	PROFILE_HISTORY = '/profile/history',
 	PROFILE_ORDER = '/profile/order',
 	PROFILE_USER = '/profile/user',
 	TERMS = '/terms',

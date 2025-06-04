@@ -78,6 +78,11 @@ const cartStore = {
 			return el
 		})
 		emitChange()
+	},
+
+	clearCart() {
+		cart = []
+		emitChange()
 	}
 }
 
@@ -94,11 +99,12 @@ export const useCart = () => {
 		isInCartBySku,
 		removeFromCartBySku,
 		incrementBySku,
-		decrementBySku
+		decrementBySku,
+		clearCart
 	} = cartStore
 
 	useEffect(() => {
-		if (cartList.length > 0) {
+		if (cartList.length >= 0) {
 			localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify(cartList))
 		}
 	}, [cartList])
@@ -110,6 +116,7 @@ export const useCart = () => {
 		isInCartBySku,
 		removeFromCartBySku,
 		incrementBySku,
-		decrementBySku
+		decrementBySku,
+		clearCart
 	}
 }

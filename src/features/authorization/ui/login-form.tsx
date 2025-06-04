@@ -3,9 +3,10 @@
 import { Checkbox, PasswordInput } from '@/shared/ui'
 import { INPUT_NAMES, INPUT_PLACEHOLDERS, PATH_NAMES } from '@/shared/settings'
 import { Button, Input } from '@/shared/ui'
-import { useAuth } from '../model/useAuth'
 
 import Link from 'next/link'
+
+import { useAuth } from '../model/useAuth'
 import styles from './styles.module.css'
 
 export const LoginForm = () => {
@@ -15,7 +16,9 @@ export const LoginForm = () => {
 		onInputChange,
 		isDisabledLogin,
 		onLogin,
-		resetInputError
+		resetInputError,
+		isKeepToken,
+		onKeepToken
 	} = useAuth()
 	return (
 		<form className={styles.form} onSubmit={onLogin} onChange={resetInputError}>
@@ -40,8 +43,8 @@ export const LoginForm = () => {
 			/>
 			<Checkbox
 				className={styles.form__checkbox}
-				checked={false}
-				onChange={() => {}}
+				checked={isKeepToken}
+				onChange={onKeepToken}
 				text={'Запомнить меня'}
 			/>
 			<Button

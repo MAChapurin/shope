@@ -1,9 +1,9 @@
 'use client'
 import { Button, Checkbox, Input } from '@/shared/ui'
-import { useAuth } from '../model/useAuth'
 import { INPUT_NAMES, INPUT_PLACEHOLDERS } from '@/shared/settings'
 import { PasswordInput } from '@/shared/ui'
 
+import { useAuth } from '../model/useAuth'
 import styles from './styles.module.css'
 
 export const RegisterForm = () => {

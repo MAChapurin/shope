@@ -28,7 +28,7 @@ export const VALIDATION_SETTING = {
 	SUCCESS_MESSAGE_EDIT_NAME: 'Имя успешно изменено.',
 	LABEL_ALERT: 'Ваш email не будет опубликован. Обязательные поля помечены *',
 	MAIL_EXIST: 'Такой пользователь уже был зарегистрирован',
-	MAX_NAME_LENGTH: 16,
+	MAX_NAME_LENGTH: 30,
 	MAX_NAME_LENGTH_MESSAGE: `Максимальная длинна должна быть 16`,
 	MIN_NAME_LENGTH: 2,
 	MIN_NAME_LENGTH__MESSAGE: 'Имя слишком короткое',

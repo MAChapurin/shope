@@ -10,7 +10,7 @@ export const NavigationProfile = () => {
 	const pathname = usePathname()
 
 	const isOrdersPage =
-		pathname === PATH_NAMES.PROFILE_ORDERS || pathname === PATH_NAMES.PROFILE
+		pathname === PATH_NAMES.PROFILE_HISTORY || pathname === PATH_NAMES.PROFILE
 
 	const isCurrentOrderPage = pathname === PATH_NAMES.PROFILE_ORDER
 	const isUserPage = pathname === PATH_NAMES.PROFILE_USER
@@ -21,7 +21,7 @@ export const NavigationProfile = () => {
 				className={cn(styles.nav__item, {
 					[styles['nav__item--active']]: isOrdersPage
 				})}
-				href={PATH_NAMES.PROFILE_ORDERS}
+				href={PATH_NAMES.PROFILE_HISTORY}
 			>
 				История заказов
 			</Link>
@@ -42,9 +42,6 @@ export const NavigationProfile = () => {
 				Профиль
 			</Link>
 			<LogoutButton className={styles.nav__item} />
-			{/* <Link className={styles.nav__item} href={'/profile/cookie-test'}>
-				Cookie test
-			</Link> */}
 			<div
 				className={cn(styles.nav__indicator, {
 					[styles['nav__indicator--order']]: isOrdersPage,

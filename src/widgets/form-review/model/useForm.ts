@@ -10,6 +10,7 @@ import {
 	STORAGE_KEYS,
 	VALIDATION_SETTING
 } from '@/shared/settings'
+import { TypeUserData } from '@/entities'
 
 const defaultValue = {
 	name: '',
@@ -17,9 +18,16 @@ const defaultValue = {
 	review: ''
 }
 
-export const useForm = () => {
+export const useForm = (user: TypeUserData | null) => {
+	const initialDataValues = {
+		name: user?.name || '',
+		email: user?.email || '',
+		review: ''
+	}
 	const [error, setError] = useState<Record<string, string>>(defaultValue)
-	const [values, setValues] = useState<Record<string, string>>(defaultValue)
+	const [values, setValues] = useState<Record<string, string>>(
+		user ? initialDataValues : defaultValue
+	)
 
 	const [rating, setRating] = useState(0)
 	const [ratingErrorMessage, setRatingErrorMessage] = useState('')

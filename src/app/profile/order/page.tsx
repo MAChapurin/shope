@@ -1,5 +1,5 @@
 import { CurrentOrder } from '@/widgets'
 
-export default async function CurrentOrderPage() {
+export default function CurrentOrderPage() {
 	return <CurrentOrder />
 }

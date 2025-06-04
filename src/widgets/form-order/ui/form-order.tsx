@@ -1,5 +1,6 @@
 'use client'
 
+import { TypeUserData } from '@/entities'
 import { AddressAutoComplete, SumOrder } from '@/features'
 import { Button, Input, PasswordInput, PhoneInputMask } from '@/shared/ui'
 import { INPUT_NAMES, INPUT_PLACEHOLDERS } from '@/shared/settings'
@@ -7,7 +8,7 @@ import { INPUT_NAMES, INPUT_PLACEHOLDERS } from '@/shared/settings'
 import { useFormOrder } from '../model/useFormOrder'
 import styles from './styles.module.css'
 
-export const FormOrder = () => {
+export const FormOrder = ({ user }: { user: TypeUserData | null }) => {
 	const {
 		onSubmit,
 		values,
@@ -15,31 +16,36 @@ export const FormOrder = () => {
 		onInputChange,
 		error,
 		isDisabled,
-		resetInputError
-	} = useFormOrder()
+		resetInputError,
+		isAuth
+	} = useFormOrder(user)
 	return (
 		<form
 			className={styles.form}
 			onSubmit={onSubmit}
 			onChange={resetInputError}
 		>
-			<Input
-				name={INPUT_NAMES.EMAIL}
-				type='email'
-				placeholder={INPUT_PLACEHOLDERS.EMAIL}
-				value={values.email}
-				onChange={onInputChange}
-				errorMessage={error?.email}
-				required
-			/>
-			<PasswordInput
-				name={INPUT_NAMES.PASSWORD}
-				value={values.password}
-				onChange={onInputChange}
-				errorMessage={error?.password}
-				placeholder={INPUT_PLACEHOLDERS.PASSWORD}
-				required
-			/>
+			{!isAuth && (
+				<>
+					<Input
+						name={INPUT_NAMES.EMAIL}
+						type='email'
+						placeholder={INPUT_PLACEHOLDERS.EMAIL}
+						value={values.email}
+						onChange={onInputChange}
+						errorMessage={error?.email}
+						required
+					/>
+					<PasswordInput
+						name={INPUT_NAMES.PASSWORD}
+						value={values.password}
+						onChange={onInputChange}
+						errorMessage={error?.password}
+						placeholder={INPUT_PLACEHOLDERS.PASSWORD}
+						required
+					/>
+				</>
+			)}
 			<AddressAutoComplete
 				errorMessage={error?.address}
 				value={values.address || ''}

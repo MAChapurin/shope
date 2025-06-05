@@ -14,8 +14,19 @@
 	border-bottom: 1px dotted var(--color-secondary-light);
 }
 
+.item__title {
+	padding-right: 10px;
+}
+
 .item__data {
 	display: flex;
 	align-items: center;
 	column-gap: 20px;
+}
+
+@media (max-width: 576px) {
+	p.item__desc {
+		font-size: 12px;
+		line-height: 20px;
+	}
 }

@@ -38,7 +38,9 @@ export default async function AuthLayout({
 			<Title align='center' As='h1' className={styles.profile__title}>
 				Мой аккаунт
 			</Title>
-			<NavigationProfile />
+			<div className={styles.profile__nav}>
+				<NavigationProfile />
+			</div>
 			<div className={styles.profile__children}>{children}</div>
 		</main>
 	)

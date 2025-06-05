@@ -22,7 +22,9 @@ export const FormUpdateUserName: FC<FormUpdateUserProps> = ({
 	)
 	return (
 		<form className={styles.form} onSubmit={onSubmit} {...props}>
-			<Title As='h3'>{user.name ? 'Изменить имя' : 'Добавить имя'}</Title>
+			<Title align='center' As='h3'>
+				{user.name ? 'Изменить имя' : 'Добавить имя'}
+			</Title>
 			<Input
 				name={INPUT_NAMES.NAME}
 				placeholder={INPUT_PLACEHOLDERS.NAME}

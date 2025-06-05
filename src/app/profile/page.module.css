@@ -13,12 +13,12 @@
 	column-gap: 40px;
 }
 
-.profile {
-	padding-top: 112px;
-}
-
 .profile__title {
 	margin-bottom: 70px;
+}
+
+.profile__nav {
+	min-height: 129px;
 }
 
 @media (max-width: 576px) {

@@ -26,6 +26,7 @@
 	padding-block: 16px;
 	text-align: left;
 	color: var(--color-secondary);
+	white-space: nowrap;
 }
 
 .empty {
@@ -42,4 +43,27 @@
 	align-items: center;
 	justify-content: center;
 	row-gap: 20px;
+}
+
+.table__th--mobile {
+	display: none;
+}
+
+@media (max-width: 576px) {
+	.table__th--desktop {
+		display: none;
+	}
+
+	.table__th:first-of-type {
+		padding-right: 10px;
+	}
+
+	.table__th--mobile {
+		display: inline-table;
+	}
+
+	.table__td {
+		font-size: 12px;
+		line-height: 20px;
+	}
 }

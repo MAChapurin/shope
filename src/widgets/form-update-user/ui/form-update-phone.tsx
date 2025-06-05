@@ -28,7 +28,7 @@ export const FormUpdateUserPhone: FC<FormUpdateUserProps> = ({
 			onChange={resetInputError}
 			{...props}
 		>
-			<Title As='h3'>
+			<Title align='center' As='h3'>
 				{user.phone ? 'Изменить номер телефона' : 'Добавить номер телефона'}
 			</Title>
 			<PhoneInputMask

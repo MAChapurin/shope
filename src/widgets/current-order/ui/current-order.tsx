@@ -2,14 +2,13 @@
 
 import { useNewOrder } from '@/entities'
 import { Button, Paragraph, Title } from '@/shared/ui'
-
-import { OrderTable } from './table-order'
-import { UserDataList } from './user-data-list'
-import { OrderAlert } from './order-alert'
-
-import styles from './styles.module.css'
 import Link from 'next/link'
 import { PATH_NAMES } from '@/shared/settings'
+
+import { OrderAlert } from './order-alert'
+import { OrderTable } from './table-order'
+import { UserDataList } from './user-data-list'
+import styles from './styles.module.css'
 
 export const CurrentOrder = () => {
 	const { order } = useNewOrder()

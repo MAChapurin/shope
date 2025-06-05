@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Paragraph, Title } from '@/shared/ui'
+import { Button, Paragraph, Title } from '@/shared/ui'
 import { PATH_NAMES } from '@/shared/settings'
 import { SearchButtonOpen } from '@/features/search'
 
@@ -39,10 +39,10 @@ export const EmptyCart = () => {
 			<div className={styles.empty__divider} />
 			<div className={styles.empty__navigation}>
 				<Link className={styles.empty__link} href={PATH_NAMES.MAIN}>
-					На&nbsp;главную
+					<Button variant='filled'>На&nbsp;главную</Button>
 				</Link>
 				<Link className={styles.empty__link} href={PATH_NAMES.CATALOG}>
-					В&nbsp;каталог
+					<Button variant='filled'>В&nbsp;каталог</Button>
 				</Link>
 				<SearchButtonOpen />
 			</div>

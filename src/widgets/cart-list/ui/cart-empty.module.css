@@ -15,7 +15,7 @@
 	flex-wrap: wrap;
 }
 
-.empty__link {
+/* .empty__link {
 	padding: 16px;
 	display: flex;
 	align-items: center;
@@ -27,7 +27,7 @@
 	transition:
 		color var(--transition-duration),
 		background var(--transition-duration);
-}
+} */
 
 .empty__divider {
 	width: 100%;

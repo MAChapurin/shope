@@ -1,8 +1,34 @@
 .button {
+	display: flex;
+	align-items: center;
+	column-gap: 10px;
 	opacity: 1;
 	transition: opacity var(--transition-duration);
 }
 
 .button:disabled {
 	opacity: 0.8;
+}
+
+.button__icon {
+	display: none;
+}
+
+.button__icon path {
+	transition: fill var(--transition-duration);
+}
+.button path:first-of-type {
+	fill: var(--color-secondary);
+}
+
+@media (max-width: 576px) {
+	.button__icon {
+		display: inline-block;
+	}
+}
+
+@media (hover: hover) {
+	.button:hover path:first-of-type {
+		fill: var(--color-dark);
+	}
 }

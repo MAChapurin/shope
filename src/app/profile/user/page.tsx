@@ -3,12 +3,12 @@ import { getPhoneMask } from '@/shared/utils'
 import { UserDataItemProps } from '@/widgets/current-order/types'
 import { FormUpdateUserName } from '@/widgets/form-update-user/ui/form-update-name'
 import { Icon, Modal, Paragraph, Title } from '@/shared/ui'
-import styles from './styles.module.css'
 import { ReactNode } from 'react'
 import {
 	FormUpdateUserAddress,
 	FormUpdateUserPhone
 } from '@/widgets/form-update-user'
+import styles from './styles.module.css'
 
 export default async function UserPage() {
 	const user = await getProfile()
@@ -41,16 +41,18 @@ export default async function UserPage() {
 	]
 	return (
 		<>
-			<Title>Данные пользователя</Title>
+			<Title>Ваши данные</Title>
 			<ul className={styles.data}>
 				{userDataList.map(el => (
 					<li key={el.title}>
 						<div className={styles.item}>
-							<Title As='h3' size='sm'>
+							<Title className={styles.item__title} As='h3' size='sm'>
 								{el.title}
 							</Title>
 							<div className={styles.item__data}>
-								<Paragraph color='secondary'>{el.description}</Paragraph>
+								<Paragraph className={styles.item__desc} color='secondary'>
+									{el.description}
+								</Paragraph>
 								<Modal
 									disabled={el.title === 'EMAIL'}
 									buttonChildrenSlot={

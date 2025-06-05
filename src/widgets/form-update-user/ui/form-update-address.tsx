@@ -20,7 +20,7 @@ export const FormUpdateUserAddress: FC<FormUpdateUserProps> = ({
 		)
 	return (
 		<form className={styles.form} onSubmit={onSubmit} {...props}>
-			<Title As='h3'>
+			<Title As='h3' align='center'>
 				{user.address ? 'Изменить адрес' : 'Добавить адрес'}
 			</Title>
 			<AddressAutoComplete

@@ -1,7 +1,14 @@
-.root {
+.root,
+.skeleton {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+}
+
+.skeleton__left {
+	margin-top: 34px;
+	height: 26px;
+	width: 50%;
 }
 
 .mobile {
@@ -126,6 +133,16 @@
 	.nav__item {
 		font-size: 12px;
 		line-height: 20px;
+	}
+	.skeleton__left {
+		margin-top: 0;
+		width: 150px;
+		height: 34px;
+	}
+
+	.skeleton__right {
+		width: 100px;
+		height: 34px;
 	}
 }
 

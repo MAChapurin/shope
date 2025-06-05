@@ -33,4 +33,8 @@
 	.profile__children {
 		padding-top: 20px;
 	}
+
+	.profile__nav {
+		min-height: 34px;
+	}
 }

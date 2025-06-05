@@ -13,7 +13,9 @@ export const RegisterForm = () => {
 		onInputChange,
 		isDisabledRegister,
 		onRegister,
-		resetInputError
+		resetInputError,
+		isAgreePersonalData,
+		onPersonalData
 	} = useAuth()
 	return (
 		<form
@@ -47,8 +49,8 @@ export const RegisterForm = () => {
 				required
 			/>
 			<Checkbox
-				checked={false}
-				onChange={() => {}}
+				checked={isAgreePersonalData}
+				onChange={onPersonalData}
 				text='Согласен на обработку персональных данных'
 			/>
 			<Button

@@ -39,6 +39,11 @@ export const useAuth = () => {
 		setIsKeepToken(prev => !prev)
 	}
 
+	const [isAgreePersonalData, setIsAgreePersonalData] = useState(false)
+	const onPersonalData = () => {
+		setIsAgreePersonalData(prev => !prev)
+	}
+
 	const onError = (name: string, value: string) => {
 		setError(prev => ({ ...prev, [name]: value }))
 	}
@@ -190,7 +195,7 @@ export const useAuth = () => {
 	}
 
 	const isDisabledLogin = isPending
-	const isDisabledRegister = isPending
+	const isDisabledRegister = isPending || !isAgreePersonalData
 
 	return {
 		values,
@@ -202,6 +207,8 @@ export const useAuth = () => {
 		isDisabledRegister,
 		resetInputError,
 		isKeepToken,
-		onKeepToken
+		onKeepToken,
+		isAgreePersonalData,
+		onPersonalData
 	}
 }

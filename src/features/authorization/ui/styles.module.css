@@ -8,3 +8,14 @@
 	width: max-content;
 	align-self: center;
 }
+
+@media (max-width: 576px) {
+	.form {
+		row-gap: 20px;
+	}
+
+	.form__link {
+		font-size: 12px;
+		line-height: 20px;
+	}
+}

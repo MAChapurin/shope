@@ -12,3 +12,10 @@
 	width: 18px;
 	height: 18px;
 }
+
+@media (max-width: 576px) {
+	.label {
+		font-size: 12px;
+		line-height: 20px;
+	}
+}

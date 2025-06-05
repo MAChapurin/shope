@@ -6,8 +6,9 @@
 }
 
 .content {
-	width: 500px;
-	height: 700px;
+	width: 100%;
+	max-width: 500px;
+	min-height: 700px;
 	display: flex;
 	flex-direction: column;
 }
@@ -21,4 +22,20 @@ p.title {
 
 .children {
 	margin-top: 126px;
+}
+
+@media (max-width: 576px) {
+	p.title {
+		margin-bottom: 24px;
+		font-size: 20px;
+		line-height: 26px;
+	}
+
+	.children {
+		margin-top: 24px;
+	}
+
+	.content {
+		min-height: 400px;
+	}
 }

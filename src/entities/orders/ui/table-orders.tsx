@@ -45,40 +45,43 @@ export const OrdersList = async () => {
 	}
 
 	return (
-		<table className={styles.table}>
-			<thead>
-				<tr className={styles.table__header}>
-					<th className={styles.table__th}>Номер заказа</th>
-					<th className={styles.table__th}>Дата</th>
-					<th className={styles.table__th}>Статус</th>
-					<th className={styles.table__th}>Итог</th>
-				</tr>
-			</thead>
-			<tbody>
-				{orders
-					.sort((a, b) => {
-						return (
-							new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-						)
-					})
-					.map((el, index) => {
-						return (
-							<tr key={el.id}>
-								<td className={styles.table__td}>{index + 1}</td>
-								<td className={styles.table__td}>
-									{formatDate(new Date(el.createdAt))}
-								</td>
-								<td className={styles.table__td}>Оформление</td>
-								<td className={styles.table__td}>
-									${' '}
-									{el.data.reduce((acc, el) => {
-										return acc + el.price * (el.count || 1)
-									}, 0)}
-								</td>
-							</tr>
-						)
-					})}
-			</tbody>
-		</table>
+		<div className={styles.container}>
+			<table className={styles.table}>
+				<thead>
+					<tr className={styles.table__header}>
+						<th className={styles.table__th}>Номер заказа</th>
+						<th className={styles.table__th}>Дата</th>
+						<th className={styles.table__th}>Статус</th>
+						<th className={styles.table__th}>Итог</th>
+					</tr>
+				</thead>
+				<tbody>
+					{orders
+						.sort((a, b) => {
+							return (
+								new Date(b.createdAt).getTime() -
+								new Date(a.createdAt).getTime()
+							)
+						})
+						.map((el, index) => {
+							return (
+								<tr key={el.id}>
+									<td className={styles.table__td}>{index + 1}</td>
+									<td className={styles.table__td}>
+										{formatDate(new Date(el.createdAt))}
+									</td>
+									<td className={styles.table__td}>Оформление</td>
+									<td className={styles.table__td}>
+										${' '}
+										{el.data.reduce((acc, el) => {
+											return acc + el.price * (el.count || 1)
+										}, 0)}
+									</td>
+								</tr>
+							)
+						})}
+				</tbody>
+			</table>
+		</div>
 	)
 }

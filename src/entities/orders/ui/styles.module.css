@@ -1,5 +1,12 @@
+.container {
+	width: 100%;
+	max-width: calc(100vw - 32px);
+	overflow-x: auto;
+}
+
 .table {
 	width: 100%;
+	/* max-width: max-content; */
 	border-collapse: collapse;
 	border-spacing: 0;
 }

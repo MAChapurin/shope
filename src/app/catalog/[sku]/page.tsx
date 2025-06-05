@@ -63,7 +63,6 @@ export default async function ProductPage({ params }: { params: Params }) {
 	)?.name
 
 	const user = await getProfile()
-	console.log(user)
 
 	const ratingValues = product.reviews
 		.map(review => review.rating)

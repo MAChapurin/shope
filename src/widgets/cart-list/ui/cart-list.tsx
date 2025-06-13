@@ -8,11 +8,14 @@ import { CartCounter, CartCounterDropdown } from '@/features'
 
 import Link from 'next/link'
 import { PATH_NAMES } from '@/shared/settings'
-
-import styles from './styles.module.css'
+import { EmptyCart } from './cart-empty'
+import styles from './cart-list.module.css'
 
 export const CartList = () => {
 	const { cart, removeFromCartBySku } = useCart()
+	if (cart.length === 0) {
+		return <EmptyCart />
+	}
 	return (
 		<ul className={styles.cart}>
 			{cart.map(el => (
@@ -34,7 +37,6 @@ export const CartList = () => {
 							<Title>{el.name}</Title>
 							<Paragraph color='primary'>$ {el.price}</Paragraph>
 							<ClickLimiter className={styles.link__counter}>
-								{/* <CartCounter sku={el.sku} /> */}
 								<CartCounterDropdown sku={el.sku} />
 							</ClickLimiter>
 						</div>

@@ -1,0 +1,40 @@
+.main {
+	min-height: calc(100dvh - 450px);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	row-gap: 40px;
+}
+
+.nav {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	column-gap: 40px;
+}
+
+.profile__title {
+	margin-bottom: 70px;
+}
+
+.profile__nav {
+	min-height: 129px;
+}
+
+@media (max-width: 576px) {
+	.profile {
+		padding-top: 20px;
+	}
+
+	.profile__title {
+		margin-bottom: 20px;
+	}
+
+	.profile__children {
+		padding-top: 20px;
+	}
+
+	.profile__nav {
+		min-height: 34px;
+	}
+}

@@ -11,6 +11,7 @@ import { Title, Paragraph, VisuallyHiddenTitle, Accordion } from '@/shared/ui'
 import { calculateAverage, declareOfNumber } from '@/shared/utils'
 import { cn } from '@/shared/lib'
 
+import { getProfile } from '@/entities'
 import {
 	AddToCart,
 	AnchorLink,
@@ -61,6 +62,8 @@ export default async function ProductPage({ params }: { params: Params }) {
 		category => category.id === product.categoryId
 	)?.name
 
+	const user = await getProfile()
+
 	const ratingValues = product.reviews
 		.map(review => review.rating)
 		.filter(el => typeof el === 'number')
@@ -93,7 +96,7 @@ export default async function ProductPage({ params }: { params: Params }) {
 	const ReviewContent = () => (
 		<>
 			<ReviewList reviews={product.reviews} />
-			<FormReview />
+			<FormReview user={user} />
 		</>
 	)
 

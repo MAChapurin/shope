@@ -9,8 +9,9 @@ import {
 	VALIDATION_SETTING
 } from '@/shared/settings'
 import styles from './styles.module.css'
+import { TypeUserData } from '@/entities'
 
-export const FormReview = () => {
+export const FormReview = ({ user }: { user: TypeUserData | null }) => {
 	const {
 		resetInputError,
 		onSubmit,
@@ -24,7 +25,7 @@ export const FormReview = () => {
 		setRatingErrorMessage,
 		keepUserData,
 		onUserDataCheckbox
-	} = useForm()
+	} = useForm(user)
 
 	return (
 		<form

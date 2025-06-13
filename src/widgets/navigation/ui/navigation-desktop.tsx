@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import { CartLinkWithIndicator, LikeLinkIndicator, Search } from '@/features'
-import { Icon } from '@/shared/ui'
 import { Suspense } from 'react'
 import { PATH_NAMES } from '@/shared/settings'
+import { Avatar } from '@/entities'
+
 import styles from './styles.module.css'
 
 export const NavigationDesktop = () => {
@@ -32,9 +33,7 @@ export const NavigationDesktop = () => {
 					<LikeLinkIndicator />
 				</li>
 				<li>
-					<Link href={PATH_NAMES.PROFILE}>
-						<Icon name='profile' />
-					</Link>
+					<Avatar />
 				</li>
 			</ul>
 		</nav>

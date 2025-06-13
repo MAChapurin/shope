@@ -6,16 +6,38 @@
 	bottom: 0;
 	width: 100dvw;
 	height: 100dvh;
-	background-color: greenyellow;
-	/* background: var(--color-light); */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background: transparent;
 	border: 1px solid var(--color-secondary-light);
-	z-index: 100;
+	z-index: 101;
+	opacity: 0;
+	pointer-events: none;
+	transition:
+		opacity var(--transition-duration),
+		background var(--transition-duration);
+}
+
+.modal__content--open {
+	opacity: 1;
+	pointer-events: all;
+	background: var(--color-light);
+	background: #ffffff90;
+	backdrop-filter: blur(10px);
 }
 
 .modal__header {
-	display: flex;
+	position: fixed;
+	top: 0;
+	right: 0;
 }
 
 .modal__close {
 	margin-left: auto;
+}
+
+body:has(.modal__content--open) {
+	overflow: hidden;
 }

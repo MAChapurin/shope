@@ -1,7 +1,10 @@
-export default function ProfilePage() {
+import { OrdersList } from '@/entities'
+import styles from './page.module.css'
+
+export default async function ProfilePage() {
 	return (
-		<main>
-			<h1>PROFILE PAGE</h1>
+		<main className={styles.profile}>
+			<OrdersList />
 		</main>
 	)
 }

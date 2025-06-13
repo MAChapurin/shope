@@ -12,23 +12,47 @@ import {
 } from '@/shared/settings'
 import { emitter } from '@/shared/lib'
 import { useRouter } from 'next/navigation'
+import {
+	createOrder,
+	getProfile,
+	registerUser,
+	TypeUserData,
+	useCart,
+	useProfile,
+	saveToken
+} from '@/entities'
 
-const defaultValue = {
+const defaultValue: TypeUserData = {
 	name: '',
 	email: '',
 	address: '',
 	password: '',
-	tel: ''
+	phone: ''
 }
 
-export const useFormOrder = () => {
-	const [error, setError] = useState<Record<string, string>>(defaultValue)
-	const [values, setValues] = useState<Record<string, string>>(defaultValue)
+export const useFormOrder = (user: TypeUserData | null) => {
+	const initialDataValues = {
+		name: user?.name ? user.name : '',
+		email: user?.email ? user.email : '',
+		address: user?.address ? user.address : '',
+		password: '',
+		phone: user?.phone ? user.phone : ''
+	}
+
+	const isAuth = user ? true : false
+
+	const { cart, clearCart } = useCart()
+	const { setUser } = useProfile()
+
+	const [error, setError] = useState<TypeUserData>(defaultValue)
+	const [values, setValues] = useState<TypeUserData>(
+		user ? initialDataValues : defaultValue
+	)
 
 	const router = useRouter()
 
 	const navigateToProfile = () => {
-		router.push(PATH_NAMES.PROFILE)
+		router.push(PATH_NAMES.PROFILE_ORDER)
 	}
 
 	const onError = (name: string, value: string) => {
@@ -39,9 +63,9 @@ export const useFormOrder = () => {
 		setValues(prev => ({ ...prev, [name]: value }))
 	}
 
-	// const resetForm = () => {
-	//   setValues(defaultValue)
-	// }
+	const resetForm = () => {
+		setValues(defaultValue)
+	}
 
 	const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const name = e.target.name
@@ -63,11 +87,17 @@ export const useFormOrder = () => {
 	}
 
 	const checkValidName = () => {
-		if (values.name.trim().length < VALIDATION_SETTING.MIN_NAME_LENGTH) {
+		if (
+			values.name &&
+			values.name.trim().length < VALIDATION_SETTING.MIN_NAME_LENGTH
+		) {
 			onError(INPUT_NAMES.NAME, VALIDATION_SETTING.MIN_NAME_LENGTH__MESSAGE)
 			return false
 		}
-		if (values.name.length > VALIDATION_SETTING.MAX_NAME_LENGTH) {
+		if (
+			values.name &&
+			values.name.length > VALIDATION_SETTING.MAX_NAME_LENGTH
+		) {
 			onError(INPUT_NAMES.NAME, VALIDATION_SETTING.MAX_NAME_LENGTH_MESSAGE)
 			return false
 		}
@@ -112,14 +142,20 @@ export const useFormOrder = () => {
 	}
 
 	const checkValidAddress = () => {
-		if (values.address.trim().length < VALIDATION_SETTING.MIN_ADDRESS_LENGTH) {
+		if (
+			values.address &&
+			values.address.trim().length < VALIDATION_SETTING.MIN_ADDRESS_LENGTH
+		) {
 			onError(
 				INPUT_NAMES.ADDRESS,
 				VALIDATION_SETTING.MIN_ADDRESS_LENGTH_MESSAGE
 			)
 			return false
 		}
-		if (values.address.length > VALIDATION_SETTING.MAX_ADDRESS_LENGTH) {
+		if (
+			values.address &&
+			values.address.length > VALIDATION_SETTING.MAX_ADDRESS_LENGTH
+		) {
 			onError(
 				INPUT_NAMES.ADDRESS,
 				VALIDATION_SETTING.MAX_ADDRESS_LENGTH_MESSAGE
@@ -131,7 +167,8 @@ export const useFormOrder = () => {
 
 	const checkValidPhone = () => {
 		if (
-			values.tel.replace(/\D/g, '').length < VALIDATION_SETTING.PHONE_LENGTH
+			values.phone &&
+			values.phone.replace(/\D/g, '').length < VALIDATION_SETTING.PHONE_LENGTH
 		) {
 			onError(INPUT_NAMES.PHONE, VALIDATION_SETTING.PHONE_ERROR_MESSAGE)
 			return false
@@ -140,26 +177,70 @@ export const useFormOrder = () => {
 	}
 
 	const isErrorField = Object.values(error).some(el => el.trim().length > 0)
-	const isEmptyField = Object.values(values).some(el => el.trim().length === 0)
+	const isEmptyField = Object.values(
+		isAuth
+			? { name: values.name, address: values.address, phone: values.phone }
+			: values
+	).some(el => el?.trim().length === 0)
 	const isDisabled = isEmptyField || isErrorField
 
-	const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-		e.preventDefault()
-		const isValidationFields =
-			checkValidName() &&
-			checkValidEmail() &&
-			checkValidAddress() &&
-			checkValidPassword() &&
-			checkValidPhone()
+	const getToken = async () => {
+		let token = ''
+		try {
+			token = await registerUser(values)
+			return token
+		} catch (error) {
+			if (error instanceof Error) {
+				onError(INPUT_NAMES.EMAIL, error.message)
+			}
+			return null
+		}
+	}
 
-		if (isValidationFields) {
-			emitter.emit(
-				CUSTOM_EVENTS.ADD_TOST,
-				VALIDATION_SETTING.SUCCESS_MESSAGE_ORDER
-			)
-			console.log(values)
-			// resetForm()
-			setTimeout(navigateToProfile, 200)
+	const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault()
+		const order = cart.map(({ name, price, count }) => {
+			return { name, price, count }
+		})
+
+		if (isAuth) {
+			const isValidUpdateUserFields =
+				checkValidName() && checkValidAddress() && checkValidPhone()
+
+			if (isValidUpdateUserFields) {
+				const newOrder = await createOrder({ items: order })
+				emitter.emit(CUSTOM_EVENTS.ADD_ORDER, newOrder)
+				emitter.emit(
+					CUSTOM_EVENTS.ADD_TOST,
+					VALIDATION_SETTING.SUCCESS_MESSAGE_ORDER
+				)
+				resetForm()
+				setTimeout(navigateToProfile, 200)
+				clearCart()
+			}
+		} else {
+			const isValidationFieldsRegister =
+				checkValidName() &&
+				checkValidEmail() &&
+				checkValidAddress() &&
+				checkValidPassword() &&
+				checkValidPhone()
+
+			const token = await getToken()
+			if (isValidationFieldsRegister && token) {
+				saveToken(token)
+				const newOrder = await createOrder({ items: order })
+				const user = await getProfile()
+				setUser(user)
+				emitter.emit(CUSTOM_EVENTS.ADD_ORDER, newOrder)
+				emitter.emit(
+					CUSTOM_EVENTS.ADD_TOST,
+					VALIDATION_SETTING.SUCCESS_MESSAGE_ORDER
+				)
+				resetForm()
+				setTimeout(navigateToProfile, 200)
+				clearCart()
+			}
 		}
 	}
 
@@ -171,6 +252,7 @@ export const useFormOrder = () => {
 		error,
 		isDisabled,
 		onError,
-		onAddressDropdown
+		onAddressDropdown,
+		isAuth
 	}
 }

@@ -1,16 +1,19 @@
 'use client'
 
-import { cn } from '@/shared/lib'
-import { FC, useRef, useState } from 'react'
+import { cn, emitter } from '@/shared/lib'
+import { FC, useEffect, useRef, useState } from 'react'
 import { ModalProps } from './modal.types'
 import { useClickOutside } from '@/shared/hooks'
 import { Icon } from '../icon/icon'
+import { Button } from '../button'
+import { CUSTOM_EVENTS } from '@/shared/settings'
 
 import styles from './styles.module.css'
 
 export const Modal: FC<ModalProps> = ({
 	className,
 	buttonChildrenSlot,
+	disabled = false,
 	children
 }) => {
 	const [isOpen, setIsOpen] = useState(false)
@@ -25,9 +28,19 @@ export const Modal: FC<ModalProps> = ({
 	const ref = useRef<HTMLDivElement>(null!)
 
 	useClickOutside(ref, onClose)
+
+	useEffect(() => {
+		const unsubscribe = emitter.subscribe(CUSTOM_EVENTS.CLOSE_MODAL, onClose)
+		return () => unsubscribe()
+	}, [])
 	return (
-		<div className={cn(styles.modal, className)}>
-			<button onClick={onOpen}>{buttonChildrenSlot}</button>
+		<div
+			className={cn(styles.modal, className)}
+			data-modal={isOpen ? 'open' : 'close'}
+		>
+			<Button disabled={disabled} onClick={onOpen}>
+				{buttonChildrenSlot}
+			</Button>
 			<div
 				className={cn(styles.modal__overlay, {
 					[styles['modal__content--open']]: isOpen

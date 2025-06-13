@@ -11,9 +11,7 @@ export default function AboutPage() {
 				ювелирных украшений, где каждый найдет что-то особенное!
 			</p>
 			<article className={styles.article}>
-				<h2 className={styles.article__title}>
-					<h2 className={styles.article__title}>Наша история</h2>
-				</h2>
+				<h2 className={styles.article__title}>Наша история</h2>
 				<p className={styles.description}>
 					Магазин Shope был основан с&nbsp;любовью к&nbsp;красоте
 					и&nbsp;стремлением создавать уникальные украшения, которые

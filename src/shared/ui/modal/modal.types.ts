@@ -4,4 +4,5 @@ export interface ModalProps {
 	buttonChildrenSlot: ReactNode
 	children: ReactNode
 	className?: string
+	disabled?: boolean
 }

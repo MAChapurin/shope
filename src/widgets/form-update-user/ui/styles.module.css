@@ -1,0 +1,12 @@
+.form {
+	width: 100%;
+	min-width: 300px;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	row-gap: 30px;
+	background: var(--color-light);
+	box-shadow: var(--shadow-base);
+	border-radius: 8px;
+}

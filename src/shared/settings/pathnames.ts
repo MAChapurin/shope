@@ -5,7 +5,13 @@ export enum PATH_NAMES {
 	CATALOG = '/catalog',
 	DELIVERY = '/delivery',
 	FAVORITES = '/favorites',
+	LOGIN = '/login',
 	MAIN = '/',
 	PROFILE = '/profile',
-	TERMS = '/terms'
+	PROFILE_HISTORY = '/profile/history',
+	PROFILE_ORDER = '/profile/order',
+	PROFILE_USER = '/profile/user',
+	TERMS = '/terms',
+	REGISTER = '/register',
+	RESTORE = '/restore'
 }

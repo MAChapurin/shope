@@ -1,18 +1,14 @@
 'use client'
 
-import {
-	AddressAutoComplete,
-	PasswordInput,
-	PhoneInputMask,
-	SumOrder
-} from '@/features'
-import { Button, Input } from '@/shared/ui'
+import { TypeUserData } from '@/entities'
+import { AddressAutoComplete, SumOrder } from '@/features'
+import { Button, Input, PasswordInput, PhoneInputMask } from '@/shared/ui'
 import { INPUT_NAMES, INPUT_PLACEHOLDERS } from '@/shared/settings'
 
 import { useFormOrder } from '../model/useFormOrder'
 import styles from './styles.module.css'
 
-export const FormOrder = () => {
+export const FormOrder = ({ user }: { user: TypeUserData | null }) => {
 	const {
 		onSubmit,
 		values,
@@ -20,34 +16,39 @@ export const FormOrder = () => {
 		onInputChange,
 		error,
 		isDisabled,
-		resetInputError
-	} = useFormOrder()
+		resetInputError,
+		isAuth
+	} = useFormOrder(user)
 	return (
 		<form
 			className={styles.form}
 			onSubmit={onSubmit}
 			onChange={resetInputError}
 		>
-			<Input
-				name={INPUT_NAMES.EMAIL}
-				type='email'
-				placeholder={INPUT_PLACEHOLDERS.EMAIL}
-				value={values.email}
-				onChange={onInputChange}
-				errorMessage={error?.email}
-				required
-			/>
-			<PasswordInput
-				name={INPUT_NAMES.PASSWORD}
-				value={values.password}
-				onChange={onInputChange}
-				errorMessage={error?.password}
-				placeholder={INPUT_PLACEHOLDERS.PASSWORD}
-				required
-			/>
+			{!isAuth && (
+				<>
+					<Input
+						name={INPUT_NAMES.EMAIL}
+						type='email'
+						placeholder={INPUT_PLACEHOLDERS.EMAIL}
+						value={values.email}
+						onChange={onInputChange}
+						errorMessage={error?.email}
+						required
+					/>
+					<PasswordInput
+						name={INPUT_NAMES.PASSWORD}
+						value={values.password}
+						onChange={onInputChange}
+						errorMessage={error?.password}
+						placeholder={INPUT_PLACEHOLDERS.PASSWORD}
+						required
+					/>
+				</>
+			)}
 			<AddressAutoComplete
 				errorMessage={error?.address}
-				value={values.address}
+				value={values.address || ''}
 				onChange={onInputChange}
 				setValue={onAddressDropdown}
 			/>
@@ -63,8 +64,8 @@ export const FormOrder = () => {
 			<PhoneInputMask
 				name={INPUT_NAMES.PHONE}
 				placeholder={INPUT_PLACEHOLDERS.PHONE}
-				errorMessage={error?.tel}
-				value={values.tel}
+				errorMessage={error?.phone}
+				value={values.phone}
 				onChange={onInputChange}
 				required
 			/>
